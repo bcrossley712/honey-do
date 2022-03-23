@@ -11,3 +11,10 @@ export const RecipeSchema = new Schema({
   stub: { type: String, required: true },
   upVote: { type: String, required: true }
 })
+
+RecipeSchema.virtual('planner' {
+  localField: 'plannerId',
+  foreignField: '_id',
+  ref: 'Planner',
+  justOne: true
+})
