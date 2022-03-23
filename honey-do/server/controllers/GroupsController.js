@@ -1,9 +1,9 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController";
 
-export class PlannersController extends BaseController {
+export class GroupssController extends BaseController {
   constructor() {
-    super('api/planners')
+    super('api/groups')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getById)
@@ -21,6 +21,7 @@ export class PlannersController extends BaseController {
   }
   async create(req, res, next) {
     try {
+      req.body.id = req.userInfo.id
       throw new Error("Method not implemented.");
     } catch (error) {
       next(error)
@@ -28,6 +29,7 @@ export class PlannersController extends BaseController {
   }
   async edit(req, res, next) {
     try {
+      req.body.id = req.userInfo.id
       throw new Error("Method not implemented.");
     } catch (error) {
       next(error)
@@ -35,6 +37,7 @@ export class PlannersController extends BaseController {
   }
   async remove(req, res, next) {
     try {
+      req.body.id = req.userInfo.id
       throw new Error("Method not implemented.");
     } catch (error) {
       next(error)
