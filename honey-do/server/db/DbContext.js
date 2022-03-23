@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
+import { RecipeSchema } from "../../client/app/Models/Recipe";
 import { AccountSchema, ProfileSchema } from '../models/Account'
 import { ListSchema } from "../models/List";
 import { PlannerSchema } from "../models/Planner";
-import { ValueSchema } from '../models/Value'
+import { ValueSchema } from '../models/Value';
+
 
 class DbContext {
   Lists = mongoose.model('List', ListSchema);

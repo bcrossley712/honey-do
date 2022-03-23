@@ -12,7 +12,7 @@ export const RecipeSchema = new Schema({
   upVote: { type: String, required: true }
 })
 
-RecipeSchema.virtual('planner' {
+RecipeSchema.virtual('planner', {
   localField: 'plannerId',
   foreignField: '_id',
   ref: 'Planner',
