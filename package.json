@@ -1,0 +1,16 @@
+
+  {
+    "name": "honey-do",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "npm run setup:server",
+      "setup:app": "npm run setup:server && npm run setup:client",
+      "setup:client": "cd honey-do.client && npm i",
+      "setup:server": "cd honey-do && npm i",
+      "start": "node honey-do/index.js"
+    },
+    "engines": {
+      "node": "^14.17.0"
+    }
+  }
+  
