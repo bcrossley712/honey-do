@@ -7,4 +7,12 @@ export const ChoreSchema = new Schema({
   groupId: { type: String, required: true },
   assignedTo: { type: ObjectId, required: true, ref: 'Account' },
 
+}, { timestamps: true, toJSON: { virtuals: true } }
+)
+
+ChoreSchema.virtual('assignedTo', {
+  localField: 'assignedTo',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
 })

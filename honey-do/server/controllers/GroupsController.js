@@ -6,7 +6,7 @@ export class GroupssController extends BaseController {
     super('api/groups')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getById)
+      .get('/:id', this.getById)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.remove)

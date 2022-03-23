@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 export const RecipeSchema = new Schema({
-  plannerId: { type: ObjectId, required: true, ref: 'Planner' },
+  groupId: { type: ObjectId, required: true, ref: 'Planner' },
   name: { type: String, required: true },
   thumbnailUrl: { type: String, required: true },
   ingredients: { type: String, required: true },
@@ -12,8 +12,8 @@ export const RecipeSchema = new Schema({
   upVote: { type: String, required: true }
 })
 
-RecipeSchema.virtual('planner', {
-  localField: 'plannerId',
+RecipeSchema.virtual('group', {
+  localField: 'groupId',
   foreignField: '_id',
   ref: 'Planner',
   justOne: true
