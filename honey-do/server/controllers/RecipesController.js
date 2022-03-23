@@ -14,6 +14,7 @@ export class RecipesController extends BaseController {
   }
   deleteRecipe(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       throw new Error("Method not implemented.")
     } catch (error) {
       next(error)
@@ -21,6 +22,7 @@ export class RecipesController extends BaseController {
   }
   updateRecipe(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       throw new Error("Method not implemented.")
     } catch (error) {
       next(error)
@@ -28,6 +30,7 @@ export class RecipesController extends BaseController {
   }
   createRecipe(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       throw new Error("Method not implemented.")
     } catch (error) {
       next(error)
