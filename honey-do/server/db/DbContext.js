@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { AccountSchema, ProfileSchema } from '../models/Account'
+import { ListSchema } from "../models/List";
 import { ValueSchema } from '../models/Value'
 
 class DbContext {
