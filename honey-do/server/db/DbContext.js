@@ -3,6 +3,9 @@ import { AccountSchema, ProfileSchema } from '../models/Account'
 import { ValueSchema } from '../models/Value'
 
 class DbContext {
+  Lists = mongoose.model('List', ListSchema);
+  Planners = mongoose.model('Planner', PlannerSchema);
+  Recipes = mongoose.model('Recipe', RecipeSchema);
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   Profiles = mongoose.model('Profile', ProfileSchema, 'accounts');
