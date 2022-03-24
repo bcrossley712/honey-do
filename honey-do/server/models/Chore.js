@@ -10,7 +10,7 @@ export const ChoreSchema = new Schema({
 }, { timestamps: true, toJSON: { virtuals: true } }
 )
 
-ChoreSchema.virtual('assignedTo', {
+ChoreSchema.virtual('choreOwner', {
   localField: 'assignedTo',
   foreignField: '_id',
   justOne: true,
