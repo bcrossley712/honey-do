@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import { groupsService } from "../services/GroupsService";
 import { itemsService } from "../services/ItemsService";
 import { choresService } from "../services/ChoresService";
+import { notesService } from "../services/NotesService";
 import BaseController from "../utils/BaseController";
 
 export class GroupsController extends BaseController {
@@ -13,6 +14,7 @@ export class GroupsController extends BaseController {
       .get('/:id', this.getById)
       .get('/:id/items', this.getGroupItems)
       .get('/:id/chores', this.getGroupChores)
+      .get('/:id/notes', this.getGroupNotes)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.remove)
@@ -46,6 +48,14 @@ export class GroupsController extends BaseController {
     try {
       const chores = await choresService.getGroupChores(req.params.id)
       return res.send(chores)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getGroupNotes(req, res, next) {
+    try {
+      const notes = await notesService.getGroupNotes(req.params.id)
+      return res.send(notes)
     } catch (error) {
       next(error)
     }
