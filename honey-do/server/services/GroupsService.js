@@ -13,8 +13,8 @@ class GroupsService {
     }
     return group
   }
-  async getAccountGroups(query = {}) {
-    const groups = await this.getAll(query)
+  async getAccountGroups(id) {
+    const groups = await dbContext.Groups.find({ creatorId: id })
     return groups
   }
   async create(body) {
