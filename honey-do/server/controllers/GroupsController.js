@@ -3,6 +3,7 @@ import { groupsService } from "../services/GroupsService";
 import { itemsService } from "../services/ItemsService";
 import { choresService } from "../services/ChoresService";
 import { notesService } from "../services/NotesService";
+import { membersService } from "../services/MembersService";
 import BaseController from "../utils/BaseController";
 
 export class GroupsController extends BaseController {
@@ -15,6 +16,7 @@ export class GroupsController extends BaseController {
       .get('/:id/items', this.getGroupItems)
       .get('/:id/chores', this.getGroupChores)
       .get('/:id/notes', this.getGroupNotes)
+      .get('/:id/members', this.getGroupMembers)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.remove)
@@ -32,6 +34,14 @@ export class GroupsController extends BaseController {
     try {
       const group = await groupsService.getById(req.params.id)
       return res.send(group)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getGroupMembers(req, res, next) {
+    try {
+      const members = await membersService.getGroupMembers(req.params.id)
+      return res.send(members)
     } catch (error) {
       next(error)
     }
