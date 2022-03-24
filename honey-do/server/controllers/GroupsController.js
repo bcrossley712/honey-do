@@ -9,6 +9,7 @@ export class GroupsController extends BaseController {
     super('api/groups')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('', this.getAll)
       .get('/:id', this.getById)
       .get('/:id/items', this.getGroupItems)
       .get('/:id/chores', this.getGroupChores)
@@ -16,6 +17,14 @@ export class GroupsController extends BaseController {
       .put('/:id', this.edit)
       .delete('/:id', this.remove)
 
+  }
+  async getAll(req, res, next) {
+    try {
+      const groups = await groupsService.getAll(req.query)
+      return res.send(groups)
+    } catch (error) {
+      next(error)
+    }
   }
   async getById(req, res, next) {
     try {

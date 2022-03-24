@@ -2,12 +2,20 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
 class GroupsService {
+  async getAll(query = {}) {
+    const groups = await dbContext.Groups.find(query).populate('creator', 'name picture')
+    return groups
+  }
   async getById(id) {
     const group = await dbContext.Groups.findById(id).populate('creator', 'name picture')
     if (!group) {
       throw new BadRequest('Invalid Group Id')
     }
     return group
+  }
+  async getAccountGroups(query = {}) {
+    const groups = await this.getAll(query)
+    return groups
   }
   async create(body) {
     const group = await dbContext.Groups.create(body)
