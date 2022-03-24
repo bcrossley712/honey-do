@@ -6,6 +6,17 @@ class MembersService {
     return members
   }
 
+  async createMember() {
+
+  }
+
+  async getGroupMembers() {
+
+  }
+
+  async removeMember() {
+
+  }
 }
 
 export const membersService = new MembersService()
