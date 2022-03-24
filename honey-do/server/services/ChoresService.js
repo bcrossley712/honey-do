@@ -2,6 +2,10 @@ import { dbContext } from "../db/DbContext";
 import { Forbidden } from "../utils/Errors";
 
 class ChoresService {
+  async getGroupChores(id) {
+    const chores = await dbContext.Chores.find({ groupId: id })
+    return chores
+  }
   async create(body) {
     const chore = await dbContext.Chores.create(body)
     return chore

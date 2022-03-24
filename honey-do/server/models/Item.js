@@ -5,7 +5,8 @@ const ObjectId = mongoose.Types.ObjectId
 export const ItemSchema = new Schema(
   {
     name: { type: String, required: true },
-    creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Profile' }
+    creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Profile' },
+    isComplete: { type: Boolean, default: false }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
