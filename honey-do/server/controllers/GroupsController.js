@@ -36,7 +36,7 @@ export class GroupsController extends BaseController {
   async getGroupChores(req, res, next) {
     try {
       const chores = await choresService.getGroupChores(req.params.id)
-      return chores
+      return res.send(chores)
     } catch (error) {
       next(error)
     }
