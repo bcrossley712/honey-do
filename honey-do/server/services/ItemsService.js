@@ -19,6 +19,8 @@ class ItemsService {
       throw new Forbidden('Can not edit this item')
     }
     item.isComplete = update.isComplete !== '' ? update.isComplete : item.isComplete
+    await update.save()
+    return item
   }
 
   async delete(userId, itemId) {

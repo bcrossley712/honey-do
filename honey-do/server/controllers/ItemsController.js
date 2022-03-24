@@ -26,7 +26,7 @@ export class ItemsController extends BaseController {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
-      const item = await itemsService.update()
+      const item = await itemsService.update(req.body)
       res.send(item)
     } catch (error) {
       next(error)
@@ -39,6 +39,7 @@ export class ItemsController extends BaseController {
       const userId = req.userInfo.id
       const itemId = req.params.id
       const item = await itemsService.delete(userId, itemId)
+      res.send(item)
     } catch (error) {
       next(error)
     }
