@@ -5,7 +5,7 @@ const ObjectId = mongoose.Types.ObjectId
 export const GroupSchema = new Schema(
   {
     name: { type: String, required: true },
-    creatorId: { type: ObjectId, ref: 'Profile', required: true }
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

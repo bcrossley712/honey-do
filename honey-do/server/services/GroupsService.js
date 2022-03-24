@@ -24,7 +24,11 @@ class GroupsService {
     return original
   }
   async remove(id, userId) {
-    const original = await dbContext.Groups.find
+    const original = await this.getById(id)
+    if (original.creatorId.toString() !== userId) {
+      throw new Forbidden('You cannot delete this Group')
+    }
+    await dbContext.Groups.findOneAndRemove({ _id: id })
   }
 
 }
