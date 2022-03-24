@@ -1,4 +1,5 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
+import { groupsService } from "../services/GroupsService";
 import BaseController from "../utils/BaseController";
 
 export class GroupsController extends BaseController {
@@ -22,7 +23,8 @@ export class GroupsController extends BaseController {
   async create(req, res, next) {
     try {
       req.body.id = req.userInfo.id
-      const group = await tower
+      const group = await groupsService.create(req.body)
+      return res.send(group)
     } catch (error) {
       next(error)
     }
