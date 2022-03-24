@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { RecipeSchema } from "../../client/app/Models/Recipe";
+
 import { AccountSchema, ProfileSchema } from '../models/Account'
 import { ItemSchema } from "../models/Item";
 import { GroupSchema } from "../models/Group";
@@ -14,8 +14,7 @@ class DbContext {
   Notes = mongoose.model('Note', NoteSchema);
   Items = mongoose.model('Item', ItemSchema);
   Groups = mongoose.model('Group', GroupSchema);
-  Recipes = mongoose.model('Recipe', RecipeSchema);
-
+  // Recipes = mongoose.model('Recipe', RecipeSchema);
   Chores = mongoose.model('Chore', ChoreSchema);
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
