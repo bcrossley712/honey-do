@@ -11,8 +11,8 @@ export class MembersController extends BaseController {
 
   async create(req, res, next) {
     try {
-      req.body.id = req.userInfo.id
-      const member = await membersService.createMember()
+      req.body.accountId = req.userInfo.id
+      const member = await membersService.createMember(req.body)
       res.send(member)
     } catch (error) {
       next(error)

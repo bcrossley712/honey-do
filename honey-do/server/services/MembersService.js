@@ -11,8 +11,9 @@ class MembersService {
     return members
   }
 
-  async createMember() {
-
+  async createMember(body) {
+    const member = await dbContext.Members.create(body)
+    return member
   }
   async removeMember(userId, memberId) {
     const foundMember = await dbContext.Members.findById({ id: memberId })
