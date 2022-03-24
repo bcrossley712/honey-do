@@ -13,7 +13,7 @@ export class AccountController extends BaseController {
   }
   async getAccountGroups(req, res, next) {
     try {
-      const groups = await groupsService.getAccountGroups(req.query)
+      const groups = await groupsService.getAccountGroups(req.userInfo.id)
       return res.send(groups)
     } catch (error) {
       next(error)
