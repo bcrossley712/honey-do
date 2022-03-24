@@ -26,6 +26,7 @@ export class ChoresController extends BaseController {
       req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       const update = await choresService.edit(req.body)
+      return res.send(update)
     } catch (error) {
       next(error)
     }
