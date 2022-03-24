@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 export const RecipeSchema = new Schema({
-  groupId: { type: ObjectId, required: true, ref: 'Planner' },
+  groupId: { type: ObjectId, required: true, ref: 'Group' },
   name: { type: String, required: true },
   thumbnailUrl: { type: String, required: true },
   ingredients: { type: String, required: true },

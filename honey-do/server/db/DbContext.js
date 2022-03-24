@@ -13,7 +13,7 @@ class DbContext {
   Members = mongoose.model('Member', MemberSchema);
   Notes = mongoose.model('Note', NoteSchema);
   Items = mongoose.model('Item', ItemSchema);
-  Groups = mongoose.model('Planner', GroupSchema);
+  Groups = mongoose.model('Group', GroupSchema);
   Recipes = mongoose.model('Recipe', RecipeSchema);
 
   Chores = mongoose.model('Chore', ChoreSchema);
