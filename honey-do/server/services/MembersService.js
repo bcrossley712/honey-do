@@ -9,11 +9,6 @@ class MembersService {
   async createMember() {
 
   }
-
-  async getGroupMembers() {
-
-  }
-
   async removeMember() {
 
   }
