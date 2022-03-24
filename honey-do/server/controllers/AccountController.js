@@ -1,6 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
-import { groupsService } from "../services/GroupsService"
+import { membersService } from "../services/MembersService"
 import BaseController from '../utils/BaseController'
 
 export class AccountController extends BaseController {
@@ -9,11 +9,11 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
-      .get('/groups', this.getAccountGroups)
+      .get('/members', this.getGroupsByAccount)
   }
-  async getAccountGroups(req, res, next) {
+  async getGroupsByAccount(req, res, next) {
     try {
-      const groups = await groupsService.getAccountGroups(req.userInfo.id)
+      const groups = await membersService.getGroupsByAccount(req.userInfo.id)
       return res.send(groups)
     } catch (error) {
       next(error)

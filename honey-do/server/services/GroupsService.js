@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { membersService } from "./MembersService"
 
 class GroupsService {
   async getAll(query = {}) {
@@ -18,9 +19,10 @@ class GroupsService {
     return groups
   }
   async create(body) {
-    const group = await dbContext.Groups.create(body)
-    await group.populate('creator', 'name picture')
-    return group
+    const newGroup = await dbContext.Groups.create(body)
+    await newGroup.populate('creator', 'name picture')
+    await membersService.createMember({ groupId: newGroup.id, accountId: newGroup.creatorId })
+    return newGroup
   }
   async edit(body) {
     const original = await dbContext.Groups.findById(body.id)
