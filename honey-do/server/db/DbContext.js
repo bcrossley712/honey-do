@@ -6,6 +6,7 @@ import { GroupSchema } from "../models/Group";
 import { ValueSchema } from '../models/Value';
 import { ChoreSchema } from "../models/Chore";
 import { NoteSchema } from "../models/Note";
+import { MemberSchema } from "../models/Member";
 
 
 class DbContext {
