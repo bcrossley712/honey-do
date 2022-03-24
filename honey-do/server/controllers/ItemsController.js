@@ -7,8 +7,10 @@ export class ItemsController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
+      .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
+
 
   async create(req, res, next) {
     try {
@@ -18,6 +20,18 @@ export class ItemsController extends BaseController {
     } catch (error) {
       next(error)
     }
+  }
+
+  async edit(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
+      const item = await itemsService.update()
+      res.send(item)
+    } catch (error) {
+      next(error)
+    }
+
   }
 
   async delete(req, res, next) {
