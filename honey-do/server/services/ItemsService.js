@@ -15,11 +15,11 @@ class ItemsService {
 
   async update(update) {
     const item = await dbContext.Items.findById(update.id)
-    if (item.creatorId.toString() != update.creatorId) {
+    if (item.creatorId.toString() !== update.creatorId) {
       throw new Forbidden('Can not edit this item')
     }
-    item.isComplete = update.isComplete !== '' ? update.isComplete : item.isComplete
-    await update.save()
+    item.isComplete = update.isComplete !== null ? update.isComplete : item.isComplete
+    await item.save()
     return item
   }
 
