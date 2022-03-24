@@ -5,9 +5,12 @@ import { ItemSchema } from "../models/Item";
 import { GroupSchema } from "../models/Group";
 import { ValueSchema } from '../models/Value';
 import { ChoreSchema } from "../models/Chore";
+import { NoteSchema } from "../models/Note";
 
 
 class DbContext {
+  Members = mongoose.model('Member', MemberSchema);
+  Notes = mongoose.model('Note', NoteSchema);
   Items = mongoose.model('Item', ItemSchema);
   Groups = mongoose.model('Planner', GroupSchema);
   Recipes = mongoose.model('Recipe', RecipeSchema);
