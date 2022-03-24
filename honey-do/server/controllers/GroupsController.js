@@ -1,7 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController";
 
-export class GroupssController extends BaseController {
+export class GroupsController extends BaseController {
   constructor() {
     super('api/groups')
     this.router
@@ -22,7 +22,7 @@ export class GroupssController extends BaseController {
   async create(req, res, next) {
     try {
       req.body.id = req.userInfo.id
-      throw new Error("Method not implemented.");
+      const group = await tower
     } catch (error) {
       next(error)
     }
