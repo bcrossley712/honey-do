@@ -6,7 +6,7 @@ export class MembersController extends BaseController {
     super('api/members')
     this.router
       .post('', this.create)
-      .delete('', this.remove)
+      .delete('/:id', this.remove)
   }
 
   async create(req, res, next) {
@@ -20,9 +20,10 @@ export class MembersController extends BaseController {
   }
   async remove(req, res, next) {
     try {
-      const memberId = req.params.memberId
+      const memberId = req.params.id
       const userId = req.userInfo.id
       const member = await membersService.removeMember(userId, memberId)
+      res.send(member)
     } catch (error) {
       next(error)
     }
