@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3 nav-sticky">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
@@ -52,5 +52,17 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.nav-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+@media (max-width: 576px) {
+  .nav-sticky {
+    position: sticky;
+    top: 100vh;
+    z-index: 1020;
+  }
 }
 </style>
