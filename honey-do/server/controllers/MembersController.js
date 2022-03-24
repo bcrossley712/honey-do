@@ -1,3 +1,4 @@
+import { Auth0Provider } from "@bcwdev/auth0provider";
 import { membersService } from "../services/MembersService";
 import BaseController from "../utils/BaseController";
 
@@ -5,6 +6,7 @@ export class MembersController extends BaseController {
   constructor() {
     super('api/members')
     this.router
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .delete('/:id', this.remove)
   }
