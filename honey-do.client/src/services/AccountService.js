@@ -11,6 +11,9 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+  async getMyGroups() {
+    const res = await api.get('/account/groups')
+  }
 }
 
 export const accountService = new AccountService()

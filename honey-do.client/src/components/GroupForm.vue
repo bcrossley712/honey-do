@@ -1,5 +1,19 @@
 <template>
-  <div class="component">Group Form</div>
+  <form class="mb-3" @submit.prevent="createGroup">
+    <label for="Group Name" class="form-label"></label>
+    <input
+      v-model="group.name"
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder="Name your Group!"
+    />
+    <button class="btn btn-success mt-2" title="Create Group">
+      Create Group
+    </button>
+  </form>
 </template>
 
 
