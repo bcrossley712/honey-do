@@ -1,16 +1,45 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <div>Home Page</div>
+      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+    </div>
+    <div class="row text-center">
+      <h4 class="col-12 p-2">My Group Members</h4>
+      <div class="col-12 bg-secondary p-2">
+        <div><img src="" alt="" /></div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-12 p-2">
+        <h4>Group Notes</h4>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed, watchEffect } from "@vue/runtime-core"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { membersService } from '../services/MembersService'
+import { groupsService } from '../services/GroupsService'
+import { AppState } from "../AppState"
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    watchEffect(async () => {
+      try {
+        // await groupsService.getById()
+        // await membersService.getGroupMembers()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
+    return {
+      members: computed(() => AppState.members)
+    }
+  }
 }
 </script>
 
