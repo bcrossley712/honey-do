@@ -60,15 +60,15 @@ import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
+import { useRoute } from "vue-router"
 export default {
   setup() {
-    const route = useRoute(),
     const editable = ref({})
+    const route = useRoute()
     return {
       editable,
+      route,
       activeRecipe: computed(() => AppState.activeRecipe)
-
-
     }
   }
 }
