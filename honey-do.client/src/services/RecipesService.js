@@ -10,7 +10,7 @@ const baseQuery = {
 }
 class RecipesService {
 
-  async getRecipes() {
+  async getRecipes(query) {
     // baseQuery.q = query
     const res = await tastyApi.get('', { params: baseQuery })
     logger.log(res.data.results)
