@@ -16,6 +16,7 @@ class RecipesService {
     // logger.log(res.data.results.filter(r => r.compilations))
     logger.log('res.data', res.data.results)
     let baseRecipes = res.data.results.filter(r => r.compilations)
+    logger.log(baseRecipes)
     AppState.recipes = baseRecipes.map(r => new Recipe(r))
   }
 
