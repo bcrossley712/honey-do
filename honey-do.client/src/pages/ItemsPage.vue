@@ -8,8 +8,8 @@
         <h6>Grocery Items</h6>
         <div
           class="d-flex flex-column justify-content-start m-2"
-          v-for="i in activeRecipe.ingredients"
-          :key="i"
+          v-for="g in groceryItems"
+          :key="g.id"
         >
           <div class="form-check">
             <input
@@ -19,7 +19,61 @@
               id="flexCheckDefault"
             />
             <label class="form-check-label" for="flexCheckDefault">
-              {{ i }}
+              {{ g.name }}
+            </label>
+          </div>
+        </div>
+        <h6>Hardware Items</h6>
+        <div
+          class="d-flex flex-column justify-content-start m-2"
+          v-for="h in hardwareItems"
+          :key="h.id"
+        >
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              {{ h.name }}
+            </label>
+          </div>
+        </div>
+        <h6>Cleaning Items</h6>
+        <div
+          class="d-flex flex-column justify-content-start m-2"
+          v-for="c in cleaningItems"
+          :key="c.id"
+        >
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              {{ c.name }}
+            </label>
+          </div>
+        </div>
+        <h6>Office Items</h6>
+        <div
+          class="d-flex flex-column justify-content-start m-2"
+          v-for="o in officeItems"
+          :key="o.id"
+        >
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              {{ o.name }}
             </label>
           </div>
         </div>
@@ -45,7 +99,10 @@
           aria-describedby="basic-addon2"
         />
         <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2"
+          <span
+            class="input-group-text selectable"
+            id="basic-addon2"
+            @click="createItem()"
             ><i class="mdi mdi-send"></i
           ></span>
         </div>
@@ -61,14 +118,43 @@ import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
+import { itemsService } from "../services/ItemsService"
+import { onMounted } from "@vue/runtime-core"
+import { groupsService } from "../services/GroupsService"
 export default {
   setup() {
     const editable = ref({})
+    // const filterBy = ref('grocery')
     const route = useRoute()
+    onMounted(async () => {
+      try {
+        if (!AppState.activeGroup.id) {
+          await itemsService.getItems(route.params.id)
+          await groupsService.getGroup(route.params.id)
+        }
+        // await membersService.getGroupMembers()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
     return {
       editable,
       route,
-      activeRecipe: computed(() => AppState.activeRecipe)
+      activeRecipe: computed(() => AppState.activeRecipe),
+      groceryItems: computed(() => AppState.items.filter(i => i.type == 'grocery')),
+      hardwareItems: computed(() => AppState.items.filter(i => i.type == 'hardware')),
+      officeItems: computed(() => AppState.items.filter(i => i.type == 'office')),
+      cleaningItems: computed(() => AppState.items.filter(i => i.type == 'cleaning')),
+      async createItem() {
+        editable.value.groupId = route.params.id
+        await itemsService.createItem(editable.value)
+        editable.value = {}
+      },
+      changeFilter(type) {
+        filterBy = type
+
+      }
     }
   }
 }
