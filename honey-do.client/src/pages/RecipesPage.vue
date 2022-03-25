@@ -35,9 +35,24 @@ import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { recipesService } from "../services/RecipesService";
 import { AppState } from "../AppState";
+import { useRoute } from "vue-router";
+import { onMounted } from "@vue/runtime-core";
+import { groupsService } from "../services/GroupsService";
 export default {
   setup() {
     const editable = ref('')
+    const route = useRoute()
+    onMounted(async () => {
+      try {
+        if (!AppState.activeGroup.id) {
+          await groupsService.getGroup(route.params.id)
+        }
+        // await membersService.getGroupMembers()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
     return {
       editable,
       recipes: computed(() => AppState.recipes),

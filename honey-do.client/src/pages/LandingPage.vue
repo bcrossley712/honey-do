@@ -27,9 +27,25 @@ import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
+import { useRoute } from "vue-router"
+import { onMounted } from "@vue/runtime-core"
 export default {
   setup() {
+    const route = useRoute()
+    onMounted(async () => {
+      try {
+        if (route.params.id) {
+        }
+
+        // await membersService.getGroupMembers()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+
+    })
     return {
+
       user: computed(() => AppState.user),
       account: computed(() => AppState.account)
     }

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { computed, watchEffect } from "@vue/runtime-core"
+import { computed, onMounted, watchEffect } from "@vue/runtime-core"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import { membersService } from '../services/MembersService'
@@ -32,17 +32,18 @@ export default {
   name: 'Home',
   setup() {
     const route = useRoute()
-    watchEffect(async () => {
+    onMounted(async () => {
       try {
-        if (route.params.id) {
+        if (!AppState.activeGroup.id) {
           await groupsService.getGroup(route.params.id)
-
         }
+
         // await membersService.getGroupMembers()
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
       }
+
     })
     return {
       members: computed(() => AppState.members),
