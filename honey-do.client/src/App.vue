@@ -1,8 +1,8 @@
 <template>
   <header></header>
   <main>
-    <router-view />
     <Navbar />
+    <router-view />
   </main>
   <footer></footer>
   <Modal id="new-group">
