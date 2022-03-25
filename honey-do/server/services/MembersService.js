@@ -10,7 +10,6 @@ class MembersService {
     const members = await dbContext.Members.find({ groupId: id }).populate('account')
     return members
   }
-
   async createMember(body) {
     const member = await dbContext.Members.create(body)
     return member
