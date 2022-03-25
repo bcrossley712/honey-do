@@ -80,9 +80,9 @@
       </div>
     </div>
     <div class="message-box">
-      <div>
-        <label for="" class="form-label"></label>
-        <select v-model="editable.type" class="form-control" name="" id="">
+      <div class="mb-1">
+        <select v-model="editable.type" class="form-select" name="" id="">
+          <option selected>Select Type...</option>
           <option value="grocery">Grocery</option>
           <option value="hardware">Hardware</option>
           <option value="office">Office</option>

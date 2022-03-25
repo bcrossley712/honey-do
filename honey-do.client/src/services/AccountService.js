@@ -13,6 +13,8 @@ class AccountService {
   }
   async getMyGroups() {
     const res = await api.get('/account/groups')
+    logger.log(res.data)
+    AppState.groups = res.data
   }
 }
 

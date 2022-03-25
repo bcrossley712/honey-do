@@ -10,8 +10,11 @@
         >
           New Group
         </button>
-        <div class="text-center">
-          <h4>My Groups</h4>
+        <div>
+          <h5>My Groups</h5>
+          <ul v-for="g in groups" :key="g.name">
+            <li @click="goTo(g)">{{ g.group.name }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -22,16 +25,23 @@
 import { computed, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService"
+import { useRouter } from "vue-router"
 export default {
   name: 'Account',
   setup() {
+    const router = useRouter()
     watchEffect(async () => {
-      // await accountService.getMyGroups()
+      if (AppState.groups.length == 0) {
+        await accountService.getMyGroups()
+      }
     })
     return {
       account: computed(() => AppState.account),
-      groups: computed(() => AppState.groups)
-
+      groups: computed(() => AppState.groups),
+      goTo(group) {
+        AppState.activeGroup = group
+        router.push({ name: 'Home', params: { id: group.groupId } })
+      }
 
     }
   }

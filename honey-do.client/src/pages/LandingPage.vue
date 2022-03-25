@@ -9,7 +9,12 @@
         >
           New Group
         </button>
-        <div>My Groups</div>
+        <div>
+          <h5>My Groups</h5>
+          <ul v-for="g in groups" :key="g.name">
+            <li @click="goTo(g)">{{ g.group.name }}</li>
+          </ul>
+        </div>
       </div>
       <div
         v-else
@@ -27,17 +32,17 @@ import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { onMounted } from "@vue/runtime-core"
+import { accountService } from "../services/AccountService"
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
     onMounted(async () => {
       try {
-        if (route.params.id) {
-        }
+        await accountService.getMyGroups()
 
-        // await membersService.getGroupMembers()
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -45,9 +50,13 @@ export default {
 
     })
     return {
-
+      groups: computed(() => AppState.groups),
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      goTo(group) {
+        AppState.activeGroup = group
+        router.push({ name: 'Home', params: { id: group.groupId } })
+      }
     }
   }
 }

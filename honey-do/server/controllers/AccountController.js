@@ -9,7 +9,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
-      .get('/members', this.getGroupsByAccount)
+      .get('/groups', this.getGroupsByAccount)
   }
   async getGroupsByAccount(req, res, next) {
     try {
