@@ -26,7 +26,7 @@ export default {
   name: 'Account',
   setup() {
     watchEffect(async () => {
-      await accountService.getMyGroups()
+      // await accountService.getMyGroups()
     })
     return {
       account: computed(() => AppState.account),

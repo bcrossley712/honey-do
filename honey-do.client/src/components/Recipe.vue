@@ -1,13 +1,13 @@
 <template>
-  <div class="row my-2 shadow rounded bg-secondary" @click="setToActive">
+  <div class="row my-2 shadow rounded bg-secondary" @click="goTo">
     <div class="col-12 p-2">
       <!-- <img class="img-fluid" :src="recipe.imageUrl" alt="recipe image" /> -->
       <h5 class="p-2">{{ recipe.name }}</h5>
-      <ul v-for="i in recipe.ingredients" :key="i">
+      <!-- <ul v-for="i in recipe.ingredients" :key="i">
         <li>
           {{ i }}
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ import { ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
+import { useRouter } from "vue-router"
 export default {
   props: {
     recipe: {
@@ -26,9 +27,11 @@ export default {
     }
   },
   setup(props) {
+    const router = useRouter()
     return {
-      setToActive() {
+      goTo() {
         AppState.activeRecipe = props.recipe
+        router.push()
       }
     }
   }

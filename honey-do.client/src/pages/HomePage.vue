@@ -27,11 +27,17 @@ import Pop from "../utils/Pop"
 import { membersService } from '../services/MembersService'
 import { groupsService } from '../services/GroupsService'
 import { AppState } from "../AppState"
+import { useRoute } from "vue-router"
 export default {
   name: 'Home',
   setup() {
+    const route = useRoute()
     watchEffect(async () => {
       try {
+        if (route.params.id) {
+          await groupsService.getGroup(route.params.id)
+
+        }
         // await membersService.getGroupMembers()
       } catch (error) {
         logger.error(error)
@@ -39,7 +45,8 @@ export default {
       }
     })
     return {
-      members: computed(() => AppState.members)
+      members: computed(() => AppState.members),
+      activeGroup: computed(() => AppState.activeGroup)
     }
   }
 }

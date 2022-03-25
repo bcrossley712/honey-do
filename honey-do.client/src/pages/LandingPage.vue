@@ -30,7 +30,8 @@ import { AppState } from "../AppState"
 export default {
   setup() {
     return {
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     }
   }
 }

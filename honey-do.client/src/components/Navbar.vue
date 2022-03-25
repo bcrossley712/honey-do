@@ -5,26 +5,30 @@
     </div>
     <div v-else class="d-flex justify-content-between w-100">
       <router-link
+        v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Chores' }"
+        :to="{ name: 'Chores', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-format-list-bulleted fs-4"></i>
       </router-link>
       <router-link
+        v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Items' }"
+        :to="{ name: 'Items', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-cart-outline fs-4"></i>
       </router-link>
       <router-link
+        v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Home' }"
+        :to="{ name: 'Home', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-home"></i>
       </router-link>
       <router-link
+        v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Recipes' }"
+        :to="{ name: 'Recipes', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-noodles fs-4"></i>
       </router-link>
@@ -44,7 +48,8 @@ import { AppState } from "../AppState";
 export default {
   setup() {
     return {
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      activeGroup: computed(() => AppState.activeGroup)
     };
   },
 };
@@ -70,7 +75,7 @@ a:hover {
 @media (max-width: 576px) {
   .nav-sticky {
     position: sticky;
-    top: 100vh;
+    top: 94.2vh;
     z-index: 1020;
   }
 }
