@@ -3,11 +3,13 @@
     <div class="container item-template">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <h4>Items List Template</h4>
+          <h4>Shopping List</h4>
         </div>
         <h6>Grocery Items</h6>
         <div
-          class="d-flex flex-column flex-grow-1 w-80 justify-content-start m-2"
+          class="d-flex flex-column justify-content-start m-2"
+          v-for="i in activeRecipe.ingredients"
+          :key="i"
         >
           <div class="form-check">
             <input
@@ -17,86 +19,29 @@
               id="flexCheckDefault"
             />
             <label class="form-check-label" for="flexCheckDefault">
-              Short Ribs
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Dynamite Casings
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Roof Tiles
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Roof Tiles
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Roof Tiles
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Roof Tiles
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Roof Tiles
+              {{ i }}
             </label>
           </div>
         </div>
       </div>
     </div>
     <div class="message-box">
+      <div>
+        <label for="" class="form-label"></label>
+        <select v-model="editable.type" class="form-control" name="" id="">
+          <option value="grocery">Grocery</option>
+          <option value="hardware">Hardware</option>
+          <option value="office">Office</option>
+          <option value="cleaning">Cleaning</option>
+        </select>
+      </div>
       <div class="input-group mb-3">
         <input
+          v-model="editable.name"
           type="text"
           class="form-control"
-          placeholder="Recipient's username"
-          aria-label="Recipient's username"
+          placeholder="shopping item"
+          aria-label="shopping item"
           aria-describedby="basic-addon2"
         />
         <div class="input-group-append">
@@ -111,12 +56,19 @@
 
 
 <script>
-import { ref } from "@vue/reactivity"
+import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
+import { AppState } from "../AppState"
 export default {
   setup() {
-    return {}
+    const route = useRoute(),
+    const editable = ref({})
+    return {
+      editable,
+      activeRecipe: computed(() => AppState.activeRecipe)
+
+    }
   }
 }
 </script>
