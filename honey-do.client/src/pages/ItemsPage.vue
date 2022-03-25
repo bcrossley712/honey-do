@@ -1,5 +1,9 @@
 <template>
-  <div class="component">Items Page</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">Items Page</div>
+    </div>
+  </div>
 </template>
 
 

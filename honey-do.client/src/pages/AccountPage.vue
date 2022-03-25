@@ -1,6 +1,18 @@
 <template>
-  <div class="about text-center">
-    <Login />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <Login />
+        <button
+          class="btn btn-outline-secondary"
+          data-bs-target="#new-group"
+          data-bs-toggle="modal"
+        >
+          New Group
+        </button>
+        <div>My Groups</div>
+      </div>
+    </div>
   </div>
 </template>
 

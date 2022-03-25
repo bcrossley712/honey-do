@@ -1,9 +1,5 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">Chores Page</div>
-    </div>
-  </div>
+  <div class="component">Group Form</div>
 </template>
 
 
