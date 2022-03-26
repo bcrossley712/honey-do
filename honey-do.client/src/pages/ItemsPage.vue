@@ -87,7 +87,7 @@
         </div>
       </div>
     </div>
-    <div class="message-box">
+    <form @submit.prevent="createItem()" class="message-box w-100 row">
       <div class="mb-1">
         <select v-model="editable.type" class="form-select" name="" id="">
           <option value="grocery" selected>Grocery</option>
@@ -101,20 +101,17 @@
           v-model="editable.name"
           type="text"
           class="form-control"
-          placeholder="shopping item"
+          placeholder="Add item to shopping list..."
           aria-label="shopping item"
           aria-describedby="basic-addon2"
         />
         <div class="input-group-append">
-          <span
-            class="input-group-text selectable"
-            id="basic-addon2"
-            @click="createItem()"
-            ><i class="mdi mdi-send"></i
-          ></span>
+          <button class="input-group-text selectable" id="basic-addon2">
+            <i class="mdi mdi-send"></i>
+          </button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -135,8 +132,10 @@ export default {
     onMounted(async () => {
       try {
         if (!AppState.activeGroup.id) {
-          await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
+        }
+        if (AppState.items.length == 0) {
+          await itemsService.getItems(route.params.id)
         }
       } catch (error) {
         logger.error(error)
@@ -175,6 +174,6 @@ export default {
 
 .message-box {
   position: fixed;
-  bottom: 8vh;
+  bottom: 5vh;
 }
 </style>

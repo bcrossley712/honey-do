@@ -1,8 +1,13 @@
 <template>
-  <div class="row my-2 shadow rounded bg-secondary" @click="goTo">
-    <div class="col-12 p-2">
-      <!-- <img class="img-fluid" :src="recipe.imageUrl" alt="recipe image" /> -->
-      <h5 class="p-2">{{ recipe.name }}</h5>
+  <div
+    class="row my-2 shadow rounded bg-secondary"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#recipe"
+    @click="goTo"
+  >
+    <div class="col-12 p-2 d-flex">
+      <img class="img-fluid img-md" :src="recipe.imageUrl" alt="recipe image" />
+      <h6 class="p-2">{{ recipe.name }}</h6>
       <!-- <ul v-for="i in recipe.ingredients" :key="i">
         <li>
           {{ i }}
@@ -31,7 +36,6 @@ export default {
     return {
       goTo() {
         AppState.activeRecipe = props.recipe
-        router.push()
       }
     }
   }
@@ -40,4 +44,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.img-md {
+  max-width: 80px;
+}
 </style>
