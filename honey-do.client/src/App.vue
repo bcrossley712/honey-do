@@ -9,6 +9,10 @@
     <template #title>New Group</template>
     <template #body><GroupForm /></template>
   </Modal>
+  <Modal id="edit-account">
+    <template #title> Edit Account</template>
+    <template #body> <AccountForm /></template>
+  </Modal>
 </template>
 
 <script>

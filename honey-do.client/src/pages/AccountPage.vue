@@ -3,17 +3,31 @@
     <div class="row">
       <div class="col-12">
         <Login />
+      </div>
+      <div class="col-12 d-flex justify-content-around">
         <button
-          class="btn btn-outline-secondary fw-bold"
+          class="btn btn-secondary my-3"
           data-bs-target="#new-group"
           data-bs-toggle="modal"
         >
-          New Group
+          <h5 class="m-0">New Group</h5>
         </button>
-        <div>
-          <h5>My Groups</h5>
-          <ul v-for="g in groups" :key="g.name">
-            <li @click="goTo(g)">{{ g.group.name }}</li>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle my-3"
+            type="button"
+            id="dropdownMenu2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <h5>My Groups</h5>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li v-for="g in groups" :key="g.id">
+              <button class="dropdown-item" type="button" @click="goTo(g)">
+                {{ g.name }}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,7 +54,7 @@ export default {
       groups: computed(() => AppState.groups),
       goTo(group) {
         AppState.activeGroup = group
-        router.push({ name: 'Home', params: { id: group.groupId } })
+        router.push({ name: 'Home', params: { id: group.id } })
       }
 
     }

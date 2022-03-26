@@ -1,14 +1,15 @@
 import { dbContext } from "../db/DbContext"
+import { AccountGroups, GroupMember } from "../models/Member"
 import { Forbidden } from "../utils/Errors"
 
 class MembersService {
   async getGroupsByAccount(id) {
     const myGroups = await dbContext.Members.find({ accountId: id }).populate('group')
-    return myGroups
+    return myGroups.map(g => new AccountGroups(g))
   }
   async getGroupMembers(id) {
     const members = await dbContext.Members.find({ groupId: id }).populate('account')
-    return members
+    return members.map(m => new GroupMember(m))
   }
   async createMember(body) {
     const member = await dbContext.Members.create(body)

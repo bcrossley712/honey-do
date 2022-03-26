@@ -15,7 +15,7 @@
         aria-expanded="false"
         id="authDropdown"
       >
-        <div v-if="account.picture">
+        <div v-if="account.picture" class="text-center">
           <img
             :src="account.picture"
             alt="account photo"
@@ -31,10 +31,18 @@
       >
         <div
           class="list-group-item list-group-item-action hoverable text-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#edit-account"
+        >
+          <i class="mdi mdi-pencil"></i>
+          Edit Account
+        </div>
+        <div
+          class="list-group-item list-group-item-action hoverable text-danger"
           @click="logout"
         >
           <i class="mdi mdi-logout"></i>
-          logout
+          Logout
         </div>
       </div>
     </div>

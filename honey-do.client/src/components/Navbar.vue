@@ -7,28 +7,28 @@
       <router-link
         v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Chores', params: { id: activeGroup.groupId } }"
+        :to="{ name: 'Chores', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-format-list-bulleted fs-4"></i>
       </router-link>
       <router-link
         v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Items', params: { id: activeGroup.groupId } }"
+        :to="{ name: 'Items', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-cart-outline fs-4"></i>
       </router-link>
       <router-link
         v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Home', params: { id: activeGroup.groupId } }"
+        :to="{ name: 'Home', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-home"></i>
       </router-link>
       <router-link
         v-if="activeGroup.id"
         class="navbar-brand p-0 text-center m-0 text-dark"
-        :to="{ name: 'Recipes', params: { id: activeGroup.groupId } }"
+        :to="{ name: 'Recipes', params: { id: activeGroup.id } }"
       >
         <i class="mdi mdi-noodles fs-4"></i>
       </router-link>

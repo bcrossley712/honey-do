@@ -5,76 +5,84 @@
         <div class="col-12 d-flex justify-content-center">
           <h4>Shopping List</h4>
         </div>
-        <h6>Grocery Items</h6>
-        <div
-          class="d-flex flex-column justify-content-start m-2"
-          v-for="g in groceryItems"
-          :key="g.id"
-        >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ g.name }}
-            </label>
+        <div v-if="groceryItems.length > 0">
+          <h6>Grocery Items</h6>
+          <div
+            class="d-flex flex-column justify-content-start m-2"
+            v-for="g in groceryItems"
+            :key="g.id"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ g.name }}
+              </label>
+            </div>
           </div>
         </div>
-        <h6>Hardware Items</h6>
-        <div
-          class="d-flex flex-column justify-content-start m-2"
-          v-for="h in hardwareItems"
-          :key="h.id"
-        >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ h.name }}
-            </label>
+        <div v-if="hardwareItems.length > 0">
+          <h6>Hardware Items</h6>
+          <div
+            class="d-flex flex-column justify-content-start m-2"
+            v-for="h in hardwareItems"
+            :key="h.id"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ h.name }}
+              </label>
+            </div>
           </div>
         </div>
-        <h6>Cleaning Items</h6>
-        <div
-          class="d-flex flex-column justify-content-start m-2"
-          v-for="c in cleaningItems"
-          :key="c.id"
-        >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ c.name }}
-            </label>
+        <div v-if="cleaningItems.length > 0">
+          <h6>Cleaning Items</h6>
+          <div
+            class="d-flex flex-column justify-content-start m-2"
+            v-for="c in cleaningItems"
+            :key="c.id"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ c.name }}
+              </label>
+            </div>
           </div>
         </div>
-        <h6>Office Items</h6>
-        <div
-          class="d-flex flex-column justify-content-start m-2"
-          v-for="o in officeItems"
-          :key="o.id"
-        >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ o.name }}
-            </label>
+        <div v-if="officeItems.length > 0">
+          <h6>Office Items</h6>
+          <div
+            class="d-flex flex-column justify-content-start m-2"
+            v-for="o in officeItems"
+            :key="o.id"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ o.name }}
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -82,8 +90,7 @@
     <div class="message-box">
       <div class="mb-1">
         <select v-model="editable.type" class="form-select" name="" id="">
-          <option selected>Select Type...</option>
-          <option value="grocery">Grocery</option>
+          <option value="grocery" selected>Grocery</option>
           <option value="hardware">Hardware</option>
           <option value="office">Office</option>
           <option value="cleaning">Cleaning</option>
@@ -124,7 +131,6 @@ import { groupsService } from "../services/GroupsService"
 export default {
   setup() {
     const editable = ref({})
-    // const filterBy = ref('grocery')
     const route = useRoute()
     onMounted(async () => {
       try {
@@ -132,7 +138,6 @@ export default {
           await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
         }
-        // await membersService.getGroupMembers()
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')

@@ -3,15 +3,22 @@
     <div class="row">
       <h1 class="bg-secondary p-2">HONEY-DO</h1>
     </div>
-    <div class="row text-center">
-      <div class="col-12 p-2">
-        <h4>My Group Members</h4>
-      </div>
-      <i class="mdi mdi-plus selectable" title="Add Member">Add Member</i>
-      <div class="col-12 bg-secondary p-2">
-        <div><img src="" alt="" /></div>
+    <div class="row p-3">
+      <div class="col-12">My Group Members</div>
+      <div class="col-12 p-2 bg-secondary d-flex">
+        <img
+          v-for="m in members"
+          :key="m.id"
+          :src="m.picture"
+          alt=""
+          class="img-small rounded-circle m-1"
+          :title="m.name"
+        />
       </div>
     </div>
+
+    <i class="mdi mdi-plus selectable" title="Add Member">Add Member</i>
+
     <div class="row text-center">
       <div class="col-12 p-2">
         <h4>Group Notes</h4>
@@ -37,8 +44,9 @@ export default {
         if (!AppState.activeGroup.id) {
           await groupsService.getGroup(route.params.id)
         }
-
-        // await membersService.getGroupMembers()
+        if (AppState.members.length == 0) {
+          await membersService.getGroupMembers(route.params.id)
+        }
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -70,5 +78,9 @@ export default {
       object-position: center;
     }
   }
+}
+.img-small {
+  height: 55px;
+  width: 55px;
 }
 </style>

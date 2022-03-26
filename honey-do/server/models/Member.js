@@ -21,3 +21,23 @@ MemberSchema.virtual('group', {
   ref: 'Group',
   justOne: true
 })
+
+export class GroupMember {
+  constructor(data) {
+    this.id = data.accountId
+    this.name = data.account.name
+    this.picture = data.account.picture
+    this.email = data.account.email
+    this.memberId = data.id
+    this.groupId = data.groupId
+  }
+}
+export class AccountGroups {
+  constructor(data) {
+    this.id = data.groupId
+    this.name = data.group.name
+    this.creatorId = data.group.creatorId
+    this.memberId = data.id
+    this.accountId = data.accountId
+  }
+}

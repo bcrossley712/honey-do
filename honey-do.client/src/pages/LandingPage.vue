@@ -1,18 +1,39 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12" v-if="user.isAuthenticated">
+      <div
+        class="
+          col-12
+          d-flex
+          flex-column
+          justify-contents-center
+          align-items-center
+        "
+        v-if="user.isAuthenticated"
+      >
         <button
-          class="btn btn-outline-secondary"
+          class="btn btn-secondary my-3"
           data-bs-target="#new-group"
           data-bs-toggle="modal"
         >
-          New Group
+          <h5 class="m-0">New Group</h5>
         </button>
-        <div>
-          <h5>My Groups</h5>
-          <ul v-for="g in groups" :key="g.name">
-            <li @click="goTo(g)">{{ g.group.name }}</li>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle my-3"
+            type="button"
+            id="dropdownMenu2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <h5>My Groups</h5>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li v-for="g in groups" :key="g.id">
+              <button class="dropdown-item" type="button" @click="goTo(g)">
+                {{ g.name }}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -55,7 +76,7 @@ export default {
       account: computed(() => AppState.account),
       goTo(group) {
         AppState.activeGroup = group
-        router.push({ name: 'Home', params: { id: group.groupId } })
+        router.push({ name: 'Home', params: { id: group.id } })
       }
     }
   }
