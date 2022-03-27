@@ -5,7 +5,7 @@
     </div>
     <div class="row p-3">
       <div class="col-12">My Group Members</div>
-      <div class="col-12 p-2 bg-secondary d-flex">
+      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <img
           v-for="m in members"
           :key="m.id"
@@ -20,8 +20,13 @@
     <i class="mdi mdi-plus selectable" title="Add Member">Add Member</i>
 
     <div class="row text-center">
-      <div class="col-12 p-2">
+      <div class="col-12">
         <h4>Group Notes</h4>
+        <Notes />
+        <Notes />
+        <Notes />
+        <Notes />
+        <Notes />
       </div>
     </div>
   </div>

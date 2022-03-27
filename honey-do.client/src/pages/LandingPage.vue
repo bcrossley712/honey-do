@@ -54,15 +54,19 @@ import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
-import { onMounted } from "@vue/runtime-core"
+import { onMounted, watchEffect } from "@vue/runtime-core"
 import { accountService } from "../services/AccountService"
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
-        await accountService.getMyGroups()
+        if (AppState.account.name) {
+
+          await accountService.getMyGroups()
+        }
+
 
       } catch (error) {
         logger.error(error)
