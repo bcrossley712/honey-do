@@ -2,16 +2,15 @@
   <div class="row p-3">
     <div class="col-3">
       <img
-        src="https://thiscatdoesnotexist.com"
+        :src="note.creator?.picture"
         alt=""
         class="img-fluid img-small rounded-circle"
       />
     </div>
-    <div class="col-9 d-flex bg-grey rounded border border-secondary">
+    <div class="col-9 bg-grey rounded border border-secondary text-start">
+      <span>{{ new Date(note.createdAt).toLocaleString() }}</span>
       <p>
-        Test note: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Saepe recusandae amet quaerat eveniet deserunt, necessitatibus accusamus
-        explicabo.
+        {{ note.body }}
       </p>
     </div>
   </div>
@@ -23,6 +22,12 @@ import { ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 export default {
+  props: {
+    note: {
+      type: Object,
+      required: true
+    }
+  },
   setup() {
     return {}
   }

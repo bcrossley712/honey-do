@@ -21,15 +21,25 @@
 
     <div class="row text-center">
       <div class="col-12">
-        <h4>Group Notes</h4>
-        <Notes />
-        <Notes />
-        <Notes />
-        <Notes />
-        <Notes />
+        <h4>
+          Group Notes
+          <i
+            class="mdi mdi-plus"
+            title="Add note"
+            data-bs-toggle="modal"
+            data-bs-target="#new-note"
+          ></i>
+        </h4>
+        <div v-for="n in notes" :key="n.id">
+          <Notes :note="n" />
+        </div>
       </div>
     </div>
   </div>
+  <Modal id="new-note">
+    <template #title>New Note</template>
+    <template #body><NoteForm /></template>
+  </Modal>
 </template>
 
 <script>
@@ -40,6 +50,7 @@ import { membersService } from '../services/MembersService'
 import { groupsService } from '../services/GroupsService'
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
+import { notesService } from "../services/NotesService"
 export default {
   name: 'Home',
   setup() {
@@ -52,6 +63,9 @@ export default {
         if (AppState.members.length == 0) {
           await membersService.getGroupMembers(route.params.id)
         }
+        if (AppState.notes.length == 0) {
+          await notesService.getNotes(route.params.id)
+        }
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -60,7 +74,8 @@ export default {
     })
     return {
       members: computed(() => AppState.members),
-      activeGroup: computed(() => AppState.activeGroup)
+      activeGroup: computed(() => AppState.activeGroup),
+      notes: computed(() => AppState.notes)
     }
   }
 }

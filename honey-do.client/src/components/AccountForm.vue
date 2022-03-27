@@ -8,8 +8,9 @@
       name=""
       id=""
       placeholder="Name..."
+      required
     />
-    <label for="Group Name" class="form-label">ImageUrl</label>
+    <label for="picture" class="form-label">ImageUrl</label>
     <input
       v-model="editable.picture"
       type="text"
@@ -17,6 +18,7 @@
       name=""
       id=""
       placeholder="ImageUrl..."
+      required
     />
     <button class="btn btn-success mt-2" title="Edit Account">
       Edit Account
@@ -33,10 +35,13 @@ import { useRouter } from "vue-router"
 import { Modal } from "bootstrap"
 import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
+import { watchEffect } from "@vue/runtime-core"
 export default {
   setup() {
-    const router = useRouter()
     const editable = ref({})
+    watchEffect(() => {
+      editable.value = AppState.account
+    })
     return {
       editable,
       async editAccount() {
