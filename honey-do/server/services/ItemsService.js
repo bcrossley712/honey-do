@@ -15,12 +15,11 @@ class ItemsService {
 
   async update(update, userId) {
     const item = await dbContext.Items.findById(update.id)
-    // FIXME!
-    // const member = await dbContext.Members.findById(userId)
-    // const group = await dbContext.Groups.findById(update.groupId)
-    // if (member.groupId.toString() !== group.id.toString()) {
-    //   throw new Forbidden('Can not edit this item')
-    // }
+    // const member = await dbContext.Members.find({ accountId: userId })
+    const group = await dbContext.Groups.findById(update.groupId)
+    if (item.groupId.toString() !== group.id.toString()) {
+      throw new Forbidden('Can not edit this item')
+    }
     item.isComplete = update.isComplete !== null ? update.isComplete : item.isComplete
     await item.save()
     return item
