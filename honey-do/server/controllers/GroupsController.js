@@ -5,6 +5,7 @@ import { choresService } from "../services/ChoresService";
 import { notesService } from "../services/NotesService";
 import { membersService } from "../services/MembersService";
 import BaseController from "../utils/BaseController";
+import { logger } from "../utils/Logger";
 
 export class GroupsController extends BaseController {
   constructor() {
@@ -40,7 +41,8 @@ export class GroupsController extends BaseController {
   }
   async getGroupMembers(req, res, next) {
     try {
-      const members = await membersService.getGroupMembers(req.params.id)
+      req.query.groupId = req.params.id
+      const members = await membersService.getGroupMembers(req.query)
       return res.send(members)
     } catch (error) {
       next(error)

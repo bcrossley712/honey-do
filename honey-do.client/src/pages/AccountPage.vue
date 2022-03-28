@@ -31,32 +31,83 @@
           </ul>
         </div>
       </div>
+      <div class="col-12 text-center">
+        <h5>Search Groups</h5>
+        <form
+          class="mb-3 d-flex align-items-center"
+          @submit.prevent="groupSearch"
+        >
+          <input
+            type="text"
+            class="form-control"
+            name="group-search"
+            id="group-search"
+            aria-describedby="group search"
+            placeholder="Group Name..."
+            v-model="editable.name"
+            required
+          />
+          <button class="btn btn-secondary">
+            <i class="mdi mdi-magnify" title="Search Group"></i>
+          </button>
+        </form>
+      </div>
+      <div class="col-12">
+        <ul>
+          <li
+            @click="setGroup(g)"
+            class="selectable"
+            v-for="g in searchResults"
+            :key="g.id"
+            data-bs-target="#join-group"
+            data-bs-toggle="modal"
+          >
+            {{ g.name }} | {{ g.creatorName }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-12"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService"
 import { useRouter } from "vue-router"
+import { groupsService } from "../services/GroupsService"
 export default {
   name: 'Account',
   setup() {
+    const editable = ref({})
     const router = useRouter()
-    watchEffect(async () => {
+    onMounted(async () => {
       if (AppState.groups.length == 0) {
         await accountService.getMyGroups()
       }
     })
     return {
+      editable,
       account: computed(() => AppState.account),
       groups: computed(() => AppState.groups),
+      searchResults: computed(() => AppState.searchResults),
       goTo(group) {
         AppState.activeGroup = group
         router.push({ name: 'Home', params: { id: group.id } })
+      },
+      setGroup(group) {
+        AppState.grouptoJoin = group
+      },
+      async groupSearch() {
+        try {
+          await groupsService.groupSearch(editable.value)
+          editable.value = {}
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
       }
-
     }
   }
 }

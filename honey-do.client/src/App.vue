@@ -11,6 +11,10 @@
     <template #title> Edit Account</template>
     <template #body> <AccountForm /></template>
   </Modal>
+  <Modal id="join-group">
+    <template #title>Request to join group</template>
+    <template #body><JoinForm /></template>
+  </Modal>
 </template>
 
 <script>

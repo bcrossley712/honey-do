@@ -3,7 +3,7 @@
     <div class="row">
       <h1 class="bg-secondary p-2">HONEY-DO</h1>
     </div>
-    <div class="row p-3">
+    <div class="row px-3">
       <div class="col-12">My Group Members</div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <img
@@ -13,6 +13,22 @@
           alt=""
           class="img-small rounded-circle m-1"
           :title="m.name"
+        />
+      </div>
+    </div>
+    <div class="row px-3" v-if="groupRequests.length >= 1">
+      <div class="col-12">Group Requests</div>
+      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
+        <img
+          @click="setRequest(r)"
+          data-bs-toggle="modal"
+          data-bs-target="#group-request"
+          v-for="r in groupRequests"
+          :key="r.id"
+          :src="r.picture"
+          alt=""
+          class="img-small rounded-circle m-1"
+          :title="r.name"
         />
       </div>
     </div>
@@ -40,6 +56,10 @@
     <template #title>New Note</template>
     <template #body><NoteForm /></template>
   </Modal>
+  <Modal id="group-request">
+    <template #title>Add Member?</template>
+    <template #body><RequestForm /></template>
+  </Modal>
 </template>
 
 <script>
@@ -63,6 +83,9 @@ export default {
         if (AppState.members.length == 0) {
           await membersService.getGroupMembers(route.params.id)
         }
+        if (AppState.groupRequests.length == 0) {
+          await membersService.getPendingMembers(route.params.id)
+        }
         if (AppState.notes.length == 0) {
           await notesService.getNotes(route.params.id)
         }
@@ -75,7 +98,11 @@ export default {
     return {
       members: computed(() => AppState.members),
       activeGroup: computed(() => AppState.activeGroup),
-      notes: computed(() => AppState.notes)
+      notes: computed(() => AppState.notes),
+      groupRequests: computed(() => AppState.groupRequests),
+      setRequest(member) {
+        AppState.memberRequest = member
+      }
     }
   }
 }

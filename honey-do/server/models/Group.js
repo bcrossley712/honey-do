@@ -16,3 +16,15 @@ GroupSchema.virtual('creator', {
   justOne: true,
   ref: 'Profile'
 })
+
+export class Group {
+  constructor(data) {
+    this.id = data.id
+    this.creatorId = data.creatorId
+    this.picture = data.creator.picture
+    this.creatorName = data.creator.name
+    this.creatorEmail = data.creator.email
+    this.name = data.name
+    this.createdAt = data.createdAt
+  }
+}

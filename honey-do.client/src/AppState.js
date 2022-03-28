@@ -12,5 +12,9 @@ export const AppState = reactive({
   notes: [],
   members: [],
   groups: [],
-  activeGroup: {}
+  activeGroup: {},
+  searchResults: [],
+  grouptoJoin: {},
+  groupRequests: [],
+  memberRequest: {}
 })
