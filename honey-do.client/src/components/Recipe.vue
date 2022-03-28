@@ -1,6 +1,6 @@
 <template>
   <div
-    class="row my-2 shadow rounded bg-secondary"
+    class="row my-2 shadow rounded bg-secondary selectable"
     data-bs-toggle="offcanvas"
     data-bs-target="#recipe"
     @click="goTo"

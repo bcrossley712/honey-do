@@ -15,6 +15,7 @@
             id="recipe-search"
             aria-describedby="helpId"
             placeholder="Chicken soup..."
+            required
           />
           <button
             title="Search"
