@@ -49,7 +49,7 @@
         >
           <input
             type="text"
-            class="form-control"
+            class="form-control me-2"
             name="group-search"
             id="group-search"
             aria-describedby="group search"
