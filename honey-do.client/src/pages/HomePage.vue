@@ -76,18 +76,12 @@ export default {
   name: 'Home',
   setup() {
     const route = useRoute()
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
-        if (!AppState.activeGroup.id) {
+        if (route.name == 'Home') {
           await groupsService.getGroup(route.params.id)
-        }
-        if (AppState.members.length == 0) {
           await membersService.getGroupMembers(route.params.id)
-        }
-        if (AppState.groupRequests.length == 0) {
           await membersService.getPendingMembers(route.params.id)
-        }
-        if (AppState.notes.length == 0) {
           await notesService.getNotes(route.params.id)
         }
       } catch (error) {

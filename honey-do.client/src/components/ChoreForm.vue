@@ -40,6 +40,7 @@ import Pop from "../utils/Pop"
 import { choresService } from "../services/ChoresService"
 import { Modal } from "bootstrap"
 import { useRoute } from "vue-router"
+import { AppState } from "../AppState"
 export default {
   setup() {
     const editable = ref({})
