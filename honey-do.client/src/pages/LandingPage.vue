@@ -18,6 +18,7 @@
           class="btn btn-secondary my-3"
           data-bs-target="#new-group"
           data-bs-toggle="modal"
+          title="New Group"
         >
           <h5 class="m-0">New Group</h5>
         </button>
@@ -28,6 +29,7 @@
             id="dropdownMenu2"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            title="My Groups"
           >
             <h5>My Groups</h5>
           </button>
@@ -55,7 +57,7 @@
               v-model="editable.name"
               required
             />
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" title="Search Groups">
               <i class="mdi mdi-magnify" title="Search Group"></i>
             </button>
           </form>

@@ -4,6 +4,7 @@
     data-bs-toggle="offcanvas"
     data-bs-target="#recipe"
     @click="goTo"
+    title="Recipe Details"
   >
     <div class="col-12 p-2 d-flex">
       <img class="img-fluid img-md" :src="recipe.imageUrl" alt="recipe image" />
