@@ -1,6 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+    </div>
+    <div class="row">
       <div class="col-10 offset-1 text-center p-2">
         <h6>Recipe Search</h6>
         <form @submit.prevent="getRecipes" class="mb-3 d-flex">

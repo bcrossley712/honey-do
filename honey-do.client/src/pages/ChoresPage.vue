@@ -1,6 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+    </div>
+    <div class="row">
       <div class="col-12">Chores Page</div>
     </div>
   </div>
