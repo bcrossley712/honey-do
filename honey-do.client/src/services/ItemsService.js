@@ -35,6 +35,7 @@ class ItemsService {
 
   async deleteAllItems(array) {
     await array.forEach(i => this.deleteItem(i.id))
+
   }
 }
 
