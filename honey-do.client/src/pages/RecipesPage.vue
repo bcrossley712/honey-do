@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+      <h1 class="bg-secondary p-2 tert-outline">HONEY-DO</h1>
     </div>
     <div class="row">
       <div class="col-10 offset-1 text-center p-2">
@@ -19,7 +19,7 @@
           />
           <button
             title="Search"
-            class="btn btn-secondary mdi mdi-plus ms-1"
+            class="btn btn-secondary mdi mdi-magnify ms-1 tert-outline"
           ></button>
         </form>
         <span>Click recipe to see more info</span>
