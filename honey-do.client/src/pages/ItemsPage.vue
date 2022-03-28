@@ -190,9 +190,9 @@ export default {
     onMounted(async () => {
       try {
         if (!AppState.activeGroup.id) {
-          await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
         }
+        await itemsService.getItems(route.params.id)
 
       } catch (error) {
         logger.error(error)
