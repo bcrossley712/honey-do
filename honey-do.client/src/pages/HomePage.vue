@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="row text-center">
+    <div class="row text-center mt-2">
       <div class="col-12">
         <h4>
           Group Notes
