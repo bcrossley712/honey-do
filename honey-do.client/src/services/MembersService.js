@@ -24,7 +24,7 @@ class MembersService {
     AppState.members.push(res.data)
     AppState.memberRequest = {}
     // FIXME filter group request
-    AppState.groupRequests.filter(r => r.memberId != memberId)
+    AppState.groupRequests = AppState.groupRequests.filter(r => r.memberId != memberId)
   }
   async declineMember(memberId, body) {
     const res = await api.put('api/members/' + memberId, body)
