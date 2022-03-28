@@ -3,9 +3,9 @@
     <div class="row">
       <h1 class="bg-secondary p-2">HONEY-DO</h1>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <h2>{{ activeGroup.name }}</h2>
-    </div>
+    </div> -->
     <div class="row px-3">
       <div class="col-12 mb-1">My Group Members</div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow tert-outline">
@@ -34,9 +34,6 @@
           :title="r.name"
         />
       </div>
-    </div>
-    <div class="row">
-      <i class="mdi mdi-plus selectable ms-2" title="Add Member">Add Member</i>
     </div>
 
     <div class="row text-center">
