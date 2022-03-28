@@ -64,7 +64,7 @@
           <div>
             <ul>
               <li
-                @click="setGroup"
+                @click="setGroup(g)"
                 class="selectable"
                 v-for="g in searchResults"
                 :key="g.id"
@@ -134,6 +134,9 @@ export default {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
+      },
+      setGroup(group) {
+        AppState.grouptoJoin = group
       }
     }
   }

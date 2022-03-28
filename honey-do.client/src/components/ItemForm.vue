@@ -1,31 +1,27 @@
 <template>
-  <div class="message-box">
-    <div>
-      <label for="" class="form-label"></label>
-      <select v-model="editable.type" class="form-control" name="" id="">
-        <option value="grocery">Grocery</option>
-        <option value="hardware">Hardware</option>
-        <option value="office">Office</option>
-        <option value="cleaning">Cleaning</option>
-      </select>
-    </div>
-    <div class="input-group my-2">
-      <input
-        v-model="editable.name"
-        type="text"
-        class="form-control"
-        placeholder="shopping item"
-        aria-label="shopping item"
-        aria-describedby="basic-addon2"
-      />
-      <div class="input-group-append">
-        <span
-          class="input-group-text selectable"
-          id="basic-addon2"
-          @click="createItem()"
-          ><i class="mdi mdi-send"></i
-        ></span>
-      </div>
+  <select v-model="editable.type" class="form-control" name="" id="">
+    <option value="grocery">Grocery</option>
+    <option value="hardware">Hardware</option>
+    <option value="office">Office</option>
+    <option value="cleaning">Cleaning</option>
+  </select>
+
+  <div class="input-group my-2">
+    <input
+      v-model="editable.name"
+      type="text"
+      class="form-control"
+      placeholder="shopping item"
+      aria-label="shopping item"
+      aria-describedby="basic-addon2"
+    />
+    <div class="input-group-append">
+      <span
+        class="input-group-text selectable"
+        id="basic-addon2"
+        @click="createItem()"
+        ><i class="mdi mdi-send"></i
+      ></span>
     </div>
   </div>
 </template>

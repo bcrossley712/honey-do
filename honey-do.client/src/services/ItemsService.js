@@ -1,5 +1,6 @@
 import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
 import { api } from "./AxiosService";
 
 class ItemsService {
@@ -34,6 +35,7 @@ class ItemsService {
 
   async deleteAllItems(array) {
     await array.forEach(i => this.deleteItem(i.id))
+
   }
 }
 

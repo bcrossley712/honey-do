@@ -9,15 +9,31 @@
           <h2>Shopping List</h2>
         </div>
 
-        <div class="col-12 text-center">
+        <div
+          class="
+            col-12
+            text-center
+            d-flex
+            justify-content-between
+            align-items-center
+          "
+        >
           <h6>
             Add Items
             <i
-              class="mdi mdi-plus"
+              class="mdi mdi-plus selectable"
               title="Add note"
               data-bs-toggle="modal"
               data-bs-target="#new-item"
             ></i>
+          </h6>
+          <h6
+            v-if="group.creatorId == account.id"
+            class="selectable mdi mdi-cancel"
+            title="clear list"
+            @click="deleteAllItems()"
+          >
+            Clear List
           </h6>
         </div>
 
@@ -51,6 +67,7 @@
             </div>
           </div>
           <i
+            v-if="g.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(g.id)"
@@ -86,6 +103,7 @@
             </div>
           </div>
           <i
+            v-if="h.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(h.id)"
@@ -121,6 +139,7 @@
             </div>
           </div>
           <i
+            v-if="c.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(c.id)"
@@ -156,6 +175,7 @@
             </div>
           </div>
           <i
+            v-if="o.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(o.id)"
@@ -163,9 +183,7 @@
         </div>
       </div>
     </div>
-    <div class="selectable m-2" @click="deleteAllItems()">
-      <h6>Clear List</h6>
-    </div>
+
     <Modal id="new-item">
       <template #title>New Item</template>
       <template #body><ItemForm /></template>
@@ -203,10 +221,14 @@ export default {
       editable,
       route,
       activeRecipe: computed(() => AppState.activeRecipe),
+      item: computed(() => AppState.items),
       groceryItems: computed(() => AppState.items.filter(i => i.type == 'grocery')),
       hardwareItems: computed(() => AppState.items.filter(i => i.type == 'hardware')),
       officeItems: computed(() => AppState.items.filter(i => i.type == 'office')),
       cleaningItems: computed(() => AppState.items.filter(i => i.type == 'cleaning')),
+      account: computed(() => AppState.account),
+      member: computed(() => AppState.members),
+      group: computed(() => AppState.activeGroup),
 
       async markComplete(itemId) {
         try {
@@ -219,7 +241,9 @@ export default {
 
       async deleteItem(itemId) {
         try {
-          await itemsService.deleteItem(itemId)
+          if (await Pop.confirm('Are You Sure You Want To Delete?')) {
+            await itemsService.deleteItem(itemId)
+          }
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -228,7 +252,9 @@ export default {
 
       async deleteAllItems() {
         try {
-          await itemsService.deleteAllItems(AppState.items)
+          if (await Pop.confirm('Are You Sure You Want To Delete?')) {
+            await itemsService.deleteAllItems(AppState.items)
+          }
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -246,6 +272,5 @@ export default {
 .item-template {
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
 }
 </style>
