@@ -1,8 +1,10 @@
 <template>
-  <main>
+  <header>
+    <Navbar />
+  </header>
+  <main class="mb-5">
     <router-view />
   </main>
-  <Navbar />
   <Modal id="new-group">
     <template #title>New Group</template>
     <template #body><GroupForm /></template>

@@ -1,6 +1,7 @@
 <template>
   <span class="navbar-text">
     <button
+      title="Login"
       class="btn selectable lighten-30 text-uppercase my-2 my-lg-0"
       @click="login"
       v-if="!user.isAuthenticated"
@@ -10,6 +11,7 @@
 
     <div class="dropdown my-2 my-lg-0" v-else>
       <div
+        title="Account Options"
         class="dropdown-toggle selectable"
         data-bs-toggle="dropdown"
         aria-expanded="false"

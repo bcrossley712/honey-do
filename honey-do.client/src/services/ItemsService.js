@@ -23,6 +23,9 @@ class ItemsService {
     logger.log('item marked complete', itemToComplete.isComplete)
   }
 
+  async addAll(array, groupId) {
+    await array.forEach(i => this.createItem({ name: i, groupId: groupId }))
+  }
 }
 
 export const itemsService = new ItemsService();
