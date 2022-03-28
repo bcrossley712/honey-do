@@ -17,16 +17,6 @@
     </div>
     <div class="offcanvas-body">
       <slot name="body"></slot>
-      <div class="dropdown mt-3">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-bs-toggle="dropdown"
-        >
-          Dropdown button
-        </button>
-      </div>
     </div>
   </div>
 </template>

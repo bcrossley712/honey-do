@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="mb-5">
     <router-view />
   </main>
   <Modal id="new-group">
