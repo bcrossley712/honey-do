@@ -13,7 +13,8 @@ class MembersService {
   }
   async createMember(body) {
     const member = await dbContext.Members.create(body)
-    return member
+    await member.populate('account')
+    return new GroupMember(member)
   }
   async editMember(memberId, userId, update) {
     const original = await dbContext.Members.findById(memberId)
