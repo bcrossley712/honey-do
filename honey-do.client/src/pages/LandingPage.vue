@@ -52,7 +52,7 @@
               id="group-search"
               aria-describedby="group search"
               placeholder="Group Name..."
-              v-model="editable.name"
+              v-model="editable.search"
               required
             />
             <button class="btn btn-secondary">
