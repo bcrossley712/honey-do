@@ -2,112 +2,153 @@
   <div class="container-fluid">
     <div class="container item-template">
       <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-          <h4>Shopping List</h4>
+        <div class="col-12 d-flex justify-content-center text-center">
+          <h2>Shopping List</h2>
         </div>
-        <h6>Grocery Items</h6>
+
+        <div class="col-12 text-center">
+          <h6>
+            Add Items
+            <i
+              class="mdi mdi-plus"
+              title="Add note"
+              data-bs-toggle="modal"
+              data-bs-target="#new-item"
+            ></i>
+          </h6>
+        </div>
+
+        <div v-if="groceryItems.length > 0">
+          <h6>Grocery Items</h6>
+        </div>
         <div
-          class="d-flex flex-column justify-content-start m-2"
+          class="d-flex justify-content-between m-2"
           v-for="g in groceryItems"
           :key="g.id"
         >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ g.name }}
-            </label>
+          <div class="d-flex justify-content-start">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                :checked="g.isComplete"
+                @click="markComplete(g.id)"
+              />
+              <label
+                class="form-check-label"
+                for="flexCheckDefault"
+                :style="{
+                  textDecoration: g.isComplete ? 'line-through' : 'inherit',
+                }"
+              >
+                {{ g.name }}
+              </label>
+            </div>
           </div>
+          <i class="mdi mdi-delete-forever" title="delete item"></i>
         </div>
-        <h6>Hardware Items</h6>
+        <div v-if="hardwareItems.length > 0">
+          <h6>Hardware Items</h6>
+        </div>
         <div
-          class="d-flex flex-column justify-content-start m-2"
+          class="d-flex justify-content-between m-2"
           v-for="h in hardwareItems"
           :key="h.id"
         >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ h.name }}
-            </label>
+          <div class="d-flex justify-content-start">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                :checked="h.isComplete"
+                @click="markComplete(h.id)"
+              />
+              <label
+                class="form-check-label"
+                for="flexCheckDefault"
+                :style="{
+                  textDecoration: h.isComplete ? 'line-through' : 'inherit',
+                }"
+              >
+                {{ h.name }}
+              </label>
+            </div>
           </div>
+          <i class="mdi mdi-delete-forever" title="delete item"></i>
         </div>
-        <h6>Cleaning Items</h6>
+        <div v-if="cleaningItems.length > 0">
+          <h6>Cleaning Items</h6>
+        </div>
         <div
-          class="d-flex flex-column justify-content-start m-2"
+          class="d-flex justify-content-between m-2"
           v-for="c in cleaningItems"
           :key="c.id"
         >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ c.name }}
-            </label>
+          <div class="justify-content-start">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                :checked="c.isComplete"
+                @click="markComplete(c.id)"
+              />
+              <label
+                class="form-check-label"
+                for="flexCheckDefault"
+                :style="{
+                  textDecoration: c.isComplete ? 'line-through' : 'inherit',
+                }"
+              >
+                {{ c.name }}
+              </label>
+            </div>
           </div>
+          <i class="mdi mdi-delete-forever" title="delete item"></i>
         </div>
-        <h6>Office Items</h6>
+        <div v-if="officeItems.length > 0">
+          <h6>Office Items</h6>
+        </div>
         <div
-          class="d-flex flex-column justify-content-start m-2"
+          class="d-flex justify-content-between m-2"
           v-for="o in officeItems"
           :key="o.id"
         >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ o.name }}
-            </label>
+          <div class="justify-content-start">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                :checked="o.isComplete"
+                @click="markComplete(o.id)"
+              />
+              <label
+                class="form-check-label"
+                for="flexCheckDefault"
+                :style="{
+                  textDecoration: o.isComplete ? 'line-through' : 'inherit',
+                }"
+              >
+                {{ o.name }}
+              </label>
+            </div>
           </div>
+          <i class="mdi mdi-delete-forever" title="delete item"></i>
         </div>
       </div>
     </div>
-    <div class="message-box">
-      <div>
-        <label for="" class="form-label"></label>
-        <select v-model="editable.type" class="form-control" name="" id="">
-          <option value="grocery">Grocery</option>
-          <option value="hardware">Hardware</option>
-          <option value="office">Office</option>
-          <option value="cleaning">Cleaning</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <input
-          v-model="editable.name"
-          type="text"
-          class="form-control"
-          placeholder="shopping item"
-          aria-label="shopping item"
-          aria-describedby="basic-addon2"
-        />
-        <div class="input-group-append">
-          <span
-            class="input-group-text selectable"
-            id="basic-addon2"
-            @click="createItem()"
-            ><i class="mdi mdi-send"></i
-          ></span>
-        </div>
-      </div>
-    </div>
+
+    <Modal id="new-item">
+      <template #title>New Item</template>
+      <template #body><ItemForm /></template>
+    </Modal>
   </div>
 </template>
 
@@ -124,7 +165,6 @@ import { groupsService } from "../services/GroupsService"
 export default {
   setup() {
     const editable = ref({})
-    // const filterBy = ref('grocery')
     const route = useRoute()
     onMounted(async () => {
       try {
@@ -132,7 +172,7 @@ export default {
           await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
         }
-        // await membersService.getGroupMembers()
+
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -146,18 +186,29 @@ export default {
       hardwareItems: computed(() => AppState.items.filter(i => i.type == 'hardware')),
       officeItems: computed(() => AppState.items.filter(i => i.type == 'office')),
       cleaningItems: computed(() => AppState.items.filter(i => i.type == 'cleaning')),
-      async createItem() {
-        editable.value.groupId = route.params.id
-        await itemsService.createItem(editable.value)
-        editable.value = {}
+      async markComplete(itemId) {
+        try {
+          await itemsService.markComplete(itemId)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
       },
-      changeFilter(type) {
-        filterBy = type
 
+      async deleteItem(itemId) {
+        try {
+          await itemsService.deleteItem(itemId)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
       }
+
+
     }
   }
 }
+
 </script>
 
 
@@ -166,10 +217,5 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 70vh;
-}
-
-.message-box {
-  position: fixed;
-  bottom: 8vh;
 }
 </style>

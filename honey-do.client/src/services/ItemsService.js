@@ -15,6 +15,14 @@ class ItemsService {
     logger.log('[getItems]', res.data)
     AppState.items = res.data
   }
+
+  async markComplete(itemId) {
+    let itemToComplete = AppState.items.find(i => i.id == itemId)
+    itemToComplete.isComplete = !itemToComplete.isComplete
+    const res = await api.put('api/items/' + itemId, itemToComplete)
+    logger.log('item marked complete', itemToComplete.isComplete)
+  }
+
 }
 
 export const itemsService = new ItemsService();

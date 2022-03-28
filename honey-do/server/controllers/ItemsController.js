@@ -24,9 +24,9 @@ export class ItemsController extends BaseController {
 
   async edit(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.id
+      // req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
-      const item = await itemsService.update(req.body)
+      const item = await itemsService.update(req.body, req.userInfo.id)
       res.send(item)
     } catch (error) {
       next(error)
