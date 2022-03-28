@@ -67,6 +67,7 @@
             </div>
           </div>
           <i
+            v-if="item.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(g.id)"
@@ -217,6 +218,7 @@ export default {
       editable,
       route,
       activeRecipe: computed(() => AppState.activeRecipe),
+      item: computed(() => AppState.items),
       groceryItems: computed(() => AppState.items.filter(i => i.type == 'grocery')),
       hardwareItems: computed(() => AppState.items.filter(i => i.type == 'hardware')),
       officeItems: computed(() => AppState.items.filter(i => i.type == 'office')),
