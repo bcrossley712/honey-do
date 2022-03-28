@@ -6,17 +6,16 @@ import { api, tastyApi } from "./AxiosService"
 const baseQuery = {
   from: '0',
   size: '80',
-  q: 'chicken'
+  q: ''
 }
 class RecipesService {
 
   async getRecipes(query) {
-    // baseQuery.q = query
+    logger.log(query)
+    baseQuery.q = query
     const res = await tastyApi.get('', { params: baseQuery })
-    // logger.log(res.data.results.filter(r => r.compilations))
-    logger.log('res.data', res.data.results)
     let baseRecipes = res.data.results.filter(r => r.compilations)
-    logger.log(baseRecipes)
+    logger.log('[getRecipes]', baseRecipes)
     AppState.recipes = baseRecipes.map(r => new Recipe(r))
   }
 

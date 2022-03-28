@@ -8,14 +8,24 @@ export class MembersController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
+      .put('/:id', this.edit)
       .delete('/:id', this.remove)
   }
 
   async create(req, res, next) {
     try {
       req.body.accountId = req.userInfo.id
+      req.body.status = 'pending'
       const member = await membersService.createMember(req.body)
       res.send(member)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async edit(req, res, next) {
+    try {
+      const update = await membersService.editMember(req.params.id, req.userInfo.id, req.body)
+      return res.send(update)
     } catch (error) {
       next(error)
     }

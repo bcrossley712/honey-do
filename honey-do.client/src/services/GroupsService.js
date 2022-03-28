@@ -14,5 +14,11 @@ class GroupsService {
     AppState.groups.push(res.data)
     return res.data
   }
+  async groupSearch(data) {
+
+    const res = await api.get('api/groups', { params: data })
+    logger.log('[groupSearch]', res.data)
+    AppState.searchResults = res.data
+  }
 }
 export const groupsService = new GroupsService()

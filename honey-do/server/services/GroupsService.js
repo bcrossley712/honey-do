@@ -1,11 +1,13 @@
 import { dbContext } from "../db/DbContext"
+import { Group } from "../models/Group"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { logger } from "../utils/Logger"
 import { membersService } from "./MembersService"
 
 class GroupsService {
   async getAll(query = {}) {
-    const groups = await dbContext.Groups.find(query).populate('creator', 'name picture')
-    return groups
+    const groups = await dbContext.Groups.find(query).populate('creator')
+    return groups.map(g => new Group(g))
   }
   async getById(id) {
     const group = await dbContext.Groups.findById(id).populate('creator', 'name picture')
@@ -21,7 +23,7 @@ class GroupsService {
   async create(body) {
     const newGroup = await dbContext.Groups.create(body)
     await newGroup.populate('creator', 'name picture')
-    await membersService.createMember({ groupId: newGroup.id, accountId: newGroup.creatorId })
+    await membersService.createMember({ groupId: newGroup.id, accountId: newGroup.creatorId, status: 'accepted' })
     return newGroup
   }
   async edit(body) {

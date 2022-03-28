@@ -13,6 +13,13 @@ class AccountService {
   }
   async getMyGroups() {
     const res = await api.get('/account/groups')
+    logger.log('[getMyGroups]', res.data)
+    AppState.groups = res.data
+  }
+  async editAccount(data) {
+    const res = await api.put('account', data)
+    logger.log('[editAccount]', res.data)
+    AppState.account = res.data
   }
 }
 

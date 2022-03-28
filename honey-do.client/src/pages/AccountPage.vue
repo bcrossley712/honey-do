@@ -3,36 +3,111 @@
     <div class="row">
       <div class="col-12">
         <Login />
+      </div>
+      <div class="col-12 d-flex justify-content-around">
         <button
-          class="btn btn-outline-secondary fw-bold"
+          class="btn btn-secondary my-3"
           data-bs-target="#new-group"
           data-bs-toggle="modal"
         >
-          New Group
+          <h5 class="m-0">New Group</h5>
         </button>
-        <div class="text-center">
-          <h4>My Groups</h4>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle my-3"
+            type="button"
+            id="dropdownMenu2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <h5>My Groups</h5>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li v-for="g in groups" :key="g.id">
+              <button class="dropdown-item" type="button" @click="goTo(g)">
+                {{ g.name }}
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
+      <div class="col-12 text-center">
+        <h5>Search Groups</h5>
+        <form
+          class="mb-3 d-flex align-items-center"
+          @submit.prevent="groupSearch"
+        >
+          <input
+            type="text"
+            class="form-control"
+            name="group-search"
+            id="group-search"
+            aria-describedby="group search"
+            placeholder="Group Name..."
+            v-model="editable.name"
+            required
+          />
+          <button class="btn btn-secondary">
+            <i class="mdi mdi-magnify" title="Search Group"></i>
+          </button>
+        </form>
+      </div>
+      <div class="col-12">
+        <ul>
+          <li
+            @click="setGroup(g)"
+            class="selectable"
+            v-for="g in searchResults"
+            :key="g.id"
+            data-bs-target="#join-group"
+            data-bs-toggle="modal"
+          >
+            {{ g.name }} | {{ g.creatorName }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-12"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService"
+import { useRouter } from "vue-router"
+import { groupsService } from "../services/GroupsService"
 export default {
   name: 'Account',
   setup() {
-    watchEffect(async () => {
-      // await accountService.getMyGroups()
+    const editable = ref({})
+    const router = useRouter()
+    onMounted(async () => {
+      if (AppState.groups.length == 0) {
+        await accountService.getMyGroups()
+      }
     })
     return {
+      editable,
       account: computed(() => AppState.account),
-      groups: computed(() => AppState.groups)
-
-
+      groups: computed(() => AppState.groups),
+      searchResults: computed(() => AppState.searchResults),
+      goTo(group) {
+        AppState.activeGroup = group
+        router.push({ name: 'Home', params: { id: group.id } })
+      },
+      setGroup(group) {
+        AppState.grouptoJoin = group
+      },
+      async groupSearch() {
+        try {
+          await groupsService.groupSearch(editable.value)
+          editable.value = {}
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }

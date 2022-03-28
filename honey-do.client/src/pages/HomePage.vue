@@ -3,21 +3,63 @@
     <div class="row">
       <h1 class="bg-secondary p-2">HONEY-DO</h1>
     </div>
-    <div class="row text-center">
-      <div class="col-12 p-2">
-        <h4>My Group Members</h4>
-      </div>
-      <i class="mdi mdi-plus selectable" title="Add Member">Add Member</i>
-      <div class="col-12 bg-secondary p-2">
-        <div><img src="" alt="" /></div>
+    <div class="row px-3">
+      <div class="col-12">My Group Members</div>
+      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
+        <img
+          v-for="m in members"
+          :key="m.id"
+          :src="m.picture"
+          alt=""
+          class="img-small rounded-circle m-1"
+          :title="m.name"
+        />
       </div>
     </div>
+    <div class="row px-3" v-if="groupRequests.length >= 1">
+      <div class="col-12">Group Requests</div>
+      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
+        <img
+          @click="setRequest(r)"
+          data-bs-toggle="modal"
+          data-bs-target="#group-request"
+          v-for="r in groupRequests"
+          :key="r.id"
+          :src="r.picture"
+          alt=""
+          class="img-small rounded-circle m-1"
+          :title="r.name"
+        />
+      </div>
+    </div>
+
+    <i class="mdi mdi-plus selectable" title="Add Member">Add Member</i>
+
     <div class="row text-center">
-      <div class="col-12 p-2">
-        <h4>Group Notes</h4>
+      <div class="col-12">
+        <h4>
+          Group Notes
+          <i
+            class="mdi mdi-plus"
+            title="Add note"
+            data-bs-toggle="modal"
+            data-bs-target="#new-note"
+          ></i>
+        </h4>
+        <div v-for="n in notes" :key="n.id">
+          <Notes :note="n" />
+        </div>
       </div>
     </div>
   </div>
+  <Modal id="new-note">
+    <template #title>New Note</template>
+    <template #body><NoteForm /></template>
+  </Modal>
+  <Modal id="group-request">
+    <template #title>Add Member?</template>
+    <template #body><RequestForm /></template>
+  </Modal>
 </template>
 
 <script>
@@ -28,6 +70,7 @@ import { membersService } from '../services/MembersService'
 import { groupsService } from '../services/GroupsService'
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
+import { notesService } from "../services/NotesService"
 export default {
   name: 'Home',
   setup() {
@@ -37,8 +80,15 @@ export default {
         if (!AppState.activeGroup.id) {
           await groupsService.getGroup(route.params.id)
         }
-
-        // await membersService.getGroupMembers()
+        if (AppState.members.length == 0) {
+          await membersService.getGroupMembers(route.params.id)
+        }
+        if (AppState.groupRequests.length == 0) {
+          await membersService.getPendingMembers(route.params.id)
+        }
+        if (AppState.notes.length == 0) {
+          await notesService.getNotes(route.params.id)
+        }
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -47,7 +97,12 @@ export default {
     })
     return {
       members: computed(() => AppState.members),
-      activeGroup: computed(() => AppState.activeGroup)
+      activeGroup: computed(() => AppState.activeGroup),
+      notes: computed(() => AppState.notes),
+      groupRequests: computed(() => AppState.groupRequests),
+      setRequest(member) {
+        AppState.memberRequest = member
+      }
     }
   }
 }
@@ -70,5 +125,9 @@ export default {
       object-position: center;
     }
   }
+}
+.img-small {
+  height: 55px;
+  width: 55px;
 }
 </style>

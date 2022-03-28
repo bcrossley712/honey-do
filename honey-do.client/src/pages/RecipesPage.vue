@@ -18,6 +18,7 @@
             class="btn btn-secondary mdi mdi-plus ms-1"
           ></button>
         </form>
+        <span>Click recipe to see more info</span>
       </div>
     </div>
     <div class="row">
@@ -26,6 +27,10 @@
       </div>
     </div>
   </div>
+  <OffCanvas id="recipe">
+    <template #title>{{ activeRecipe.name }} </template>
+    <template #body><RecipeForm /></template>
+  </OffCanvas>
 </template>
 
 
@@ -55,10 +60,11 @@ export default {
     })
     return {
       editable,
+      activeRecipe: computed(() => AppState.activeRecipe),
       recipes: computed(() => AppState.recipes),
       async getRecipes() {
         try {
-          await recipesService.getRecipes(editable)
+          await recipesService.getRecipes(editable.value)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

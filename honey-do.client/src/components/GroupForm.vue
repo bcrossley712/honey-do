@@ -1,6 +1,5 @@
 <template>
   <form class="mb-3" @submit.prevent="createGroup">
-    <label for="Group Name" class="form-label"></label>
     <input
       v-model="editable.name"
       type="text"
@@ -9,6 +8,7 @@
       id=""
       aria-describedby="helpId"
       placeholder="Name your Group!"
+      required
     />
     <button class="btn btn-success mt-2" title="Create Group">
       Create Group

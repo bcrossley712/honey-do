@@ -69,14 +69,14 @@ a:hover {
 }
 .nav-sticky {
   position: sticky;
-  top: 0;
+  bottom: 0;
   z-index: 1020;
 }
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .nav-sticky {
     position: sticky;
-    top: 94.2vh;
+    top: 0;
     z-index: 1020;
   }
-}
+} */
 </style>

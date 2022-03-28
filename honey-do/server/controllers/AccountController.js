@@ -9,7 +9,8 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
-      .get('/members', this.getGroupsByAccount)
+      .get('/groups', this.getGroupsByAccount)
+      .put('', this.edit)
   }
   async getGroupsByAccount(req, res, next) {
     try {
@@ -19,11 +20,18 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async edit(req, res, next) {
+    try {
+      const update = await accountService.updateAccount(req.userInfo, req.body)
+      return res.send(update)
     } catch (error) {
       next(error)
     }
