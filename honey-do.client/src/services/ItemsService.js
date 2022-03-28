@@ -31,6 +31,10 @@ class ItemsService {
     const res = await api.delete('api/items/' + itemId)
     AppState.items = AppState.items.filter(i => i.id != itemId)
   }
+
+  async deleteAllItems(array) {
+    await array.forEach(i => this.deleteItem(i.id))
+  }
 }
 
 
