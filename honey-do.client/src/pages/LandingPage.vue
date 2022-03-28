@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+      <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
     </div>
     <div class="row">
       <div
@@ -64,7 +64,7 @@
           <div>
             <ul>
               <li
-                @click="setGroup"
+                @click="setGroup(g)"
                 class="selectable"
                 v-for="g in searchResults"
                 :key="g.id"
@@ -134,6 +134,9 @@ export default {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
+      },
+      setGroup(group) {
+        AppState.grouptoJoin = group
       }
     }
   }

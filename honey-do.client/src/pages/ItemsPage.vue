@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="bg-secondary p-2">HONEY-DO</h1>
+      <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
     </div>
     <div class="container item-template">
       <div class="row">
@@ -204,9 +204,9 @@ export default {
     onMounted(async () => {
       try {
         if (!AppState.activeGroup.id) {
-          await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
         }
+        await itemsService.getItems(route.params.id)
 
       } catch (error) {
         logger.error(error)
