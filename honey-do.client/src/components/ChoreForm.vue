@@ -14,14 +14,14 @@
   <div class="mb-3 d-flex">
     <select
       v-model="editable.assignedTo"
-      class="form-control me-2"
+      class="form-select me-2"
       default=""
       name="assignedTo"
       id="assignedTo"
       required
     >
       <option v-for="m in members" :key="m.id" :value="m.id">
-        {{ m.name }}}}
+        <p>{{ m.name }}</p>
       </option>
     </select>
     <button
@@ -40,6 +40,7 @@ import Pop from "../utils/Pop"
 import { choresService } from "../services/ChoresService"
 import { Modal } from "bootstrap"
 import { useRoute } from "vue-router"
+import { AppState } from "../AppState"
 export default {
   setup() {
     const editable = ref({})
