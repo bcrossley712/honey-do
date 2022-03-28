@@ -163,7 +163,9 @@
         </div>
       </div>
     </div>
-
+    <div class="selectable m-2" @click="deleteAllItems()">
+      <h6>Clear List</h6>
+    </div>
     <Modal id="new-item">
       <template #title>New Item</template>
       <template #body><ItemForm /></template>
@@ -188,9 +190,9 @@ export default {
     onMounted(async () => {
       try {
         if (!AppState.activeGroup.id) {
-          await itemsService.getItems(route.params.id)
           await groupsService.getGroup(route.params.id)
         }
+        await itemsService.getItems(route.params.id)
 
       } catch (error) {
         logger.error(error)
@@ -205,6 +207,7 @@ export default {
       hardwareItems: computed(() => AppState.items.filter(i => i.type == 'hardware')),
       officeItems: computed(() => AppState.items.filter(i => i.type == 'office')),
       cleaningItems: computed(() => AppState.items.filter(i => i.type == 'cleaning')),
+
       async markComplete(itemId) {
         try {
           await itemsService.markComplete(itemId)
@@ -221,8 +224,16 @@ export default {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
-      }
+      },
 
+      async deleteAllItems() {
+        try {
+          await itemsService.deleteAllItems(AppState.items)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
 
     }
   }
