@@ -6,7 +6,11 @@ import { membersService } from "./MembersService"
 
 class GroupsService {
   async getAll(query = {}) {
-    const groups = await dbContext.Groups.find(query).populate('creator')
+    logger.log('get all groups query', query)
+    const regSearch = new RegExp(query.search, 'ig')
+    const groups = await dbContext.Groups.find(
+      { name: { $regex: regSearch } }
+    ).populate('creator')
     return groups.map(g => new Group(g))
   }
   async getById(id) {

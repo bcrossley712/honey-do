@@ -28,11 +28,13 @@ class ItemsService {
 
   async delete(userId, itemId) {
     const itemToDelete = await dbContext.Items.findById(itemId)
-    if (itemToDelete.creatorId.toString() != userId) {
+    const itemGroup = await dbContext.Groups.findById(itemToDelete.groupId)
+    if (itemToDelete.creatorId.toString() !== userId && itemGroup.creatorId.toString() !== userId) {
       throw new Forbidden('Can not delete this item')
     }
     const removeItem = await dbContext.Items.findByIdAndDelete(itemId)
     return removeItem
+
   }
 
 }
