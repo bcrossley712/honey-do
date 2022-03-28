@@ -50,7 +50,11 @@
               </label>
             </div>
           </div>
-          <i class="mdi mdi-delete-forever" title="delete item"></i>
+          <i
+            class="mdi mdi-delete-forever"
+            title="delete item"
+            @click="deleteItem(g.id)"
+          ></i>
         </div>
         <div v-if="hardwareItems.length > 0">
           <h6>Hardware Items</h6>
@@ -81,7 +85,11 @@
               </label>
             </div>
           </div>
-          <i class="mdi mdi-delete-forever" title="delete item"></i>
+          <i
+            class="mdi mdi-delete-forever"
+            title="delete item"
+            @click="deleteItem(h.id)"
+          ></i>
         </div>
         <div v-if="cleaningItems.length > 0">
           <h6>Cleaning Items</h6>
@@ -112,7 +120,11 @@
               </label>
             </div>
           </div>
-          <i class="mdi mdi-delete-forever" title="delete item"></i>
+          <i
+            class="mdi mdi-delete-forever"
+            title="delete item"
+            @click="deleteItem(c.id)"
+          ></i>
         </div>
         <div v-if="officeItems.length > 0">
           <h6>Office Items</h6>
@@ -143,7 +155,11 @@
               </label>
             </div>
           </div>
-          <i class="mdi mdi-delete-forever" title="delete item"></i>
+          <i
+            class="mdi mdi-delete-forever"
+            title="delete item"
+            @click="deleteItem(o.id)"
+          ></i>
         </div>
       </div>
     </div>

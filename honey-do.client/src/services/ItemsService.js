@@ -26,6 +26,12 @@ class ItemsService {
   async addAll(array, groupId) {
     await array.forEach(i => this.createItem({ name: i, groupId: groupId }))
   }
+
+  async deleteItem(itemId) {
+    const res = await api.delete('api/items/' + itemId)
+    AppState.items = AppState.items.filter(i => i.id != itemId)
+  }
 }
+
 
 export const itemsService = new ItemsService();
