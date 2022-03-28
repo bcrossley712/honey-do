@@ -15,6 +15,9 @@ class ItemsService {
     logger.log('[getItems]', res.data)
     AppState.items = res.data
   }
+  async addAll(array, groupId) {
+    await array.forEach(i => this.createItem({ name: i, groupId: groupId }))
+  }
 }
 
 export const itemsService = new ItemsService();
