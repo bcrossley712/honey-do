@@ -23,8 +23,9 @@ class MembersService {
       throw new Forbidden('You are not allowed to do this')
     }
     original.status = update.status ? update.status : original.status
+    await original.populate('account')
     await original.save()
-    return original
+    return new GroupMember(original)
   }
   async removeMember(userId, memberId) {
     const foundMember = await dbContext.Members.findById(memberId)

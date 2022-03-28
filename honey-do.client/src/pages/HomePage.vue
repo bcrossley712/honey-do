@@ -35,11 +35,8 @@
         />
       </div>
     </div>
-    <div class="row">
-      <i class="mdi mdi-plus selectable ms-2" title="Add Member">Add Member</i>
-    </div>
 
-    <div class="row text-center">
+    <div class="row text-center mt-2">
       <div class="col-12">
         <h4>
           Group Notes
