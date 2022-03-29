@@ -23,7 +23,7 @@
           }"
           >{{ c.body }} </label
         ><i
-          v-if="c.creatorId == account.id"
+          v-if="c.creatorId == account.id || group.creatorId == account.id"
           @click="deleteChore(c.id)"
           class="mdi mdi-trash-can-outline ms-2 text-secondary"
         ></i>
