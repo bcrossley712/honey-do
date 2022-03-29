@@ -50,6 +50,7 @@ export default {
     return {
       chores: computed(() => AppState.chores.filter(c => c.assignedTo == props.member.id)),
       account: computed(() => AppState.account),
+      group: computed(() => AppState.activeGroup),
       async markComplete(choreId) {
         try {
           await choresService.markComplete(choreId)
