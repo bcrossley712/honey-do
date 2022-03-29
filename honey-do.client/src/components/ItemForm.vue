@@ -1,6 +1,7 @@
 <template>
   <form @submit.prevent="createItem()">
-    <select v-model="editable.type" class="form-control" name="" id="">
+    <select v-model="editable.type" class="form-select" name="" id="">
+      <option value="" selected disabled>Select one...</option>
       <option value="grocery">Grocery</option>
       <option value="hardware">Hardware</option>
       <option value="office">Office</option>
