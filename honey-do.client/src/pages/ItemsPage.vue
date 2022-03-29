@@ -243,6 +243,7 @@ export default {
         try {
           if (await Pop.confirm('Are You Sure You Want To Delete?')) {
             await itemsService.deleteItem(itemId)
+            Pop.toast('Item removed', 'success')
           }
         } catch (error) {
           logger.error(error)
@@ -252,8 +253,9 @@ export default {
 
       async deleteAllItems() {
         try {
-          if (await Pop.confirm('Are You Sure You Want To Delete?')) {
+          if (await Pop.confirm('Delete the whole list?')) {
             await itemsService.deleteAllItems(AppState.items)
+            Pop.toast('List Cleared', 'success')
           }
         } catch (error) {
           logger.error(error)

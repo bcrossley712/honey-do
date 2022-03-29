@@ -53,10 +53,10 @@ export default {
     const route = useRoute()
     onMounted(async () => {
       try {
-        if (!AppState.activeGroup.id) {
+        if (route.name == 'Recipes') {
           await groupsService.getGroup(route.params.id)
         }
-        // await membersService.getGroupMembers()
+
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -68,6 +68,7 @@ export default {
       recipes: computed(() => AppState.recipes),
       async getRecipes() {
         try {
+          Pop.toast(`Searching for ${editable.value}, please stand by...`, 'info')
           await recipesService.getRecipes(editable.value)
         } catch (error) {
           logger.error(error)

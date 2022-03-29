@@ -93,7 +93,7 @@ export default {
     const editable = ref({})
     const router = useRouter()
     onMounted(async () => {
-      if (AppState.groups.length == 0) {
+      if (route.name == 'Account') {
         await accountService.getMyGroups()
       }
     })
