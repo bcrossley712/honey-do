@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid d-flex flex-column h-100">
+  <div class="container-fluid d-flex flex-column" style="min-height: 94vh">
     <div class="row">
       <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
     </div>
@@ -9,10 +9,14 @@
         <h2 class="align-self-center">Chores List</h2>
       </div>
     </div>
-    <div class="row px-2 flex-grow-1">
-      <div class="col-12" v-for="m in members" :key="m.id">
-        <MemberChores :member="m" />
+    <div class="row px-2 flex-grow-1 overflow">
+      <div>
+        <div class="col-12" v-for="m in members" :key="m.id">
+          <MemberChores :member="m" />
+        </div>
       </div>
+    </div>
+    <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <h6 class="bg-tertiary rounded px-1">
@@ -84,4 +88,8 @@ export default {
 
 
 <style lang="scss" scoped>
+.overflow {
+  max-height: 76vh;
+  overflow: scroll;
+}
 </style>
