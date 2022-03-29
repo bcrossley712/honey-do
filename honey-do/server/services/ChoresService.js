@@ -3,11 +3,12 @@ import { Forbidden } from "../utils/Errors";
 
 class ChoresService {
   async getGroupChores(id) {
-    const chores = await dbContext.Chores.find({ groupId: id })
+    const chores = await dbContext.Chores.find({ groupId: id }).populate('choreOwner', 'name picture')
     return chores
   }
   async create(body) {
     const chore = await dbContext.Chores.create(body)
+    await chore.populate('choreOwner', 'name picture')
     return chore
   }
   async edit(updateBody) {

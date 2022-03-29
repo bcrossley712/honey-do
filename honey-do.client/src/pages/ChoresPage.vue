@@ -17,21 +17,10 @@
       </div>
     </div>
     <div class="row">
-      <h6 class="col-12">Members Name</h6>
-      <div class="col-12">
-        <div class="form-check">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            name="Chore Name"
-            id=""
-            value="checkedValue"
-            checked
-            @click="markComplete"
-          />
-          <label class="form-check-label" for="">Chore Name</label>
-        </div>
+      <div class="col-12" v-for="m in members" :key="m.id">
+        <MemberChores :member="m" />
       </div>
+      <div class="col-12"></div>
     </div>
   </div>
   <Modal id="new-chore">
@@ -42,23 +31,25 @@
 
 
 <script>
-import { ref } from "@vue/reactivity"
+import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
-import { onMounted } from "@vue/runtime-core"
+import { onMounted, watchEffect } from "@vue/runtime-core"
 import { groupsService } from "../services/GroupsService"
 import { choresService } from "../services/ChoresService"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
+import { membersService } from "../services/MembersService"
 export default {
   setup() {
     const route = useRoute()
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
-        if (!AppState.activeGroup.id) {
+        if (route.name == 'Chores') {
           await groupsService.getGroup(route.params.id)
+          await membersService.getGroupMembers(route.params.id)
+          await choresService.getChores(route.params.id)
         }
-        await choresService.getChores(route.params.id)
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -66,14 +57,9 @@ export default {
     })
 
     return {
-      async markComplete(choreId) {
-        try {
-          await choresService.markComplete(choreId)
-        } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
-        }
-      },
+
+      chores: computed(() => AppState.chores),
+      members: computed(() => AppState.members),
     }
   }
 }
