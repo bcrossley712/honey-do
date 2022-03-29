@@ -1,29 +1,38 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid d-flex flex-column h-100">
     <div class="row">
       <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
     </div>
-    <div class="row">
-      <div class="col-12 d-flex justify-content-around align-items-center">
-        <h2>Chores List</h2>
-        <i
-          class="mdi mdi-plus"
-          title="Add Chore"
-          data-bs-toggle="modal"
-          data-bs-target="#new-chore"
-        >
-          Add Chore</i
-        >
-        <button @click="resetChores" class="btn btn-primary">
-          Reset Chores
-        </button>
+
+    <div class="row px-2">
+      <div class="col-12 d-flex flex-column">
+        <h2 class="align-self-center">Chores List</h2>
       </div>
     </div>
-    <div class="row">
+    <div class="row px-2 flex-grow-1">
       <div class="col-12" v-for="m in members" :key="m.id">
         <MemberChores :member="m" />
       </div>
-      <div class="col-12"></div>
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="bg-tertiary rounded px-1">
+            <button class="btn">
+              Add Chore<i
+                class="mdi mdi-plus"
+                title="Add Chore"
+                data-bs-toggle="modal"
+                data-bs-target="#new-chore"
+              >
+              </i>
+            </button>
+          </h6>
+          <h6 class="bg-tertiary rounded px-1">
+            <button @click="resetChores" class="btn">
+              <i class="mdi mdi-cancel"></i> Reset Chores
+            </button>
+          </h6>
+        </div>
+      </div>
     </div>
   </div>
   <Modal id="new-chore">

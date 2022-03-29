@@ -18,22 +18,24 @@
             align-items-center
           "
         >
-          <h6>
-            Add Items
-            <i
-              class="mdi mdi-plus selectable"
-              title="Add note"
+          <h6 class="bg-tertiary rounded px-1">
+            <button
+              class="btn"
               data-bs-toggle="modal"
               data-bs-target="#new-item"
-            ></i>
+            >
+              Add Items
+              <i class="mdi mdi-plus selectable" title="Add note"></i>
+            </button>
           </h6>
           <h6
+            class="bg-tertiary rounded px-1"
             v-if="group.creatorId == account.id"
-            class="selectable mdi mdi-cancel"
-            title="clear list"
             @click="deleteAllItems()"
           >
-            Clear List
+            <button class="btn" title="clear list">
+              <i class="selectable mdi mdi-cancel"></i> Clear List
+            </button>
           </h6>
         </div>
 

@@ -1,10 +1,10 @@
 <template>
   <div v-if="chores.length > 0">
-    <h3>
-      <span class="bg-tertiary rounded px-1">
+    <h6>
+      <span class="rounded px-1">
         {{ member.name }}
       </span>
-    </h3>
+    </h6>
     <div class="form-check" v-for="c in chores" :key="c.id" :value="c.id">
       <input
         type="checkbox"
