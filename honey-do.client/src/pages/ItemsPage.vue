@@ -48,18 +48,16 @@
           :key="g.id"
         >
           <div class="d-flex justify-content-start">
-            <div class="form-check">
+            <div class="form-check" @click="markComplete(g.id)">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
                 :checked="g.isComplete"
-                @click="markComplete(g.id)"
               />
               <label
                 class="form-check-label"
-                for="flexCheckDefault"
                 :style="{
                   textDecoration: g.isComplete ? 'line-through' : 'inherit',
                 }"
