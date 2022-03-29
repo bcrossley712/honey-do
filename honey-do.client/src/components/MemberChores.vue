@@ -5,14 +5,19 @@
         {{ member.name }}
       </span>
     </h6>
-    <div class="form-check" v-for="c in chores" :key="c.id" :value="c.id">
+    <div
+      class="form-check"
+      v-for="c in chores"
+      :key="c.id"
+      :value="c.id"
+      @click="markComplete(c.id)"
+    >
       <input
         type="checkbox"
         class="form-check-input"
         name="Chore Name"
         id=""
         :checked="c.isComplete"
-        @click="markComplete(c.id)"
       />
       <div class="d-flex justify-content-between">
         <label

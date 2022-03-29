@@ -16,14 +16,12 @@
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <h6 class="bg-tertiary rounded px-1">
-            <button class="btn">
-              Add Chore<i
-                class="mdi mdi-plus"
-                title="Add Chore"
-                data-bs-toggle="modal"
-                data-bs-target="#new-chore"
-              >
-              </i>
+            <button
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#new-chore"
+            >
+              Add Chore<i class="mdi mdi-plus" title="Add Chore"> </i>
             </button>
           </h6>
           <h6 class="bg-tertiary rounded px-1">

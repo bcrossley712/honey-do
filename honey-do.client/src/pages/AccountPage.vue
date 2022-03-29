@@ -85,12 +85,13 @@
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { groupsService } from "../services/GroupsService"
 export default {
   name: 'Account',
   setup() {
     const editable = ref({})
+    const route = useRoute()
     const router = useRouter()
     onMounted(async () => {
       if (route.name == 'Account') {
