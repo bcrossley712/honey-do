@@ -13,9 +13,10 @@ class ChoresService {
   }
   async edit(updateBody) {
     const original = await dbContext.Chores.findById(updateBody.id)
-    if (original.creatorId.toString() !== updateBody.creatorId) {
-      throw new Forbidden('You cannot edit this')
-    }
+    // NOTE do we need creatorId check here??
+    // if (original.creatorId.toString() !== updateBody.creatorId) {
+    //   throw new Forbidden('You cannot edit this')
+    // }
     original.isComplete = updateBody.isComplete !== '' ? updateBody.isComplete : original.isComplete
     await original.save()
     return original
