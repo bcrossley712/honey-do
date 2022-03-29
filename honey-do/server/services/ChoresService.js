@@ -24,7 +24,7 @@ class ChoresService {
   async delete(userId, choreId) {
     const choreToDelete = await dbContext.Chores.findById(choreId)
     const group = await dbContext.Groups.findById(choreToDelete.groupId)
-    if (choreToDelete.creatorId.toString() !== userId || group.creatorId.toString() !== userId) {
+    if (choreToDelete.creatorId.toString() == userId || group.creatorId.toString() == userId) {
       throw new Forbidden('You cannot delete this')
     }
     await dbContext.Chores.findByIdAndDelete(choreId)
