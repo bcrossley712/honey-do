@@ -29,7 +29,11 @@
             </button>
           </h6>
           <h6 class="bg-tertiary rounded px-1">
-            <button @click="resetChores" class="btn">
+            <button
+              v-if="account.id == group.creatorId"
+              @click="resetChores"
+              class="btn"
+            >
               <i class="mdi mdi-cancel"></i> Reset Chores
             </button>
           </h6>
@@ -81,6 +85,8 @@ export default {
       },
       chores: computed(() => AppState.chores),
       members: computed(() => AppState.members),
+      account: computed(() => AppState.account),
+      group: computed(() => AppState.activeGroup)
     }
   }
 }
