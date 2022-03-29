@@ -3,10 +3,12 @@
     <div class="row">
       <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
     </div>
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-4">
         <Login />
       </div>
+    </div>
+    <div class="row">
       <div class="col-12 d-flex justify-content-around">
         <button
           title="New Group"
@@ -19,7 +21,7 @@
         <div class="dropdown">
           <button
             title="My Groups"
-            class="btn btn-secondary dropdown-toggle my-3 tert-outline"
+            class="btn btn-secondary my-3 tert-outline"
             type="button"
             id="dropdownMenu2"
             data-bs-toggle="dropdown"
@@ -29,14 +31,13 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <li v-for="g in groups" :key="g.id">
-              <button
-                class="dropdown-item"
-                type="button"
+              <div
+                class="dropdown-item selectable"
                 @click="goTo(g)"
                 title="Go To Group"
               >
                 {{ g.name }}
-              </button>
+              </div>
             </li>
           </ul>
         </div>
