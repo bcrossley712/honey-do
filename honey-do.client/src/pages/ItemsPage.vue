@@ -67,7 +67,7 @@
             </div>
           </div>
           <i
-            v-if="g.creatorId == account.id"
+            v-if="g.creatorId == account.id || group.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(g.id)"
@@ -103,7 +103,7 @@
             </div>
           </div>
           <i
-            v-if="h.creatorId == account.id"
+            v-if="h.creatorId == account.id || group.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(h.id)"
@@ -139,7 +139,7 @@
             </div>
           </div>
           <i
-            v-if="c.creatorId == account.id"
+            v-if="c.creatorId == account.id || group.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(c.id)"
@@ -175,7 +175,7 @@
             </div>
           </div>
           <i
-            v-if="o.creatorId == account.id"
+            v-if="o.creatorId == account.id || group.creatorId == account.id"
             class="mdi mdi-delete-forever"
             title="delete item"
             @click="deleteItem(o.id)"
