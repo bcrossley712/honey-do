@@ -21,6 +21,16 @@ class ChoresService {
     let index = AppState.chores.findIndex(c => c.id == choreId)
     AppState.chores.splice(index, 1, res.data)
   }
+  async deleteChore(choreId) {
+    const res = await api.delete(`api/chores/${choreId}`)
+    AppState.chores = AppState.chores.filter(c => c.id != choreId)
+    logger.log('chore deleted', res.data)
+  }
+  async resetChores() {
+    const res = AppState.chores.filter(c => c.isComplete == true)
+    await res.forEach(c => this.markComplete(c.id));
+    logger.log('reset chores', res.data)
+  }
 }
 
 export const choresService = new ChoresService()

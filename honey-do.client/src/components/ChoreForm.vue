@@ -1,17 +1,5 @@
 <template>
-  <div class="mb-3">
-    <label for="" class="form-label"></label>
-    <input
-      v-model="editable.body"
-      type="text"
-      class="form-control"
-      name=""
-      id=""
-      aria-describedby="helpId"
-      placeholder="Add Chore here"
-    />
-  </div>
-  <div class="mb-3 d-flex">
+  <form @submit.prevent="createChore" class="mb-3">
     <select
       v-model="editable.assignedTo"
       class="form-select me-2"
@@ -24,12 +12,18 @@
         <p>{{ m.name }}</p>
       </option>
     </select>
-    <button
-      class="btn btn-success mdi mdi-check"
-      title="Add Chore"
-      @click="createChore"
-    ></button>
-  </div>
+    <input
+      v-model="editable.body"
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder="Add Chore here"
+    />
+
+    <button class="btn btn-success mdi mdi-check" title="Add Chore"></button>
+  </form>
 </template>
 
 

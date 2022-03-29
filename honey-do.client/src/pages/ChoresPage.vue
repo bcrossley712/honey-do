@@ -14,6 +14,9 @@
         >
           Add Chore</i
         >
+        <button @click="resetChores" class="btn btn-primary">
+          Reset Chores
+        </button>
       </div>
     </div>
     <div class="row">
@@ -57,7 +60,14 @@ export default {
     })
 
     return {
-
+      async resetChores() {
+        try {
+          await choresService.resetChores()
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
       chores: computed(() => AppState.chores),
       members: computed(() => AppState.members),
     }
