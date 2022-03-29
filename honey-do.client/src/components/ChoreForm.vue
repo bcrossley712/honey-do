@@ -46,8 +46,8 @@ export default {
         try {
           editable.value.groupId = route.params.id
           await choresService.createChore(editable.value)
-          Modal.getOrCreateInstance(document.getElementById('new-chore')).hide()
-          editable.value = {}
+          Modal.getOrCreateInstance(document.getElementById('new-chore'))
+          editable.value.body = ''
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
