@@ -4,8 +4,8 @@
       <option value="" selected disabled>Select one...</option>
       <option value="grocery">Grocery</option>
       <option value="hardware">Hardware</option>
-      <option value="office">Office</option>
       <option value="cleaning">Cleaning</option>
+      <option value="office">Office</option>
     </select>
 
     <div class="input-group my-2">
