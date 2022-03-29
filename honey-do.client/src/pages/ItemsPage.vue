@@ -82,18 +82,16 @@
           :key="h.id"
         >
           <div class="d-flex justify-content-start">
-            <div class="form-check">
+            <div class="form-check" @click="markComplete(h.id)">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
                 :checked="h.isComplete"
-                @click="markComplete(h.id)"
               />
               <label
                 class="form-check-label"
-                for="flexCheckDefault"
                 :style="{
                   textDecoration: h.isComplete ? 'line-through' : 'inherit',
                 }"
@@ -118,18 +116,16 @@
           :key="c.id"
         >
           <div class="justify-content-start">
-            <div class="form-check">
+            <div class="form-check" @click="markComplete(c.id)">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
                 :checked="c.isComplete"
-                @click="markComplete(c.id)"
               />
               <label
                 class="form-check-label"
-                for="flexCheckDefault"
                 :style="{
                   textDecoration: c.isComplete ? 'line-through' : 'inherit',
                 }"
@@ -154,18 +150,16 @@
           :key="o.id"
         >
           <div class="justify-content-start">
-            <div class="form-check">
+            <div class="form-check" @click="markComplete(o.id)">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
                 :checked="o.isComplete"
-                @click="markComplete(o.id)"
               />
               <label
                 class="form-check-label"
-                for="flexCheckDefault"
                 :style="{
                   textDecoration: o.isComplete ? 'line-through' : 'inherit',
                 }"
