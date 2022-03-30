@@ -59,7 +59,11 @@
     <template #title>Add Member?</template>
     <template #body><RequestForm /></template>
   </Modal>
-  <button v-if="activeGroup.creatorId == account.id" class="btn btn-secondary">
+  <button
+    v-if="activeGroup.creatorId == account.id"
+    class="btn btn-secondary"
+    @click="deleteAllNotes()"
+  >
     Delete All Notes
   </button>
 </template>
