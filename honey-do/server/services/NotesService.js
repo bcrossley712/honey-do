@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { Forbidden } from "../utils/Errors"
 
 class NotesService {
   async getGroupNotes(id) {
@@ -11,7 +12,13 @@ class NotesService {
     return note
   }
   async delete(userId, noteId) {
-
+    const note = await dbContext.Notes.findById(noteId)
+    const noteGroup = await dbContext.Groups.findById(note.groupId)
+    if (note.creatorId.toString() !== userId && noteGroup.creatorId.toString() !== userId) {
+      throw new Forbidden('Can not delete this item')
+    }
+    const removeNote = await dbContext.Notes.findByIdAndDelete(noteId)
+    return removeNote
   }
 
 }
