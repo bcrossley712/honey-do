@@ -1,4 +1,4 @@
-import { dbContext } from "../db/dbContext"
+import { dbContext } from "../db/DbContext"
 import { Forbidden } from "../utils/Errors"
 class ItemsService {
   async getGroupItems(id) {
