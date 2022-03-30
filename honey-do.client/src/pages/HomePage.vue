@@ -1,11 +1,13 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid d-flex flex-column" style="min-height: 94vh">
     <LogoBanner />
     <div class="row px-2">
-      <h2>{{ activeGroup.name }}</h2>
+      <h1>{{ activeGroup.name }}</h1>
     </div>
     <div class="row px-2">
-      <div class="col-12 mb-1">My Group Members</div>
+      <div class="col-12 d-flex flex-column">
+        <h5 class="align-self-center">My Group Members</h5>
+      </div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <div v-for="m in members" :key="m.id" class="d-flex">
           <img
@@ -18,8 +20,10 @@
         </div>
       </div>
     </div>
-    <div class="row px-3" v-if="groupRequests.length >= 1">
-      <div class="col-12">Group Requests</div>
+    <div class="row px-2" v-if="groupRequests.length >= 1">
+      <div class="col-12 d-flex flex-column">
+        <h5 class="align-self-center">Group Requests</h5>
+      </div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <img
           @click="setRequest(r)"
@@ -37,7 +41,7 @@
 
     <div class="row px-2">
       <div class="col-12 d-flex flex-column">
-        <h4>Group Notes</h4>
+        <h4 class="align-self-center mt-2">Group Notes</h4>
       </div>
     </div>
     <div class="row px-2 flex-grow-1 overflow">
@@ -47,19 +51,26 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row px-2">
-    <div class="col-12">
-      <div class="d-flex align-items-center mb-2">
-        <h6 class="bg-tertiary rounded">
+    <div class="row px-2">
+      <div class="col-12">
+        <div class="d-flex align-items-center mb-2">
+          <h6 class="bg-tertiary rounded">
+            <button
+              class="btn elevation-2"
+              data-bs-toggle="modal"
+              data-bs-target="#new-note"
+            >
+              Add Note<i class="mdi mdi-plus" title="Add Note"> </i>
+            </button>
+          </h6>
           <button
-            class="btn elevation-2"
-            data-bs-toggle="modal"
-            data-bs-target="#new-note"
+            v-if="activeGroup.creatorId == account.id"
+            class="btn btn-secondary"
+            @click="deleteAllNotes()"
           >
-            Add Chore<i class="mdi mdi-plus" title="Add Note"> </i>
+            Delete All Notes
           </button>
-        </h6>
+        </div>
       </div>
     </div>
   </div>
@@ -71,13 +82,6 @@
     <template #title>Add Member?</template>
     <template #body><RequestForm /></template>
   </Modal>
-  <button
-    v-if="activeGroup.creatorId == account.id"
-    class="btn btn-secondary"
-    @click="deleteAllNotes()"
-  >
-    Delete All Notes
-  </button>
 </template>
 
 <script>
