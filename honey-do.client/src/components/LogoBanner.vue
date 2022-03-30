@@ -1,6 +1,13 @@
 <template>
   <div class="row">
-    <h1 class="bg-secondary text-light t-shadow p-2">HONEY-DO</h1>
+    <h1 class="bg-secondary text-light t-shadow p-2">
+      <img
+        src="../assets/img/honeydo_logo.png"
+        alt=""
+        class="img-fluid"
+        style="max-height: 45px"
+      />
+    </h1>
   </div>
 </template>
 

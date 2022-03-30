@@ -1,5 +1,5 @@
 <template>
-  <form class="mb-3" @submit.prevent="createGroup">
+  <form class="mb-3 d-flex flex-column" @submit.prevent="createGroup">
     <input
       v-model="editable.name"
       type="text"
@@ -10,7 +10,7 @@
       placeholder="Name your Group!"
       required
     />
-    <button class="btn btn-success mt-2" title="Create Group">
+    <button class="btn btn-success mt-2 align-self-end" title="Create Group">
       Create Group
     </button>
   </form>

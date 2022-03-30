@@ -4,7 +4,7 @@
 
     <div class="row px-2">
       <div class="col-12 d-flex flex-column">
-        <h2 class="align-self-center">Chores List</h2>
+        <h5 class="align-self-center">Chores List</h5>
       </div>
     </div>
     <div class="row px-2 flex-grow-1 overflow">

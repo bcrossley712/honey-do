@@ -9,6 +9,7 @@
       <div class="d-flex justify-content-between">
         <div @click="markComplete(c.id)">
           <input
+            title="Mark Chore Complete"
             type="checkbox"
             class="form-check-input"
             name="Chore Name"

@@ -1,5 +1,5 @@
 <template>
-  <form class="mb-3" @submit.prevent="createNote">
+  <form class="mb-3 d-flex flex-column" @submit.prevent="createNote">
     <input
       v-model="editable.body"
       type="text"
@@ -9,7 +9,7 @@
       aria-describedby="helpId"
       placeholder="Tell us..."
     />
-    <button class="btn btn-success mt-2" title="Create Note">
+    <button class="btn btn-success mt-2 align-self-end" title="Create Note">
       Create Note
     </button>
   </form>

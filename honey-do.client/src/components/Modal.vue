@@ -8,7 +8,7 @@
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-tertiary">
+        <div class="modal-header bg-secondary">
           <h5 class="modal-title">
             <slot name="title"></slot>
           </h5>
@@ -19,7 +19,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bg-secondary lighten-20">
           <slot name="body"></slot>
         </div>
       </div>
