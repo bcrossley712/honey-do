@@ -8,7 +8,7 @@
         </div>
         <div>
           <div v-if="groceryItems.length > 0">
-            <h6>Grocery Items</h6>
+            <h4>Grocery Items</h4>
           </div>
           <div
             class="d-flex justify-content-between my-2"
@@ -16,7 +16,7 @@
             :key="g.id"
           >
             <div class="d-flex justify-content-start">
-              <div class="form-check" @click="markComplete(g.id)">
+              <div class="form-check fs-5" @click="markComplete(g.id)">
                 <input
                   class="form-check-input"
                   type="checkbox"
@@ -44,7 +44,7 @@
         </div>
         <div>
           <div v-if="hardwareItems.length > 0">
-            <h6>Hardware Items</h6>
+            <h4>Hardware Items</h4>
           </div>
           <div
             class="d-flex justify-content-between my-2"
@@ -80,7 +80,7 @@
         </div>
         <div>
           <div v-if="cleaningItems.length > 0">
-            <h6>Cleaning Items</h6>
+            <h4>Cleaning Items</h4>
           </div>
           <div
             class="d-flex justify-content-between my-2"
@@ -116,7 +116,7 @@
         </div>
         <div>
           <div v-if="officeItems.length > 0">
-            <h6>Office Items</h6>
+            <h4>Office Items</h4>
           </div>
           <div
             class="d-flex justify-content-between my-2"
