@@ -139,14 +139,6 @@ export default {
     const editable = ref({})
     const route = useRoute()
     const router = useRouter()
-    onMounted(async () => {
-      if (route.name == 'Account') {
-        await accountService.getMyGroups()
-
-      }
-      if (AppState.activeGroup.id) {
-      }
-    })
     return {
       editable,
       user: computed(() => AppState.user),
