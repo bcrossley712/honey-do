@@ -147,7 +147,7 @@ export default {
       declinedMembers: computed(() => AppState.members.filter(m => m.status == 'declined')),
       async goTo(group) {
         AppState.activeGroup = group
-        // router.push({ name: 'Home', params: { id: group.id } })
+        router.push({ name: 'Home', params: { id: group.id } })
         await membersService.getGroupMembers(group.id)
       },
       setGroup(group) {
