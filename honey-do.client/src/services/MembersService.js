@@ -19,17 +19,26 @@ class MembersService {
     AppState.members.push(res.data)
   }
   async acceptMember(memberId, body) {
+    const index = AppState.members.findIndex(m => m.memberId == memberId)
     const res = await api.put('api/members/' + memberId, body)
     logger.log('[acceptMember]', res.data)
-    AppState.members.push(res.data)
     AppState.memberRequest = {}
     // FIXME filter group request
     AppState.groupRequests = AppState.groupRequests.filter(r => r.memberId != memberId)
+    if (index != -1) {
+      AppState.members.splice(index, 1, res.data)
+    } else {
+      AppState.members.push(res.data)
+    }
   }
   async declineMember(memberId, body) {
+    const index = AppState.members.findIndex(m => m.memberId == memberId)
     const res = await api.put('api/members/' + memberId, body)
     logger.log('[declineMember]', res.data)
     AppState.memberRequest = {}
+    if (index != -1) {
+      AppState.members.splice(index, 1, res.data)
+    }
   }
 
 }

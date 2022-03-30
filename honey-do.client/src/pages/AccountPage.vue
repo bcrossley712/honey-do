@@ -82,7 +82,7 @@
       <div class="col-12" v-if="activeGroup.creatorId == account.id">
         <h5 class="text-center">{{ activeGroup.name }}</h5>
         <h5 class="text-center">Membership options</h5>
-        <h6>Accepted members</h6>
+        <h6 v-if="acceptedMembers.length > 1">Accepted members</h6>
         <ul v-for="m in members" :key="m.id">
           <li
             v-if="m.id != account.id && m.status == 'accepted'"
@@ -96,7 +96,7 @@
             <template #body><MemberForm :member="m" /></template>
           </Modal>
         </ul>
-        <h6>Declined members</h6>
+        <h6 v-if="declinedMembers.length > 0">Declined members</h6>
         <ul v-for="m in members" :key="m.id">
           <li
             v-if="m.id != account.id && m.status == 'declined'"
@@ -143,6 +143,8 @@ export default {
       searchResults: computed(() => AppState.searchResults),
       activeGroup: computed(() => AppState.activeGroup),
       members: computed(() => AppState.members),
+      acceptedMembers: computed(() => AppState.members.filter(m => m.status == 'accepted')),
+      declinedMembers: computed(() => AppState.members.filter(m => m.status == 'declined')),
       async goTo(group) {
         AppState.activeGroup = group
         // router.push({ name: 'Home', params: { id: group.id } })
