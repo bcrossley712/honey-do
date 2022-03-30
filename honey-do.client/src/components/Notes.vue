@@ -1,36 +1,38 @@
 <template>
-  <div class="row p-3">
-    <div class="col-3">
-      <img
-        :src="note.creator?.picture"
-        alt=""
-        class="img-fluid img-small rounded-circle"
-      />
-    </div>
-    <div
-      class="
-        col-9
-        rounded
-        text-start
-        elevation-2
-        d-flex
-        justify-content-between
-      "
-    >
-      <div>
-        <span>{{ new Date(note.createdAt).toLocaleString() }}</span>
-        <p>
-          {{ note.body }}
-        </p>
+  <span v-touch:swipe.right="deleteNotes" v-touch-class="'active'">
+    <div class="row p-3">
+      <div class="col-3">
+        <img
+          :src="note.creator?.picture"
+          alt=""
+          class="img-fluid img-small rounded-circle"
+        />
       </div>
-      <i
-        v-if="note.creatorId == account.id || group.creatorId == account.id"
-        class="mdi mdi-delete-forever selectable"
-        title="delete note"
-        @click="deleteNotes(note.id)"
-      ></i>
+      <div
+        class="
+          col-9
+          rounded
+          text-start
+          elevation-2
+          d-flex
+          justify-content-between
+        "
+      >
+        <div>
+          <span>{{ new Date(note.createdAt).toLocaleString() }}</span>
+          <p>
+            {{ note.body }}
+          </p>
+        </div>
+        <i
+          v-if="note.creatorId == account.id || group.creatorId == account.id"
+          class="mdi mdi-delete-forever selectable"
+          title="delete note"
+          @click="deleteNotes(note.id)"
+        ></i>
+      </div>
     </div>
-  </div>
+  </span>
 </template>
 
 
@@ -47,14 +49,15 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
 
     return {
       notes: computed(() => AppState.notes),
       account: computed(() => AppState.account),
       group: computed(() => AppState.activeGroup),
-      async deleteNotes(noteId) {
+      async deleteNotes() {
         try {
+          let noteId = props.note.id
           if (await Pop.confirm('Are You Sure You Want To Delete?'))
             await notesService.deleteNotes(noteId)
         } catch (error) {
@@ -62,6 +65,9 @@ export default {
           Pop.toast(error.message, 'error')
         }
       },
+      swipeRight() {
+        logger.log('swiping right')
+      }
 
 
     }
@@ -74,5 +80,9 @@ export default {
 .img-small {
   height: 55px;
   width: 55px;
+}
+
+span.active {
+  background-color: red;
 }
 </style>
