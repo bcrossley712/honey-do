@@ -40,42 +40,53 @@
           </ul>
         </div>
       </div>
-      <div class="col-12 text-center">
-        <h5>Search Groups</h5>
-        <form
-          class="mb-3 d-flex align-items-center"
-          @submit.prevent="groupSearch"
-        >
-          <input
-            type="text"
-            class="form-control me-2"
-            name="group-search"
-            id="group-search"
-            aria-describedby="group search"
-            placeholder="Group Name..."
-            v-model="editable.search"
-            required
-          />
-          <button class="btn btn-secondary" title="Search Groups">
-            <i class="mdi mdi-magnify" title="Search Group"></i>
-          </button>
-        </form>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h5>Search Groups</h5>
+            <form
+              class="mb-3 d-flex align-items-center"
+              @submit.prevent="groupSearch"
+            >
+              <input
+                type="text"
+                class="form-control me-2"
+                name="group-search"
+                id="group-search"
+                aria-describedby="group search"
+                placeholder="Group Name..."
+                v-model="editable.search"
+                required
+              />
+              <button class="btn btn-secondary" title="Search Groups">
+                <i class="mdi mdi-magnify" title="Search Group"></i>
+              </button>
+            </form>
+          </div>
+          <div class="col-12">
+            <ul>
+              <li
+                @click="setGroup(g)"
+                class="selectable"
+                v-for="g in searchResults"
+                :key="g.id"
+                data-bs-target="#join-group"
+                data-bs-toggle="modal"
+              >
+                {{ g.name }} | {{ g.creatorName }}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="col-12">
-        <ul>
-          <li
-            @click="setGroup(g)"
-            class="selectable"
-            v-for="g in searchResults"
-            :key="g.id"
-            data-bs-target="#join-group"
-            data-bs-toggle="modal"
-          >
-            {{ g.name }} | {{ g.creatorName }}
+        <h5 class="text-center">Membership options</h5>
+        <ul v-for="m in members" :key="m.id">
+          <li v-if="m.id != account.id">
+            {{ m.name }}
           </li>
         </ul>
       </div>
-      <div class="col-12"></div>
     </div>
   </div>
 </template>
@@ -86,15 +97,19 @@ import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService"
 import { useRoute, useRouter } from "vue-router"
 import { groupsService } from "../services/GroupsService"
+import { membersService } from "../services/MembersService"
 export default {
   name: 'Account',
   setup() {
     const editable = ref({})
     const route = useRoute()
     const router = useRouter()
-    onMounted(async () => {
+    watchEffect(async () => {
       if (route.name == 'Account') {
         await accountService.getMyGroups()
+
+      }
+      if (AppState.activeGroup.id) {
       }
     })
     return {
@@ -102,9 +117,12 @@ export default {
       account: computed(() => AppState.account),
       groups: computed(() => AppState.groups),
       searchResults: computed(() => AppState.searchResults),
-      goTo(group) {
+      activeGroup: computed(() => AppState.activeGroup),
+      members: computed(() => AppState.members),
+      async goTo(group) {
         AppState.activeGroup = group
-        router.push({ name: 'Home', params: { id: group.id } })
+        // router.push({ name: 'Home', params: { id: group.id } })
+        await membersService.getGroupMembers(group.id)
       },
       setGroup(group) {
         AppState.grouptoJoin = group
