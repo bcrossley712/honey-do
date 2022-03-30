@@ -31,5 +31,11 @@ class MembersService {
     logger.log('[declineMember]', res.data)
     AppState.memberRequest = {}
   }
+  async bootMember(memberId, body) {
+    const index = AppState.members.findIndex(m => m.memberId == memberId)
+    await this.declineMember(memberId, body)
+    AppState.members.splice(index, 1)
+
+  }
 }
 export const membersService = new MembersService()
