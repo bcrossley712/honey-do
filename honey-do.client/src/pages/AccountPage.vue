@@ -11,7 +11,7 @@
         <div class="col-12 d-flex justify-content-around">
           <button
             title="New Group"
-            class="btn btn-secondary my-3"
+            class="btn btn-secondary my-3 elevation-2"
             data-bs-target="#new-group"
             data-bs-toggle="modal"
           >
@@ -20,7 +20,7 @@
           <div class="dropdown">
             <button
               title="My Groups"
-              class="btn btn-secondary my-3"
+              class="btn btn-secondary my-3 elevation-2"
               type="button"
               id="dropdownMenu2"
               data-bs-toggle="dropdown"
@@ -59,7 +59,10 @@
                   v-model="editable.search"
                   required
                 />
-                <button class="btn btn-secondary" title="Search Groups">
+                <button
+                  class="btn btn-secondary elevation-2"
+                  title="Search Groups"
+                >
                   <i class="mdi mdi-magnify" title="Search Group"></i>
                 </button>
               </form>
