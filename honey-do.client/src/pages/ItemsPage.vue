@@ -152,32 +152,29 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div
-        class="
-          col-12
-          text-center
-          d-flex
-          justify-content-between
-          align-items-center
-          overflow
-        "
-      >
-        <h6 class="bg-tertiary rounded px-1">
-          <button class="btn" data-bs-toggle="modal" data-bs-target="#new-item">
-            Add Items
-            <i class="mdi mdi-plus selectable" title="Add note"></i>
-          </button>
-        </h6>
-        <h6
-          class="bg-tertiary rounded px-1"
-          v-if="group.creatorId == account.id"
-          @click="deleteAllItems()"
-        >
-          <button class="btn" title="clear list">
-            <i class="selectable mdi mdi-cancel"></i> Clear List
-          </button>
-        </h6>
+    <div class="row px-2">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="bg-tertiary rounded">
+            <button
+              class="btn elevation-2"
+              data-bs-toggle="modal"
+              data-bs-target="#new-item"
+            >
+              Add Items
+              <i class="mdi mdi-plus" title="Add item"></i>
+            </button>
+          </h6>
+          <h6
+            class="bg-tertiary rounded px-1"
+            v-if="group.creatorId == account.id"
+            @click="deleteAllItems()"
+          >
+            <button class="btn" title="clear list">
+              <i class="selectable mdi mdi-cancel"></i> Clear List
+            </button>
+          </h6>
+        </div>
       </div>
     </div>
 
