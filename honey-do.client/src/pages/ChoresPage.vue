@@ -17,9 +17,9 @@
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <h6 class="bg-tertiary rounded px-1">
+          <h6 class="bg-tertiary rounded">
             <button
-              class="btn"
+              class="btn elevation-2"
               data-bs-toggle="modal"
               data-bs-target="#new-chore"
             >

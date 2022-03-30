@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
     <LogoBanner />
-    <div class="row">
+    <div class="row px-2">
       <h2>{{ activeGroup.name }}</h2>
     </div>
-    <div class="row px-3">
+    <div class="row px-2">
       <div class="col-12 mb-1">My Group Members</div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <div v-for="m in members" :key="m.id" class="d-flex">
@@ -35,20 +35,31 @@
       </div>
     </div>
 
-    <div class="row text-center mt-2">
+    <div class="row px-2">
+      <div class="col-12 d-flex flex-column">
+        <h4>Group Notes</h4>
+      </div>
+    </div>
+    <div class="row px-2 flex-grow-1 overflow">
       <div class="col-12">
-        <h4>
-          Group Notes
-          <i
-            class="mdi mdi-plus"
-            title="Add note"
-            data-bs-toggle="modal"
-            data-bs-target="#new-note"
-          ></i>
-        </h4>
         <div v-for="n in notes" :key="n.id">
           <Notes :note="n" />
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row px-2">
+    <div class="col-12">
+      <div class="d-flex align-items-center mb-2">
+        <h6 class="bg-tertiary rounded">
+          <button
+            class="btn elevation-2"
+            data-bs-toggle="modal"
+            data-bs-target="#new-note"
+          >
+            Add Chore<i class="mdi mdi-plus" title="Add Note"> </i>
+          </button>
+        </h6>
       </div>
     </div>
   </div>

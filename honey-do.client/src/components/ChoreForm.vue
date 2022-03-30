@@ -15,13 +15,16 @@
       <input
         v-model="editable.body"
         type="text"
-        class="form-control me-2"
+        class="form-control"
         name=""
         id=""
         aria-describedby="helpId"
         placeholder="Add Chore here"
       />
-      <button class="btn btn-success mdi mdi-check" title="Add Chore"></button>
+      <button
+        class="btn-rounded-end bg-success mdi mdi-check"
+        title="Add Chore"
+      ></button>
     </div>
   </form>
 </template>

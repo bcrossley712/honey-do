@@ -40,10 +40,32 @@ form:invalid button[type="submit"] {
 h1, h2, h3, h4, h5, h6{
   font-family: 'Permanent Marker', cursive;
 }
-
 .t-shadow{
-  text-shadow: 2px 2px 3px #79440f;
+  text-shadow: 1px 1px 3px #79440f;
 }
 .bg-modal{
 background-color: #fac999e5;
+}
+.modal-dialog-end{
+  display: flex;
+  align-items: end;
+  min-height: calc(100% - 1rem);
+}
+.btn-rounded-end{
+  display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
 }
