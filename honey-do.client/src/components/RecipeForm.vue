@@ -52,7 +52,7 @@ export default {
             groupId: route.params.id
           }
           await itemsService.createItem(newItem)
-          Pop.toast(`${newItem.name} added to list`, 'success')
+          Pop.toast(`${newItem.name} added to list`, 'success', 'top-end', 1000)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -61,7 +61,7 @@ export default {
       async addAll(ingredientsArray) {
         try {
           await itemsService.addAll(ingredientsArray, route.params.id)
-          Pop.toast('All ingredients added to list', 'success')
+          Pop.toast('All ingredients added to list', 'success', 'top-end', 1000)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
