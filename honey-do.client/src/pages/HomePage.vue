@@ -89,8 +89,8 @@ export default {
 
     })
     return {
-      members: computed(() => AppState.members),
       activeGroup: computed(() => AppState.activeGroup),
+      members: computed(() => AppState.members),
       notes: computed(() => AppState.notes),
       groupRequests: computed(() => AppState.groupRequests),
       setRequest(member) {
