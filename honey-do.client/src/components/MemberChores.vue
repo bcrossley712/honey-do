@@ -1,10 +1,10 @@
 <template>
   <div v-if="chores.length > 0">
-    <h6>
+    <h4>
       <span class="rounded px-1">
         {{ member.name }}
       </span>
-    </h6>
+    </h4>
     <div class="form-check" v-for="c in chores" :key="c.id" :value="c.id">
       <div class="d-flex justify-content-between">
         <div @click="markComplete(c.id)">
@@ -17,7 +17,7 @@
             :checked="c.isComplete"
           />
           <label
-            class="form-check-label ms-2 mb-1"
+            class="form-check-label ms-2 mb-1 fs-5"
             for=""
             :style="{
               textDecoration: c.isComplete ? 'line-through' : 'inherit',
