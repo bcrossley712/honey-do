@@ -20,7 +20,7 @@
       placeholder="ImageUrl..."
       required
     />
-    <button class="btn btn-success mt-2" title="Edit Account">
+    <button class="btn btn-success mt-2 elevation-2" title="Edit Account">
       Edit Account
     </button>
   </form>

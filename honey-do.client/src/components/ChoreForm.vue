@@ -22,7 +22,7 @@
         placeholder="Add Chore here"
       />
       <button
-        class="btn-rounded-end bg-success mdi mdi-check"
+        class="btn-rounded-end bg-success mdi mdi-check elevation-2"
         title="Add Chore"
       ></button>
     </div>

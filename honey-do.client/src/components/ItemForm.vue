@@ -18,7 +18,10 @@
         aria-describedby="basic-addon2"
       />
       <div class="input-group-append">
-        <button class="btn-rounded-end bg-success" id="basic-addon2">
+        <button
+          class="btn-rounded-end bg-success elevation-2"
+          id="basic-addon2"
+        >
           <i class="mdi mdi-check"></i>
         </button>
       </div>

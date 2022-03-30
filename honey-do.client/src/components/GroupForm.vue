@@ -10,7 +10,10 @@
       placeholder="Name your Group!"
       required
     />
-    <button class="btn btn-success mt-2 align-self-end" title="Create Group">
+    <button
+      class="btn btn-success mt-2 align-self-end elevation-2"
+      title="Create Group"
+    >
       Create Group
     </button>
   </form>

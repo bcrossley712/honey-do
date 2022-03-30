@@ -9,7 +9,10 @@
       aria-describedby="helpId"
       placeholder="Tell us..."
     />
-    <button class="btn btn-success mt-2 align-self-end" title="Create Note">
+    <button
+      class="btn btn-success mt-2 align-self-end elevation-2"
+      title="Create Note"
+    >
       Create Note
     </button>
   </form>
