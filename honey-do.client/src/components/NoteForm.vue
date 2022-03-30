@@ -34,6 +34,7 @@ export default {
           editable.value.groupId = route.params.id
           await notesService.createNote(editable.value)
           Modal.getOrCreateInstance(document.getElementById("new-note")).hide();
+          editable.value = {}
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
