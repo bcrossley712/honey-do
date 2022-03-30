@@ -146,6 +146,7 @@ export default {
     })
     return {
       editable,
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       groups: computed(() => AppState.groups),
       searchResults: computed(() => AppState.searchResults),
