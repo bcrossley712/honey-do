@@ -29,7 +29,6 @@ class ChoresService {
   async resetChores() {
     const res = AppState.chores.filter(c => c.isComplete == true)
     await res.forEach(c => this.markComplete(c.id));
-    logger.log('reset chores', res.data)
   }
 }
 

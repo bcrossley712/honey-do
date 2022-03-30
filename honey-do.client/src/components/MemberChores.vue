@@ -5,29 +5,26 @@
         {{ member.name }}
       </span>
     </h6>
-    <div
-      class="form-check"
-      v-for="c in chores"
-      :key="c.id"
-      :value="c.id"
-      @click="markComplete(c.id)"
-    >
-      <input
-        type="checkbox"
-        class="form-check-input"
-        name="Chore Name"
-        id=""
-        :checked="c.isComplete"
-      />
+    <div class="form-check" v-for="c in chores" :key="c.id" :value="c.id">
       <div class="d-flex justify-content-between">
-        <label
-          class="form-check-label ms-2 mb-1"
-          for=""
-          :style="{
-            textDecoration: c.isComplete ? 'line-through' : 'inherit',
-          }"
-          >{{ c.body }} </label
-        ><i
+        <div @click="markComplete(c.id)">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="Chore Name"
+            id=""
+            :checked="c.isComplete"
+          />
+          <label
+            class="form-check-label ms-2 mb-1"
+            for=""
+            :style="{
+              textDecoration: c.isComplete ? 'line-through' : 'inherit',
+            }"
+            >{{ c.body }}
+          </label>
+        </div>
+        <i
           v-if="c.creatorId == account.id || group.creatorId == account.id"
           @click="deleteChore(c.id)"
           class="mdi mdi-trash-can-outline ms-2 text-secondary"

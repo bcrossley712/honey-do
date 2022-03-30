@@ -96,6 +96,6 @@ export default {
 <style lang="scss" scoped>
 .overflow {
   max-height: 76vh;
-  overflow: scroll;
+  overflow: auto;
 }
 </style>
