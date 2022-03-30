@@ -24,7 +24,7 @@
         </p>
       </div>
       <i
-        v-if="note.creatorId == account.id"
+        v-if="note.creatorId == account.id || group.creatorId == account.id"
         class="mdi mdi-delete-forever selectable"
         title="delete note"
         @click="deleteNotes(note.id)"
@@ -52,6 +52,7 @@ export default {
     return {
       notes: computed(() => AppState.notes),
       account: computed(() => AppState.account),
+      group: computed(() => AppState.activeGroup),
       async deleteNotes(noteId) {
         try {
           if (await Pop.confirm('Are You Sure You Want To Delete?'))
