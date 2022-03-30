@@ -104,7 +104,7 @@ export default {
     const editable = ref({})
     const route = useRoute()
     const router = useRouter()
-    watchEffect(async () => {
+    onMounted(async () => {
       if (route.name == 'Account') {
         await accountService.getMyGroups()
 
