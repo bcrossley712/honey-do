@@ -3,7 +3,7 @@
     <LogoBanner />
     <div class="row">
       <div class="col-10 offset-1 text-center p-2">
-        <h6>Recipe Search</h6>
+        <h2>Recipe Search</h2>
         <form @submit.prevent="getRecipes" class="mb-3 d-flex">
           <input
             v-model="editable"

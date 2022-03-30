@@ -1,17 +1,17 @@
 <template>
   <div v-if="chores.length > 0">
-    <h4>
+    <h3>
       <span class="rounded px-1">
         {{ member.name }}
       </span>
-    </h4>
-    <div class="form-check" v-for="c in chores" :key="c.id" :value="c.id">
+    </h3>
+    <div class="form-check mx-2" v-for="c in chores" :key="c.id" :value="c.id">
       <div class="d-flex justify-content-between">
         <div @click="markComplete(c.id)">
           <input
             title="Mark Chore Complete"
             type="checkbox"
-            class="form-check-input"
+            class="form-check-input fs-5"
             name="Chore Name"
             id=""
             :checked="c.isComplete"
