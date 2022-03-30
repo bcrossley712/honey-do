@@ -59,7 +59,9 @@
     <template #title>Add Member?</template>
     <template #body><RequestForm /></template>
   </Modal>
-  <button class="btn btn-secondary">Delete All Notes</button>
+  <button v-if="activeGroup.creatorId == account.id" class="btn btn-secondary">
+    Delete All Notes
+  </button>
 </template>
 
 <script>
@@ -94,6 +96,7 @@ export default {
       members: computed(() => AppState.members),
       notes: computed(() => AppState.notes),
       groupRequests: computed(() => AppState.groupRequests),
+      account: computed(() => AppState.account),
       setRequest(member) {
         AppState.memberRequest = member
       },
