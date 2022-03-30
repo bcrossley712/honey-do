@@ -24,12 +24,12 @@
             {{ note.body }}
           </p>
         </div>
-        <i
+        <!-- <i
           v-if="note.creatorId == account.id || group.creatorId == account.id"
           class="mdi mdi-delete-forever selectable"
           title="delete note"
           @click="deleteNotes(note.id)"
-        ></i>
+        ></i> -->
       </div>
     </div>
   </span>
@@ -82,7 +82,12 @@ export default {
   width: 55px;
 }
 
-span.active {
-  background-color: red;
+.col-9 {
+  transition: all 0.4s ease;
+}
+
+span.active div .col-9 {
+  background: red;
+  transform: translateX(3em);
 }
 </style>
