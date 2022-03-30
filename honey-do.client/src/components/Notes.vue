@@ -63,16 +63,7 @@ export default {
         }
       },
 
-      async deleteAllNotes() {
-        try {
-          if (await Pop.confirm('Are You Sure You Want To Delete All Notes?')) {
-            await notesService.deleteAllNotes(AppState.notes)
-          }
-        } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
-        }
-      }
+
     }
   }
 }

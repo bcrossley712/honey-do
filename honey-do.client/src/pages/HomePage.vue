@@ -59,6 +59,7 @@
     <template #title>Add Member?</template>
     <template #body><RequestForm /></template>
   </Modal>
+  <button class="btn btn-secondary">Delete All Notes</button>
 </template>
 
 <script>
@@ -95,6 +96,17 @@ export default {
       groupRequests: computed(() => AppState.groupRequests),
       setRequest(member) {
         AppState.memberRequest = member
+      },
+
+      async deleteAllNotes() {
+        try {
+          if (await Pop.confirm('Are You Sure You Want To Delete All Notes?')) {
+            await notesService.deleteAllNotes(AppState.notes)
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
       }
     }
   }
