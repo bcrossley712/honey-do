@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <LogoBanner />
     <div class="row">
-      <div
+      <!-- <div
         class="
           col-12
           d-flex
@@ -74,9 +74,8 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
       <div
-        v-else
         class="col-10 offset-1 rounded shadow bg-secondary text-center p-3 my-3"
       >
         Sign in to enjoy the features of our app.
