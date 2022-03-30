@@ -7,7 +7,7 @@
         class="img-fluid img-small rounded-circle"
       />
     </div>
-    <div class="col-9 bg-grey rounded border border-secondary text-start">
+    <div class="col-9 rounded text-start elevation-2">
       <span>{{ new Date(note.createdAt).toLocaleString() }}</span>
       <p>
         {{ note.body }}

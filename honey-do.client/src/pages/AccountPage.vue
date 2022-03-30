@@ -12,7 +12,7 @@
       <div class="col-12 d-flex justify-content-around">
         <button
           title="New Group"
-          class="btn btn-secondary my-3 tert-outline"
+          class="btn btn-secondary my-3"
           data-bs-target="#new-group"
           data-bs-toggle="modal"
         >
@@ -21,7 +21,7 @@
         <div class="dropdown">
           <button
             title="My Groups"
-            class="btn btn-secondary my-3 tert-outline"
+            class="btn btn-secondary my-3"
             type="button"
             id="dropdownMenu2"
             data-bs-toggle="dropdown"
@@ -58,7 +58,7 @@
             v-model="editable.search"
             required
           />
-          <button class="btn btn-secondary tert-outline" title="Search Groups">
+          <button class="btn btn-secondary" title="Search Groups">
             <i class="mdi mdi-magnify" title="Search Group"></i>
           </button>
         </form>

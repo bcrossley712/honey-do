@@ -1,14 +1,12 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
-    </div>
+    <LogoBanner />
     <div class="row">
       <h2>{{ activeGroup.name }}</h2>
     </div>
     <div class="row px-3">
       <div class="col-12 mb-1">My Group Members</div>
-      <div class="col-12 p-2 bg-secondary d-flex rounded shadow tert-outline">
+      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <img
           v-for="m in members"
           :key="m.id"
