@@ -34,5 +34,5 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 </style>

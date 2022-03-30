@@ -6,7 +6,7 @@
     </div>
     <div class="row px-2">
       <div class="col-12 d-flex flex-column">
-        <h5 class="align-self-center">My Group Members</h5>
+        <h2 class="align-self-center">My Group Members</h2>
       </div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <div v-for="m in members" :key="m.id" class="d-flex">
@@ -22,7 +22,7 @@
     </div>
     <div class="row px-2" v-if="groupRequests.length >= 1">
       <div class="col-12 d-flex flex-column">
-        <h5 class="align-self-center">Group Requests</h5>
+        <h3 class="align-self-center">Group Requests</h3>
       </div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
         <img
@@ -41,7 +41,7 @@
 
     <div class="row px-2">
       <div class="col-12 d-flex flex-column">
-        <h4 class="align-self-center mt-2">Group Notes</h4>
+        <h3 class="align-self-center mt-2">Group Notes</h3>
       </div>
     </div>
     <div class="row px-2 flex-grow-1 overflow">
