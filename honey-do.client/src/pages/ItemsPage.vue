@@ -1,8 +1,6 @@
 <template>
   <div class="container-fluid d-flex flex-column" style="min-height: 94vh">
-    <div class="row">
-      <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
-    </div>
+    <LogoBanner />
     <div class="row flex-grow-1 overflow">
       <div>
         <div class="col-12 d-flex justify-content-center text-center">

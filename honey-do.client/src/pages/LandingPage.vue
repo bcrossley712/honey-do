@@ -1,8 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <h1 class="bg-secondary text-tertiary t-shadow p-2">HONEY-DO</h1>
-    </div>
+    <LogoBanner />
     <div class="row">
       <div
         class="
