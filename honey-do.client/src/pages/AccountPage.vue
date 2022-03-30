@@ -3,7 +3,7 @@
     <LogoBanner />
     <div v-if="user.isAuthenticated">
       <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-4 d-flex justify-content-center">
           <Login />
         </div>
       </div>

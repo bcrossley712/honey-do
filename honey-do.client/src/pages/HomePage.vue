@@ -53,7 +53,7 @@
     </div>
     <div class="row px-2">
       <div class="col-12">
-        <div class="d-flex align-items-center mb-2">
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <h6 class="bg-tertiary rounded">
             <button
               class="btn elevation-2"
@@ -63,13 +63,15 @@
               Add Note<i class="mdi mdi-plus" title="Add Note"> </i>
             </button>
           </h6>
-          <button
-            v-if="activeGroup.creatorId == account.id"
-            class="btn btn-secondary"
-            @click="deleteAllNotes()"
-          >
-            Delete All Notes
-          </button>
+          <h6 class="bg-tertiary rounded">
+            <button
+              v-if="activeGroup.creatorId == account.id"
+              class="btn elevation-2"
+              @click="deleteAllNotes()"
+            >
+              <i class="mdi mdi-cancel"></i> Delete All Notes
+            </button>
+          </h6>
         </div>
       </div>
     </div>
