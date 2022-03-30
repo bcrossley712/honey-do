@@ -5,8 +5,19 @@
         <h6>Name: {{ member?.name }}</h6>
         <h6>Group status: {{ member.status }}</h6>
       </div>
-      <div class="col-12 my-1 d-flex justify-content-end">
-        <button @click="changeStatus" class="btn btn-secondary">
+      <div class="col-12 my-1 d-flex justify-content-between">
+        <button
+          @click="changeStatus('accepted')"
+          class="btn btn-secondary"
+          v-if="member.status == 'declined'"
+        >
+          Accept Member?
+        </button>
+        <button
+          @click="changeStatus('declined')"
+          class="btn btn-secondary"
+          v-if="member.status == 'accepted'"
+        >
           Boot Member?
         </button>
       </div>
@@ -31,16 +42,24 @@ export default {
   },
   setup(props) {
     return {
-      async changeStatus() {
+      async changeStatus(newStatus) {
         try {
           const body = {
-            status: 'declined',
+            status: newStatus,
             groupId: props.member.groupId
           }
-          await membersService.bootMember(props.member.memberId, body)
-          Pop.toast('Member booted', 'success')
-          // FIXME
-          // Modal.getOrCreateInstance(document.getElementById('m' + `${props.member.id}`)).hide()
+          if (newStatus == 'declined') {
+            await membersService.declineMember(props.member.memberId, body)
+            Pop.toast('Member booted', 'success')
+            // FIXME
+            // Modal.getOrCreateInstance(document.getElementById('m' + `${props.member.id}`)).hide()
+          }
+          if (newStatus == 'accepted') {
+            await membersService.acceptMember(props.member.memberId, body)
+            Pop.toast('Member accepted', 'success')
+            // FIXME
+            // Modal.getOrCreateInstance(document.getElementById('m' + `${props.member.id}`)).hide()
+          }
 
         } catch (error) {
           logger.error(error)

@@ -4,7 +4,7 @@ import { api } from "./AxiosService"
 
 class MembersService {
   async getGroupMembers(id) {
-    const res = await api.get(`api/groups/${id}/members`, { params: { status: 'accepted' } })
+    const res = await api.get(`api/groups/${id}/members`)
     logger.log('got group members', res.data)
     AppState.members = res.data
   }
@@ -31,11 +31,6 @@ class MembersService {
     logger.log('[declineMember]', res.data)
     AppState.memberRequest = {}
   }
-  async bootMember(memberId, body) {
-    const index = AppState.members.findIndex(m => m.memberId == memberId)
-    await this.declineMember(memberId, body)
-    AppState.members.splice(index, 1)
 
-  }
 }
 export const membersService = new MembersService()

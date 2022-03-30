@@ -7,14 +7,15 @@
     <div class="row px-3">
       <div class="col-12 mb-1">My Group Members</div>
       <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
-        <img
-          v-for="m in members"
-          :key="m.id"
-          :src="m.picture"
-          alt=""
-          class="img-small rounded-circle m-1"
-          :title="m.name"
-        />
+        <div v-for="m in members" :key="m.id" class="d-flex">
+          <img
+            v-if="m.status == 'accepted'"
+            :src="m.picture"
+            alt=""
+            class="img-small rounded-circle m-1"
+            :title="m.name"
+          />
+        </div>
       </div>
     </div>
     <div class="row px-3" v-if="groupRequests.length >= 1">

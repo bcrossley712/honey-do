@@ -80,10 +80,26 @@
         </div>
       </div>
       <div class="col-12" v-if="activeGroup.creatorId == account.id">
+        <h5 class="text-center">{{ activeGroup.name }}</h5>
         <h5 class="text-center">Membership options</h5>
+        <h6>Accepted members</h6>
         <ul v-for="m in members" :key="m.id">
           <li
-            v-if="m.id != account.id"
+            v-if="m.id != account.id && m.status == 'accepted'"
+            data-bs-toggle="modal"
+            :data-bs-target="'#m' + `${m.id}`"
+          >
+            {{ m.name }}
+          </li>
+          <Modal :id="'m' + `${m.id}`">
+            <template #title>Member Options</template>
+            <template #body><MemberForm :member="m" /></template>
+          </Modal>
+        </ul>
+        <h6>Declined members</h6>
+        <ul v-for="m in members" :key="m.id">
+          <li
+            v-if="m.id != account.id && m.status == 'declined'"
             data-bs-toggle="modal"
             :data-bs-target="'#m' + `${m.id}`"
           >
