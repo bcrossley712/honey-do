@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal fade"
+    class="modal fade bg-modal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modelTitleId"
@@ -8,7 +8,7 @@
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-tertiary">
           <h5 class="modal-title">
             <slot name="title"></slot>
           </h5>

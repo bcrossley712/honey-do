@@ -12,14 +12,14 @@
       <input
         v-model="editable.name"
         type="text"
-        class="form-control"
+        class="form-control me-2"
         placeholder="shopping item"
         aria-label="shopping item"
         aria-describedby="basic-addon2"
       />
       <div class="input-group-append">
-        <span class="input-group-text selectable" id="basic-addon2"
-          ><i class="mdi mdi-send"></i
+        <span class="input-group-text selectable bg-success" id="basic-addon2"
+          ><i class="mdi mdi-check"></i
         ></span>
       </div>
     </div>

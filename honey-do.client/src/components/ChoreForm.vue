@@ -2,27 +2,27 @@
   <form @submit.prevent="createChore" class="mb-3">
     <select
       v-model="editable.assignedTo"
-      class="form-select me-2"
+      class="form-select mb-2"
       default=""
       name="assignedTo"
       id="assignedTo"
-      required
     >
       <option v-for="m in members" :key="m.id" :value="m.id">
         <p>{{ m.name }}</p>
       </option>
     </select>
-    <input
-      v-model="editable.body"
-      type="text"
-      class="form-control"
-      name=""
-      id=""
-      aria-describedby="helpId"
-      placeholder="Add Chore here"
-    />
-
-    <button class="btn btn-success mdi mdi-check" title="Add Chore"></button>
+    <div class="d-flex">
+      <input
+        v-model="editable.body"
+        type="text"
+        class="form-control me-2"
+        name=""
+        id=""
+        aria-describedby="helpId"
+        placeholder="Add Chore here"
+      />
+      <button class="btn btn-success mdi mdi-check" title="Add Chore"></button>
+    </div>
   </form>
 </template>
 
