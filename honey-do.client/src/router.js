@@ -6,12 +6,12 @@ function loadPage(page) {
 }
 
 const routes = [
-  {
-    path: '/',
-    name: 'Landing',
-    component: loadPage('LandingPage'),
-    beforeEnter: authSettled
-  },
+  // {
+  //   path: '/',
+  //   name: 'Landing',
+  //   component: loadPage('LandingPage'),
+  //   beforeEnter: authSettled
+  // },
   {
     path: '/group/:id/home',
     name: 'Home',
@@ -37,10 +37,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/account',
+    path: '/',
     name: 'Account',
     component: loadPage('AccountPage'),
-    beforeEnter: authGuard
+    beforeEnter: authSettled
   }
 ]
 

@@ -75,11 +75,6 @@
           </div>
         </div>
       </div> -->
-      <div
-        class="col-10 offset-1 rounded shadow bg-secondary text-center p-3 my-3"
-      >
-        Sign in to enjoy the features of our app.
-      </div>
     </div>
   </div>
 </template>
