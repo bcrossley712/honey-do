@@ -56,6 +56,12 @@
         </div>
       </div>
     </div>
+    <img
+      v-if="item.length < 5"
+      src="../assets/img/undraw_diary_re_4jpc.svg"
+      class="img-fluid"
+      alt=""
+    />
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
