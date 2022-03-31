@@ -41,11 +41,11 @@ class GroupsService {
   }
   async remove(groupId, userId) {
     const original = await this.getById(groupId)
-    const member = await dbContext.Members.find({ groupId: groupId, accountId: userId })
+    const member = await dbContext.Members.find({ groupId: groupId })
     if (original.creatorId.toString() !== userId) {
       throw new Forbidden('You cannot delete this Group')
     }
-    await membersService.removeMember(userId, member[0].id)
+    await member.forEach(m => membersService.removeMember(userId, m.id))
     await dbContext.Groups.findOneAndRemove({ _id: groupId })
   }
 
