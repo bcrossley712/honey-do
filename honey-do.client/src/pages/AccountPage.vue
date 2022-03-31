@@ -1,102 +1,65 @@
 <template>
   <div class="container-fluid">
     <LogoBanner />
-    <div v-if="user.isAuthenticated">
+    <div
+      v-if="user.isAuthenticated"
+      class="d-flex flex-column"
+      style="min-height: 85vh"
+    >
       <div class="row justify-content-around">
-        <div class="col-6 d-flex justify-content-center">
-          <Login />
+        <Login />
+      </div>
+      <div class="row d-flex justify-content-center mb-2">
+        <div class="text-center">
+          <button
+            v-if="activeGroup.name && activeGroup.creatorId == account.id"
+            class="btn btn-secondary elevation-2"
+            data-bs-toggle="modal"
+            data-bs-target="#group-options"
+          >
+            Group options
+          </button>
         </div>
-        <div
-          class="col-6 d-flex justify-content-center align-items-center"
-          v-if="activeGroup.name && activeGroup.creatorId == account.id"
-        >
-          <div>
-            <button
-              class="btn btn-secondary"
-              data-bs-toggle="modal"
-              data-bs-target="#group-options"
-            >
-              Group options
+      </div>
+
+      <div class="row flex-grow-1">
+        <div class="col-12 text-center">
+          <h5>Search Groups</h5>
+          <form
+            class="mb-3 d-flex align-items-center"
+            @submit.prevent="groupSearch"
+          >
+            <input
+              type="text"
+              class="form-control me-2"
+              name="group-search"
+              id="group-search"
+              aria-describedby="group search"
+              placeholder="Group Name..."
+              v-model="editable.search"
+              required
+            />
+            <button class="btn btn-secondary elevation-2" title="Search Groups">
+              <i class="mdi mdi-magnify" title="Search Group"></i>
             </button>
-          </div>
+          </form>
+        </div>
+        <div class="col-12">
+          <ul>
+            <li
+              @click="setGroup(g)"
+              class="selectable"
+              v-for="g in searchResults"
+              :key="g.id"
+              data-bs-target="#join-group"
+              data-bs-toggle="modal"
+            >
+              {{ g.name }} | {{ g.creatorName }}
+            </li>
+          </ul>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 d-flex justify-content-around">
-          <button
-            title="New Group"
-            class="btn btn-secondary my-3 elevation-2"
-            data-bs-target="#new-group"
-            data-bs-toggle="modal"
-          >
-            <h5 class="m-0">New Group</h5>
-          </button>
-          <div class="dropdown">
-            <button
-              title="My Groups"
-              class="btn btn-secondary my-3 elevation-2"
-              type="button"
-              id="dropdownMenu2"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <h5>My Groups</h5>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li v-for="g in groups" :key="g.id">
-                <div
-                  class="dropdown-item selectable"
-                  @click="goTo(g)"
-                  title="Go To Group"
-                >
-                  {{ g.name }}
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h5>Search Groups</h5>
-              <form
-                class="mb-3 d-flex align-items-center"
-                @submit.prevent="groupSearch"
-              >
-                <input
-                  type="text"
-                  class="form-control me-2"
-                  name="group-search"
-                  id="group-search"
-                  aria-describedby="group search"
-                  placeholder="Group Name..."
-                  v-model="editable.search"
-                  required
-                />
-                <button
-                  class="btn btn-secondary elevation-2"
-                  title="Search Groups"
-                >
-                  <i class="mdi mdi-magnify" title="Search Group"></i>
-                </button>
-              </form>
-            </div>
-            <div class="col-12">
-              <ul>
-                <li
-                  @click="setGroup(g)"
-                  class="selectable"
-                  v-for="g in searchResults"
-                  :key="g.id"
-                  data-bs-target="#join-group"
-                  data-bs-toggle="modal"
-                >
-                  {{ g.name }} | {{ g.creatorName }}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <div class="col-12" v-if="activeGroup.creatorId == account.id">
           <h3 class="text-center">{{ activeGroup.name }}</h3>
           <h6 class="">Membership options:</h6>
@@ -130,11 +93,52 @@
           </ul>
         </div>
       </div>
+      <div class="row d-flex flex-column">
+        <div class="col-12 d-flex justify-content-around">
+          <button
+            title="New Group"
+            class="btn btn-secondary my-3 elevation-2"
+            data-bs-target="#new-group"
+            data-bs-toggle="modal"
+          >
+            <h6 class="m-0">New Group</h6>
+          </button>
+          <div class="dropup">
+            <h6>
+              <button
+                title="My Groups"
+                class="
+                  btn btn-secondary
+                  dropdown-toggle
+                  my-3
+                  elevation-2
+                  d-flex
+                  align-items-center
+                "
+                type="button"
+                id="dropdownMenu2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                My Groups
+              </button>
+            </h6>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li v-for="g in groups" :key="g.id">
+                <div
+                  class="dropdown-item selectable"
+                  @click="goTo(g)"
+                  title="Go To Group"
+                >
+                  {{ g.name }}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div
-      v-else
-      class="col-10 offset-1 rounded shadow bg-secondary text-center p-3 my-3"
-    >
+    <div v-else class="row rounded shadow bg-secondary text-center p-3 my-3">
       Sign in to enjoy the features of our app.
     </div>
     <Modal id="group-options">

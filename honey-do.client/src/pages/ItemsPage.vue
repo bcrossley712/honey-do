@@ -155,7 +155,7 @@
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <h6 class="bg-tertiary rounded">
+          <h6 class="bg-secondary rounded">
             <button
               class="btn elevation-2"
               data-bs-toggle="modal"
@@ -166,7 +166,7 @@
             </button>
           </h6>
           <h6
-            class="bg-tertiary rounded px-1"
+            class="bg-secondary rounded px-1"
             v-if="group.creatorId == account.id"
             @click="deleteAllItems()"
           >
