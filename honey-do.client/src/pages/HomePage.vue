@@ -51,6 +51,12 @@
         </div>
       </div>
     </div>
+    <img
+      v-if="notes.length < 4"
+      src="../assets/img/undraw_sorting_thoughts_re_fgli.svg"
+      class="img-fluid"
+      alt=""
+    />
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">

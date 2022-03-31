@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-start">
       <div class="form-check fs-5" @click="markComplete(hardwareItems.id)">
         <input
-          class="form-check-input"
+          class="form-check-input elevation-2"
           type="checkbox"
           value=""
           id="flexCheckDefault"

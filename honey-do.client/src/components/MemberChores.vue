@@ -11,7 +11,7 @@
           <input
             title="Mark Chore Complete"
             type="checkbox"
-            class="form-check-input fs-5"
+            class="form-check-input fs-5 elevation-2"
             name="Chore Name"
             id=""
             :checked="c.isComplete"
