@@ -1,16 +1,14 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-12 d-flex flex-column align-items-center">
         <h6>{{ memberRequest.name }}</h6>
-        <div class="d-flex align-items-center p-1">
-          <img :src="memberRequest.picture" alt="" class="img-small px-1" />
-        </div>
+        <img :src="memberRequest.picture" alt="" class="img-small" />
       </div>
-      <div class="col-6">
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-around">
         <button @click="acceptMember" class="btn btn-success">Accept</button>
-      </div>
-      <div class="col-6">
         <button @click="declineMember" class="btn btn-danger">Decline</button>
       </div>
     </div>
