@@ -111,11 +111,11 @@
     >
       <div>Please Register or Login to enjoy the features of Honey-Do</div>
     </div>
-    <Modal id="group-options">
-      <template #title>Delete Group</template>
-      <template #body><GroupOptionsForm /></template>
-    </Modal>
   </div>
+  <Modal id="group-options">
+    <template #title>Delete Group</template>
+    <template #body><GroupOptionsForm /></template>
+  </Modal>
 </template>
 
 <script>
