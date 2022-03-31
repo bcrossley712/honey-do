@@ -60,7 +60,7 @@ export default {
           let noteId = props.note.id
           if (await Pop.confirm()) {
             await notesService.deleteNotes(noteId)
-            Pop.toast('Note Deleted')
+            Pop.toast('Note Deleted', 'success', 'top-end', 1000)
           }
         } catch (error) {
           logger.error(error)

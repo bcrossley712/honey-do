@@ -67,7 +67,7 @@ export default {
         try {
           if (await Pop.confirm('Delete this Chore?')) {
             await choresService.deleteChore(choreId)
-            Pop.toast('Chore Deleted!', 'success')
+            Pop.toast('Chore Deleted!', 'success', 'top-end', 1000)
           }
         } catch (error) {
           logger.error(error)

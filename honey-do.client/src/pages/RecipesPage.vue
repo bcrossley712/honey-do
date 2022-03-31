@@ -81,7 +81,6 @@ export default {
       async getRecipes() {
         try {
           loading.value = true
-          Pop.toast(`Searching for ${editable.value}, please stand by...`, 'info')
           await recipesService.getRecipes(editable.value)
           loading.value = false
         } catch (error) {

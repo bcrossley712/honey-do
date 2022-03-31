@@ -67,7 +67,7 @@ export default {
           logger.log('swiping', itemId)
           if (await Pop.confirm('Are You Sure You Want To Delete?')) {
             await itemsService.deleteItem(itemId)
-            Pop.toast('Item removed', 'success')
+            Pop.toast('Item removed', 'success', 'top-end', 1000)
           }
         } catch (error) {
           logger.error(error)
