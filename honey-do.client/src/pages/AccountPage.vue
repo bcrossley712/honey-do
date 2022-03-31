@@ -9,6 +9,7 @@
       <div class="row justify-content-around">
         <Login />
       </div>
+      <h3 class="text-center">{{ activeGroup.name }}</h3>
       <div class="row d-flex justify-content-center mb-2">
         <div class="text-center">
           <button
@@ -23,76 +24,46 @@
       </div>
 
       <div class="row flex-grow-1">
-        <div class="col-12 text-center">
-          <h5>Search Groups</h5>
-          <form
-            class="mb-3 d-flex align-items-center"
-            @submit.prevent="groupSearch"
-          >
-            <input
-              type="text"
-              class="form-control me-2"
-              name="group-search"
-              id="group-search"
-              aria-describedby="group search"
-              placeholder="Group Name..."
-              v-model="editable.search"
-              required
-            />
-            <button class="btn btn-secondary elevation-2" title="Search Groups">
-              <i class="mdi mdi-magnify" title="Search Group"></i>
-            </button>
-          </form>
-        </div>
-        <div class="col-12">
-          <ul>
-            <li
-              @click="setGroup(g)"
-              class="selectable"
-              v-for="g in searchResults"
-              :key="g.id"
-              data-bs-target="#join-group"
-              data-bs-toggle="modal"
+        <div>
+          <div class="col-12 text-center">
+            <h5>Search Groups</h5>
+            <form
+              class="mb-3 d-flex align-items-center"
+              @submit.prevent="groupSearch"
             >
-              {{ g.name }} | {{ g.creatorName }}
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12" v-if="activeGroup.creatorId == account.id">
-          <h3 class="text-center">{{ activeGroup.name }}</h3>
-          <h6 class="">Membership options:</h6>
-          <h6 v-if="acceptedMembers.length > 1">Accepted members</h6>
-          <ul v-for="m in members" :key="m.id">
-            <li
-              v-if="m.id != account.id && m.status == 'accepted'"
-              data-bs-toggle="modal"
-              :data-bs-target="'#m' + `${m.id}`"
-            >
-              {{ m.name }}
-            </li>
-            <Modal :id="'m' + `${m.id}`">
-              <template #title>Member Options</template>
-              <template #body><MemberForm :member="m" /></template>
-            </Modal>
-          </ul>
-          <h6 v-if="declinedMembers.length > 0">Declined members</h6>
-          <ul v-for="m in members" :key="m.id">
-            <li
-              v-if="m.id != account.id && m.status == 'declined'"
-              data-bs-toggle="modal"
-              :data-bs-target="'#m' + `${m.id}`"
-            >
-              {{ m.name }}
-            </li>
-            <Modal :id="'m' + `${m.id}`">
-              <template #title>Member Options</template>
-              <template #body><MemberForm :member="m" /></template>
-            </Modal>
-          </ul>
+              <input
+                type="text"
+                class="form-control me-2"
+                name="group-search"
+                id="group-search"
+                aria-describedby="group search"
+                placeholder="Group Name..."
+                v-model="editable.search"
+                required
+              />
+              <button
+                class="btn btn-secondary elevation-2"
+                title="Search Groups"
+              >
+                <i class="mdi mdi-magnify" title="Search Group"></i>
+              </button>
+            </form>
+          </div>
+          <div class="col-12">
+            <ul v-for="g in searchResults" :key="g.id">
+              <li
+                @click="setGroup(g)"
+                class="selectable"
+                data-bs-target="#join-group"
+                data-bs-toggle="modal"
+              >
+                {{ g.name }} | {{ g.creatorName }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+
       <div class="row d-flex flex-column">
         <div class="col-12 d-flex justify-content-around">
           <button
@@ -141,7 +112,7 @@
     </div>
     <Modal id="group-options">
       <template #title>Delete Group</template>
-      <template #body><GroupDeleteForm /></template>
+      <template #body><GroupOptionsForm /></template>
     </Modal>
   </div>
 </template>
