@@ -40,13 +40,14 @@ class GroupsService {
     return original
   }
   async remove(groupId, userId) {
-    const original = await this.getById(groupId)
-    const member = await dbContext.Members.find({ groupId: groupId })
-    if (original.creatorId.toString() !== userId) {
-      throw new Forbidden('You cannot delete this Group')
-    }
-    member.forEach(async m => await membersService.removeMember(userId, m.id))
-    await dbContext.Groups.findOneAndRemove({ _id: groupId })
+    // const original = await this.getById(groupId)
+    // const member = await dbContext.Members.find({ groupId: groupId })
+    // if (original.creatorId.toString() !== userId) {
+    //   throw new Forbidden('You cannot delete this Group')
+    // }
+    // member.forEach(async m => await membersService.removeMember(userId, m.id))
+    // await dbContext.Groups.findOneAndRemove({ _id: groupId })
+    // FIXME must delete ALL members from database by that group before deleting group
   }
 
 }
