@@ -51,14 +51,12 @@ export default {
           if (newStatus == 'declined') {
             await membersService.declineMember(props.member.memberId, body)
             Pop.toast('Member booted', 'success')
-            // FIXME
-            // Modal.getOrCreateInstance(document.getElementById('m' + `${props.member.id}`)).hide()
+            Modal.getOrCreateInstance(document.getElementById(`m${props.member.id}`)).hide()
           }
           if (newStatus == 'accepted') {
             await membersService.acceptMember(props.member.memberId, body)
             Pop.toast('Member accepted', 'success')
-            // FIXME
-            // Modal.getOrCreateInstance(document.getElementById('m' + `${props.member.id}`)).hide()
+            Modal.getOrCreateInstance(document.getElementById(`m${props.member.id}`)).hide()
           }
 
         } catch (error) {
