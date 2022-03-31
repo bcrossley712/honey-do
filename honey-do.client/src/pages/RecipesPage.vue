@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center">
-      <div v-if="loading" class="half-circle-spinner">
+      <div v-if="loading" class="half-circle-spinner darken-30">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
       </div>
