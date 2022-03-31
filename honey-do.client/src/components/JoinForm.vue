@@ -41,6 +41,7 @@ export default {
         try {
           await membersService.createMember(request)
           Pop.toast('Your request has been sent', 'success')
+          AppState.searchResults = []
           Modal.getOrCreateInstance(document.getElementById('join-group')).hide()
         } catch (error) {
           logger.error(error)
