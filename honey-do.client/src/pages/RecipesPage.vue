@@ -17,7 +17,7 @@
           />
           <button
             title="Search"
-            class="btn btn-secondary mdi mdi-magnify ms-1"
+            class="btn btn-secondary elevation-2 mdi mdi-magnify ms-1"
           ></button>
         </form>
         <span>Click recipe to see more info</span>

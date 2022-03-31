@@ -39,13 +39,14 @@ class GroupsService {
     await original.save()
     return original
   }
-  async remove(id, userId) {
-    // const original = await this.getById(id)
-    // if (original.creatorId.toString() !== userId) {
-    //   throw new Forbidden('You cannot delete this Group')
-    // }
-    // await dbContext.Groups.findOneAndRemove({ _id: id })
-    throw new Forbidden('Delete Function not set up properly. It destroyed my account somehow.')
+  async remove(groupId, userId) {
+    const original = await this.getById(groupId)
+    const member = await dbContext.Members.find({ groupId: groupId, accountId: userId })
+    if (original.creatorId.toString() !== userId) {
+      throw new Forbidden('You cannot delete this Group')
+    }
+    await membersService.removeMember(userId, member[0].id)
+    await dbContext.Groups.findOneAndRemove({ _id: groupId })
   }
 
 }
