@@ -23,6 +23,12 @@
         <span>Click recipe to see more info</span>
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <div v-if="loading" class="half-circle-spinner">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-10 offset-1" v-for="r in recipes" :key="r.id">
         <Recipe :recipe="r" />
@@ -53,6 +59,7 @@ import { onMounted } from "@vue/runtime-core";
 import { groupsService } from "../services/GroupsService";
 export default {
   setup() {
+    const loading = ref(false)
     const editable = ref('')
     const route = useRoute()
     onMounted(async () => {
@@ -67,13 +74,16 @@ export default {
       }
     })
     return {
+      loading,
       editable,
       activeRecipe: computed(() => AppState.activeRecipe),
       recipes: computed(() => AppState.recipes),
       async getRecipes() {
         try {
+          loading.value = true
           Pop.toast(`Searching for ${editable.value}, please stand by...`, 'info')
           await recipesService.getRecipes(editable.value)
+          loading.value = false
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -86,4 +96,43 @@ export default {
 
 
 <style lang="scss" scoped>
+.half-circle-spinner,
+.half-circle-spinner * {
+  box-sizing: border-box;
+}
+
+.half-circle-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.half-circle-spinner .circle {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: calc(60px / 10) solid transparent;
+}
+
+.half-circle-spinner .circle.circle-1 {
+  border-top-color: #bcff9f;
+  animation: half-circle-spinner-animation 1s infinite;
+}
+
+.half-circle-spinner .circle.circle-2 {
+  border-bottom-color: #bcff9f;
+  animation: half-circle-spinner-animation 1s infinite alternate;
+}
+
+@keyframes half-circle-spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
