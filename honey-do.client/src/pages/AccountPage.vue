@@ -2,9 +2,23 @@
   <div class="container-fluid">
     <LogoBanner />
     <div v-if="user.isAuthenticated">
-      <div class="row justify-content-center">
-        <div class="col-4 d-flex justify-content-center">
+      <div class="row justify-content-around">
+        <div class="col-6 d-flex justify-content-center">
           <Login />
+        </div>
+        <div
+          class="col-6 d-flex justify-content-center align-items-center"
+          v-if="activeGroup.name && activeGroup.creatorId == account.id"
+        >
+          <div>
+            <button
+              class="btn btn-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#group-options"
+            >
+              Group options
+            </button>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -123,6 +137,10 @@
     >
       Sign in to enjoy the features of our app.
     </div>
+    <Modal id="group-options">
+      <template #title>Delete Group</template>
+      <template #body><GroupDeleteForm /></template>
+    </Modal>
   </div>
 </template>
 

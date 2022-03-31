@@ -20,5 +20,11 @@ class GroupsService {
     logger.log('[groupSearch]', res.data)
     AppState.searchResults = res.data
   }
+  async deleteGroup(groupId) {
+    const res = api.delete('api/groups/' + groupId)
+    logger.log('[deleteGroup]', res.data)
+    AppState.activeGroup = {}
+    AppState.groups = AppState.groups.filter(g => g.id != groupId)
+  }
 }
 export const groupsService = new GroupsService()
