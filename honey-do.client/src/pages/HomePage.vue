@@ -8,7 +8,7 @@
       <div class="col-12 d-flex flex-column">
         <h2 class="align-self-center">My Group Members</h2>
       </div>
-      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
+      <div class="col-12 p-2 bg-secondary d-flex rounded elevation-2">
         <div v-for="m in members" :key="m.id" class="d-flex">
           <img
             v-if="m.status == 'accepted'"
@@ -24,7 +24,7 @@
       <div class="col-12 d-flex flex-column">
         <h3 class="align-self-center">Group Requests</h3>
       </div>
-      <div class="col-12 p-2 bg-secondary d-flex rounded shadow">
+      <div class="col-12 p-2 bg-secondary d-flex rounded elevation-2">
         <img
           @click="setRequest(r)"
           data-bs-toggle="modal"

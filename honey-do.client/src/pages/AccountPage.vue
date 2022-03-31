@@ -1,11 +1,7 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" v-if="user.isAuthenticated">
     <LogoBanner />
-    <div
-      v-if="user.isAuthenticated"
-      class="d-flex flex-column"
-      style="min-height: 85vh"
-    >
+    <div class="d-flex flex-column" style="min-height: 83vh">
       <div class="row justify-content-around">
         <Login />
       </div>
@@ -64,8 +60,8 @@
         </div>
       </div>
 
-      <div class="row d-flex flex-column">
-        <div class="col-12 d-flex justify-content-around">
+      <div class="row px-2 d-flex flex-column">
+        <div class="col-12 d-flex justify-content-between">
           <button
             title="New Group"
             class="btn btn-secondary my-3 elevation-2"
@@ -107,8 +103,13 @@
         </div>
       </div>
     </div>
-    <div v-else class="row rounded shadow bg-secondary text-center p-3 my-3">
-      Sign in to enjoy the features of our app.
+  </div>
+  <div class="container-fluid bg-photo" v-else>
+    <LogoBanner />
+    <div
+      class="row d-flex flex-column rounded bg-secondary text-center p-3 m-3"
+    >
+      <div>Please Register or Login to enjoy the features of Honey-Do</div>
     </div>
     <Modal id="group-options">
       <template #title>Delete Group</template>
