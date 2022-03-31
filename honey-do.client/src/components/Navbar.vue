@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary px-3 nav-sticky">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-tertiary px-3 nav-sticky">
     <div v-if="!user.isAuthenticated" class="d-flex justify-content-end w-100">
       <Login />
     </div>

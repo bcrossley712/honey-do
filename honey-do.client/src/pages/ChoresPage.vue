@@ -17,7 +17,7 @@
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <h6 class="bg-tertiary rounded">
+          <h6 class="bg-secondary rounded">
             <button
               class="btn elevation-2"
               data-bs-toggle="modal"
@@ -26,11 +26,11 @@
               Add Chore<i class="mdi mdi-plus" title="Add Chore"> </i>
             </button>
           </h6>
-          <h6 class="bg-tertiary rounded px-1">
+          <h6 class="bg-secondary rounded">
             <button
               v-if="account.id == group.creatorId"
               @click="resetChores"
-              class="btn"
+              class="btn elevation-2"
             >
               <i class="mdi mdi-cancel"></i> Reset Chores
             </button>

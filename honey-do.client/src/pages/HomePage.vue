@@ -54,7 +54,7 @@
     <div class="row px-2">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <h6 class="bg-tertiary rounded">
+          <h6 class="bg-secondary rounded">
             <button
               class="btn elevation-2"
               data-bs-toggle="modal"
@@ -63,7 +63,7 @@
               Add Note<i class="mdi mdi-plus" title="Add Note"> </i>
             </button>
           </h6>
-          <h6 class="bg-tertiary rounded">
+          <h6 class="bg-secondary rounded">
             <button
               v-if="activeGroup.creatorId == account.id"
               class="btn elevation-2"
