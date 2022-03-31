@@ -45,7 +45,7 @@ class GroupsService {
     if (original.creatorId.toString() !== userId) {
       throw new Forbidden('You cannot delete this Group')
     }
-    await member.forEach(m => membersService.removeMember(userId, m.id))
+    member.forEach(async m => await membersService.removeMember(userId, m.id))
     await dbContext.Groups.findOneAndRemove({ _id: groupId })
   }
 
