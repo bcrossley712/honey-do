@@ -9,6 +9,8 @@ export const GroupSchema = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
+GroupSchema.index({ name: 1, creatorId: 1 }, { unique: true })
+
 
 GroupSchema.virtual('creator', {
   localField: 'creatorId',

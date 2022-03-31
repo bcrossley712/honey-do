@@ -22,12 +22,12 @@
       </div>
     </div>
   </span>
-  <i
+  <!-- <i
     v-if="groceryItems.creatorId == account.id || group.creatorId == account.id"
     class="mdi mdi-delete-forever"
     title="delete item"
     @click="deleteItem"
-  ></i>
+  ></i> -->
 </template>
 
 
@@ -44,7 +44,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     return {
 
       account: computed(() => AppState.account),
@@ -59,8 +59,9 @@ export default {
         }
       },
 
-      async deleteItem(itemId) {
+      async deleteItem() {
         try {
+          let itemId = props.groceryItems.id
           logger.log('swiping', itemId)
           if (await Pop.confirm('Are You Sure You Want To Delete?')) {
             await itemsService.deleteItem(itemId)
