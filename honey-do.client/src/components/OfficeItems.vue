@@ -1,29 +1,31 @@
 <template>
-  <div class="justify-content-start">
-    <div class="form-check" @click="markComplete(officeItems.id)">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-        :checked="officeItems.isComplete"
-      />
-      <label
-        class="form-check-label"
-        :style="{
-          textDecoration: officeItems.isComplete ? 'line-through' : 'inherit',
-        }"
-      >
-        {{ officeItems.name }}
-      </label>
+  <span v-touch:swipe.right="deleteItem">
+    <div class="justify-content-start">
+      <div class="form-check fs-5" @click="markComplete(officeItems.id)">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+          :checked="officeItems.isComplete"
+        />
+        <label
+          class="form-check-label"
+          :style="{
+            textDecoration: officeItems.isComplete ? 'line-through' : 'inherit',
+          }"
+        >
+          {{ officeItems.name }}
+        </label>
+      </div>
     </div>
-  </div>
-  <i
+  </span>
+  <!-- <i
     v-if="officeItems.creatorId == account.id || group.creatorId == account.id"
     class="mdi mdi-delete-forever"
     title="delete item"
     @click="deleteItem(officeItems.id)"
-  ></i>
+  ></i> -->
 </template>
 
 
@@ -40,7 +42,7 @@ export default {
       requierd: true
     }
   },
-  setup() {
+  setup(props) {
     return {
       account: computed(() => AppState.account),
       member: computed(() => AppState.members),
@@ -55,8 +57,9 @@ export default {
         }
       },
 
-      async deleteItem(itemId) {
+      async deleteItem() {
         try {
+          let itemId = props.officeItems.id
           logger.log('swiping', itemId)
           if (await Pop.confirm('Are You Sure You Want To Delete?')) {
             await itemsService.deleteItem(itemId)

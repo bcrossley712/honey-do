@@ -130,6 +130,7 @@ export default {
 
       async deleteAllItems() {
         try {
+          let grocery
           if (await Pop.confirm('Delete the whole list?')) {
             await itemsService.deleteAllItems(AppState.items)
             Pop.toast('List Cleared', 'success')

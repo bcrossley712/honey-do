@@ -1,32 +1,36 @@
 <template>
-  <div class="d-flex justify-content-start">
-    <div class="form-check" @click="markComplete(hardwareItems.id)">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-        :checked="hardwareItems.isComplete"
-      />
+  <span v-touch:swipe.right="deleteItem">
+    <div class="d-flex justify-content-start">
+      <div class="form-check fs-5" @click="markComplete(hardwareItems.id)">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+          :checked="hardwareItems.isComplete"
+        />
 
-      <label
-        class="form-check-label"
-        :style="{
-          textDecoration: hardwareItems.isComplete ? 'line-through' : 'inherit',
-        }"
-      >
-        {{ hardwareItems.name }}
-      </label>
+        <label
+          class="form-check-label"
+          :style="{
+            textDecoration: hardwareItems.isComplete
+              ? 'line-through'
+              : 'inherit',
+          }"
+        >
+          {{ hardwareItems.name }}
+        </label>
+      </div>
     </div>
-  </div>
-  <i
+  </span>
+  <!-- <i
     v-if="
       hardwareItems.creatorId == account.id || group.creatorId == account.id
     "
     class="mdi mdi-delete-forever"
     title="delete item"
     @click="deleteItem(hardwareItems.id)"
-  ></i>
+  ></i> -->
 </template>
 
 
@@ -43,7 +47,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     return {
       account: computed(() => AppState.account),
       member: computed(() => AppState.members),
@@ -58,8 +62,9 @@ export default {
         }
       },
 
-      async deleteItem(itemId) {
+      async deleteItem() {
         try {
+          let itemId = props.hardwareItems.id
           logger.log('swiping', itemId)
           if (await Pop.confirm('Are You Sure You Want To Delete?')) {
             await itemsService.deleteItem(itemId)
