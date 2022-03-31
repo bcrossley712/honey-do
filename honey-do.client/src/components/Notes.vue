@@ -58,9 +58,10 @@ export default {
       async deleteNotes() {
         try {
           let noteId = props.note.id
-          if (await Pop.confirm('Are You Sure You Want To Delete?'))
+          if (await Pop.confirm()) {
             await notesService.deleteNotes(noteId)
-          Pop.toast('Note Deleted')
+            Pop.toast('Note Deleted')
+          }
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

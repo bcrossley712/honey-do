@@ -84,8 +84,8 @@
           </div>
         </div>
         <div class="col-12" v-if="activeGroup.creatorId == account.id">
-          <h5 class="text-center">{{ activeGroup.name }}</h5>
-          <h5 class="text-center">Membership options</h5>
+          <h3 class="text-center">{{ activeGroup.name }}</h3>
+          <h6 class="">Membership options:</h6>
           <h6 v-if="acceptedMembers.length > 1">Accepted members</h6>
           <ul v-for="m in members" :key="m.id">
             <li
