@@ -17,7 +17,7 @@
             data-bs-toggle="modal"
             data-bs-target="#group-options"
           >
-            Group options
+            <h6 class="mb-0">Group options</h6>
           </button>
         </div>
       </div>
@@ -104,25 +104,23 @@
             <h6 class="m-0">New Group</h6>
           </button>
           <div class="dropup">
-            <h6>
-              <button
-                title="My Groups"
-                class="
-                  btn btn-secondary
-                  dropdown-toggle
-                  my-3
-                  elevation-2
-                  d-flex
-                  align-items-center
-                "
-                type="button"
-                id="dropdownMenu2"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                My Groups
-              </button>
-            </h6>
+            <button
+              title="My Groups"
+              class="
+                btn btn-secondary
+                dropdown-toggle
+                my-3
+                elevation-2
+                d-flex
+                align-items-center
+              "
+              type="button"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <h6 class="mb-0">My Groups</h6>
+            </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <li v-for="g in groups" :key="g.id">
                 <div

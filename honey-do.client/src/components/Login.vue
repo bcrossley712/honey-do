@@ -21,8 +21,7 @@
           <img
             :src="account.picture"
             alt="account photo"
-            height="40"
-            width="40"
+            height="90"
             class="rounded align-self-center"
           />
           <span class="mx-3 text-dark lighten-30">{{ account.name }}</span>
