@@ -40,6 +40,7 @@ export default {
           Modal.getOrCreateInstance(document.getElementById("new-group")).hide();
           router.push({ name: 'Home', params: { id: newGroup.id } })
           AppState.activeGroup = newGroup
+          editable.value = {}
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
