@@ -18,8 +18,8 @@ class ChoresService {
     choreToComplete.isComplete = !choreToComplete.isComplete
     const res = await api.put(`api/chores/${choreId}`, choreToComplete)
     logger.log('chore marked complete', res.data)
-    let index = AppState.chores.findIndex(c => c.id == choreId)
-    AppState.chores.splice(index, 1, res.data)
+    // let index = AppState.chores.findIndex(c => c.id == choreId)
+    // AppState.chores.splice(index, 1, res.data)
   }
   async deleteChore(choreId) {
     const res = await api.delete(`api/chores/${choreId}`)

@@ -45,7 +45,8 @@ class SocketService extends SocketHandler {
   }
   editChore(payload) {
     logger.log('[editChore:socket]', payload)
-
+    let index = AppState.chores.findIndex(c => c.id == payload.id)
+    AppState.chores.splice(index, 1, payload)
   }
   onError(e) {
     Pop.toast(e.message, 'error')
