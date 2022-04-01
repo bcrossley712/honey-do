@@ -20,7 +20,7 @@ class ChoresService {
     //   throw new Forbidden('You cannot edit this')
     // }
     original.isComplete = updateBody.isComplete !== '' ? updateBody.isComplete : original.isComplete
-    socketProvider.messageRoom
+    socketProvider.messageRoom(`group-${updateBody.groupId}`, 'edit:chore', original)
     await original.save()
     return original
   }
