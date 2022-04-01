@@ -7,7 +7,7 @@ class ItemsService {
   async createItem(body) {
     const res = await api.post('api/items', body)
     logger.log('[createItems]', res.data)
-    AppState.items.unshift(res.data)
+    // AppState.items.unshift(res.data) Created by socket
 
   }
 

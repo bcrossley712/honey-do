@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { socketProvider } from "../SocketProvider"
 import { Forbidden } from "../utils/Errors"
 class ItemsService {
   async getGroupItems(id) {
@@ -10,6 +11,7 @@ class ItemsService {
   async create(body) {
     const item = await dbContext.Items.create(body)
     await item.populate('creator', 'name id picture')
+    socketProvider.messageRoom('group-' + body.groupId, 'new:item', item)
     return item
   }
 

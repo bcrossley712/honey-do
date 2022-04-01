@@ -105,6 +105,7 @@ import { useRoute } from "vue-router"
 import { itemsService } from "../services/ItemsService"
 import { onMounted } from "@vue/runtime-core"
 import { groupsService } from "../services/GroupsService"
+import { socketService } from "../services/SocketService"
 export default {
   setup() {
     const editable = ref({})
@@ -115,6 +116,7 @@ export default {
           await groupsService.getGroup(route.params.id)
         }
         await itemsService.getItems(route.params.id)
+        socketService.joinRoom('group-' + route.params.id)
 
       } catch (error) {
         logger.error(error)
