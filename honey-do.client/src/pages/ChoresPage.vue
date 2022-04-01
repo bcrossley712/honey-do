@@ -62,6 +62,7 @@ import { choresService } from "../services/ChoresService"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
 import { membersService } from "../services/MembersService"
+import { socketService } from "../services/SocketService"
 export default {
   setup() {
     const route = useRoute()
@@ -71,6 +72,8 @@ export default {
           await groupsService.getGroup(route.params.id)
           await membersService.getGroupMembers(route.params.id)
           await choresService.getChores(route.params.id)
+          socketService.joinRoom('group-' + route.params.id)
+
         }
       } catch (error) {
         logger.error(error)

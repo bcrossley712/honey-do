@@ -11,7 +11,7 @@ class NotesService {
   async createNote(body) {
     const res = await api.post('api/notes', body)
     logger.log('[createNote]', res.data)
-    AppState.notes.unshift(res.data)
+    // AppState.notes.unshift(res.data)
   }
 
   async deleteNotes(noteId) {

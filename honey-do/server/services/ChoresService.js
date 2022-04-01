@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext";
+import { socketProvider } from "../SocketProvider";
 import { Forbidden } from "../utils/Errors";
 
 class ChoresService {
@@ -9,6 +10,7 @@ class ChoresService {
   async create(body) {
     const chore = await dbContext.Chores.create(body)
     await chore.populate('choreOwner', 'name picture')
+    socketProvider.messageRoom('group-' + body.groupId, 'new:chore', chore)
     return chore
   }
   async edit(updateBody) {
@@ -18,6 +20,7 @@ class ChoresService {
     //   throw new Forbidden('You cannot edit this')
     // }
     original.isComplete = updateBody.isComplete !== '' ? updateBody.isComplete : original.isComplete
+    socketProvider.messageRoom
     await original.save()
     return original
   }

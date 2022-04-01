@@ -6,7 +6,7 @@ class ChoresService {
   async createChore(body) {
     const res = await api.post('api/chores', body)
     logger.log('chore created', res.data)
-    AppState.chores.push(res.data)
+    // AppState.chores.push(res.data)
   }
   async getChores(groupId) {
     const res = await api.get(`api/groups/${groupId}/chores`)

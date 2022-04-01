@@ -32,7 +32,7 @@ class SocketService extends SocketHandler {
     AppState.notes.unshift(payload)
   }
   newItem(payload) {
-    logger.log('[newItem:socket]', payload)
+    logger.log('[new:item]', payload)
     AppState.items.push(payload)
   }
   editItem(payload) {

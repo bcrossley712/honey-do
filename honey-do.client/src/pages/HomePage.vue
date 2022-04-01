@@ -101,6 +101,7 @@ import { groupsService } from '../services/GroupsService'
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
 import { notesService } from "../services/NotesService"
+import { socketService } from "../services/SocketService"
 export default {
   name: 'Home',
   setup() {
@@ -112,6 +113,7 @@ export default {
           await membersService.getGroupMembers(route.params.id)
           await membersService.getPendingMembers(route.params.id)
           await notesService.getNotes(route.params.id)
+          socketService.joinRoom('group-' + route.params.id)
         }
       } catch (error) {
         logger.error(error)

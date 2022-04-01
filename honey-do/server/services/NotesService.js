@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { socketProvider } from "../SocketProvider"
 import { Forbidden } from "../utils/Errors"
 
 class NotesService {
@@ -9,6 +10,7 @@ class NotesService {
   async create(body) {
     const note = await dbContext.Notes.create(body)
     await note.populate('creator')
+    socketProvider.messageRoom('group-' + body.groupId, 'new:note', note)
     return note
   }
   async delete(userId, noteId) {

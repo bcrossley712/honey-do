@@ -112,11 +112,11 @@ export default {
     const route = useRoute()
     watchEffect(async () => {
       try {
-        if (!AppState.activeGroup.id) {
+        if (route.name == 'Items') {
           await groupsService.getGroup(route.params.id)
+          await itemsService.getItems(route.params.id)
+          socketService.joinRoom('group-' + route.params.id)
         }
-        await itemsService.getItems(route.params.id)
-        socketService.joinRoom('group-' + route.params.id)
 
       } catch (error) {
         logger.error(error)
@@ -138,7 +138,6 @@ export default {
 
       async deleteAllItems() {
         try {
-          let grocery
           if (await Pop.confirm('Delete the whole list?')) {
             await itemsService.deleteAllItems(AppState.items)
             Pop.toast('List Cleared', 'success')
