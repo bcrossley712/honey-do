@@ -13,7 +13,7 @@ export class TestHandler extends SocketHandler {
   }
   async joinRoom(payload) {
     this.socket.join(payload.roomName)
-    this.socket.emit('join:room', payload)
+    this.socket.emit('joined:room', payload)
   }
 
   async testEvent(payload) {
