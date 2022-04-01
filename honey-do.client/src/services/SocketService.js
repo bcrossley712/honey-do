@@ -37,6 +37,8 @@ class SocketService extends SocketHandler {
   }
   editItem(payload) {
     logger.log('[editItem:socket]', payload)
+    let index = AppState.items.findIndex(i => i.id == payload.id)
+    AppState.items.splice(index, 1, payload)
 
   }
   newChore(payload) {
