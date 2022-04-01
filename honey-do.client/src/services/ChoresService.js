@@ -23,7 +23,7 @@ class ChoresService {
   }
   async deleteChore(choreId) {
     const res = await api.delete(`api/chores/${choreId}`)
-    AppState.chores = AppState.chores.filter(c => c.id != choreId)
+    // AppState.chores = AppState.chores.filter(c => c.id != choreId)
     logger.log('chore deleted', res.data)
   }
   async resetChores() {

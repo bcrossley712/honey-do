@@ -14,6 +14,7 @@ class SocketService extends SocketHandler {
       .on('edit:item', this.editItem)
       .on('new:chore', this.newChore)
       .on('edit:chore', this.editChore)
+      .on('delete:chore', this.deleteChore)
   }
 
 
@@ -47,6 +48,10 @@ class SocketService extends SocketHandler {
     logger.log('[editChore:socket]', payload)
     let index = AppState.chores.findIndex(c => c.id == payload.id)
     AppState.chores.splice(index, 1, payload)
+  }
+  deleteChore(payload) {
+    logger.log('[delete:chore]', payload)
+    AppState.chores = AppState.chores.filter(c => c.id != payload.id)
   }
   onError(e) {
     Pop.toast(e.message, 'error')

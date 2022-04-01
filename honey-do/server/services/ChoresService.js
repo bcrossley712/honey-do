@@ -28,6 +28,7 @@ class ChoresService {
     const choreToDelete = await dbContext.Chores.findById(choreId)
     const group = await dbContext.Groups.findById(choreToDelete.groupId)
     if (choreToDelete.creatorId.toString() == userId || group.creatorId.toString() == userId) {
+      socketProvider.messageRoom('group-' + group.id, 'delete:chore', choreToDelete)
       await dbContext.Chores.findByIdAndDelete(choreId)
     } else {
       throw new Forbidden('You cannot delete this')
