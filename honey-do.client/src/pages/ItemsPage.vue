@@ -103,14 +103,14 @@ import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
 import { itemsService } from "../services/ItemsService"
-import { onMounted } from "@vue/runtime-core"
+import { onMounted, watchEffect } from "@vue/runtime-core"
 import { groupsService } from "../services/GroupsService"
 import { socketService } from "../services/SocketService"
 export default {
   setup() {
     const editable = ref({})
     const route = useRoute()
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
         if (!AppState.activeGroup.id) {
           await groupsService.getGroup(route.params.id)

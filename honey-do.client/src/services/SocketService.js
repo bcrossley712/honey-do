@@ -8,7 +8,7 @@ class SocketService extends SocketHandler {
     super()
     this
       .on('error', this.onError)
-      .on('join:room', this.joinRoom)
+      .on('joined:room', this.joinedRoom)
       .on('new:note', this.newNote)
       .on('new:item', this.newItem)
       .on('edit:item', this.editItem)
@@ -16,9 +16,6 @@ class SocketService extends SocketHandler {
       .on('edit:chore', this.editChore)
   }
 
-  onError(e) {
-    Pop.toast(e.message, 'error')
-  }
 
   // OUT
   joinRoom(roomName = 'general') {
@@ -26,13 +23,17 @@ class SocketService extends SocketHandler {
   }
 
   // IN
+
+  joinedRoom(payload) {
+    logger.log('you have joined the room:', payload.roomName)
+  }
   newNote(payload) {
     logger.log('[newNote:socket]', payload)
     AppState.notes.unshift(payload)
   }
   newItem(payload) {
     logger.log('[newItem:socket]', payload)
-    AppState.items.unshift(payload)
+    AppState.items.push(payload)
   }
   editItem(payload) {
     logger.log('[editItem:socket]', payload)
@@ -45,6 +46,9 @@ class SocketService extends SocketHandler {
   editChore(payload) {
     logger.log('[editChore:socket]', payload)
 
+  }
+  onError(e) {
+    Pop.toast(e.message, 'error')
   }
 }
 

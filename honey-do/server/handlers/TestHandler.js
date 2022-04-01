@@ -1,4 +1,5 @@
-import { SocketHandler } from '../utils/SocketHandler'
+import { SocketHandler } from '../utils/SocketHandler';
+import { logger } from '../utils/logger'
 
 export class TestHandler extends SocketHandler {
   /**
@@ -8,15 +9,16 @@ export class TestHandler extends SocketHandler {
   constructor(io, socket) {
     super(io, socket)
     this
-      .on('SOCKET_TEST', this.testEvent)
+      .on('socket:test', this.testEvent)
       .on('join:room', this.joinRoom)
   }
   async joinRoom(payload) {
+    logger.log('joined room', payload.roomName)
     this.socket.join(payload.roomName)
-    this.socket.emit('join:room', payload)
+    this.socket.emit('joined:room', payload)
   }
 
   async testEvent(payload) {
-    this.socket.emit('IS_TESTED', payload)
+    this.socket.emit('is:tested', payload)
   }
 }
