@@ -24,6 +24,7 @@ class ItemsService {
     }
     item.isComplete = update.isComplete !== null ? update.isComplete : item.isComplete
     await item.save()
+    socketProvider.messageRoom('group-' + update.groupId, 'edit:item', item)
     return item
   }
 
