@@ -8,10 +8,10 @@ class ItemsService {
   }
 
 
-  async create(body) {
-    const item = await dbContext.Items.create(body)
+  async create(newItem) {
+    const item = await dbContext.Items.create(newItem)
     await item.populate('creator', 'name id picture')
-    socketProvider.messageRoom('group-' + body.groupId, 'new:item', item)
+    socketProvider.messageRoom('group-' + newItem.groupId, 'new:item', item)
     return item
   }
 
