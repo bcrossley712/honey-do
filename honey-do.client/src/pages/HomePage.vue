@@ -1,63 +1,66 @@
 <template>
   <div class="container-fluid d-flex flex-column" style="min-height: 94vh">
     <LogoBanner />
-    <div class="row px-2">
-      <h1>{{ activeGroup.name }}</h1>
-    </div>
-    <div class="row px-2">
-      <div class="col-12 d-flex flex-column">
-        <h2 class="align-self-center">My Group Members</h2>
-      </div>
-      <div class="col-12 p-2 bg-secondary d-flex rounded elevation-2">
-        <div v-for="m in members" :key="m.id" class="d-flex">
+    <div class="row px-2 max-height">
+      <div>
+        <div class="col-12">
+          <h1>{{ activeGroup.name }}</h1>
+        </div>
+        <div class="col-12 d-flex flex-column">
+          <h2 class="align-self-center">My Group Members</h2>
+        </div>
+        <div class="col-12 p-2 bg-secondary d-flex rounded elevation-2">
+          <div v-for="m in members" :key="m.id" class="d-flex">
+            <img
+              v-if="m.status == 'accepted'"
+              :src="m.picture"
+              alt=""
+              class="img-small rounded-circle m-1"
+              :title="m.name"
+            />
+          </div>
+        </div>
+        <div
+          class="col-12 d-flex flex-column pt-1"
+          v-if="groupRequests.length >= 1"
+        >
+          <h3 class="align-self-center">Group Requests</h3>
+        </div>
+        <div
+          class="col-12 p-2 bg-secondary d-flex rounded elevation-2"
+          v-if="groupRequests.length >= 1"
+        >
           <img
-            v-if="m.status == 'accepted'"
-            :src="m.picture"
+            @click="setRequest(r)"
+            data-bs-toggle="modal"
+            data-bs-target="#group-request"
+            v-for="r in groupRequests"
+            :key="r.id"
+            :src="r.picture"
             alt=""
             class="img-small rounded-circle m-1"
-            :title="m.name"
+            :title="r.name"
           />
         </div>
+        <div class="col-12 d-flex flex-column">
+          <h3 class="align-self-center mt-2">Group Notes</h3>
+        </div>
+        <div class="col-12">
+          <div v-for="n in notes" :key="n.id">
+            <Notes :note="n" />
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row px-2" v-if="groupRequests.length >= 1">
-      <div class="col-12 d-flex flex-column">
-        <h3 class="align-self-center">Group Requests</h3>
-      </div>
-      <div class="col-12 p-2 bg-secondary d-flex rounded elevation-2">
+      <div class="d-flex align-items-end py-1">
         <img
-          @click="setRequest(r)"
-          data-bs-toggle="modal"
-          data-bs-target="#group-request"
-          v-for="r in groupRequests"
-          :key="r.id"
-          :src="r.picture"
+          v-if="notes.length < 1"
+          src="../assets/img/undraw_sorting_thoughts_re_fgli.svg"
+          class="img-fluid"
           alt=""
-          class="img-small rounded-circle m-1"
-          :title="r.name"
         />
       </div>
     </div>
-
-    <div class="row px-2">
-      <div class="col-12 d-flex flex-column">
-        <h3 class="align-self-center mt-2">Group Notes</h3>
-      </div>
-    </div>
-    <div class="row px-2 flex-grow-1 overflow">
-      <div class="col-12">
-        <div v-for="n in notes" :key="n.id">
-          <Notes :note="n" />
-        </div>
-      </div>
-    </div>
-    <img
-      v-if="notes.length < 4"
-      src="../assets/img/undraw_sorting_thoughts_re_fgli.svg"
-      class="img-fluid"
-      alt=""
-    />
-    <div class="row px-2">
+    <div class="row px-2 w-100 fixed-buttons">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <h6 class="bg-secondary rounded">
@@ -166,7 +169,7 @@ export default {
   }
 }
 .img-small {
-  height: 55px;
-  width: 55px;
+  height: 47px;
+  width: 47px;
 }
 </style>

@@ -27,6 +27,7 @@ select {
     &:valid {
       border: 1px solid $success;
     }
+
     &:invalid {
       border: 1px solid $danger;
     }
@@ -37,39 +38,61 @@ form:invalid button[type="submit"] {
   filter: grayscale(1);
   pointer-events: none;
 }
-h1, h2, h3, h4, h5, h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Roboto', sans-serif;
 }
-.t-shadow{
+
+.t-shadow {
   text-shadow: 1px 1px 3px #79440f;
 }
-.bg-modal{
-background-color: #fac999e5;
+
+.bg-modal {
+  background-color: #fac999e5;
 }
-.modal-dialog-end{
+
+.modal-dialog-end {
   display: flex;
   align-items: end;
   min-height: calc(100% - 1rem);
 }
-.btn-rounded-end{
+
+.btn-rounded-end {
   display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
-.bg-photo{
+
+.bg-photo {
   background-image: url(https://images.unsplash.com/photo-1623018697148-8350cf18e64e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80);
   min-height: 92vh;
+}
+
+.fixed-buttons {
+  position: fixed;
+  bottom: 40px;
+}
+
+.max-height {
+  max-height: 81vh;
+  min-height: 81vh;
+  overflow-y: scroll;
 }
