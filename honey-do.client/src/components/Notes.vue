@@ -1,7 +1,7 @@
 <template>
   <span v-touch:swipe.right="deleteNotes" v-touch-class="'active'">
     <div v-if="note.creatorId == account.id">
-      <div class="row p-3">
+      <div class="row p-1">
         <div class="col-2 p-0">
           <img
             :src="note.creator?.picture"
@@ -17,6 +17,7 @@
             elevation-2
             d-flex
             justify-content-between
+            bg-white
           "
         >
           <div>
@@ -38,6 +39,7 @@
             elevation-2
             d-flex
             justify-content-between
+            bg-azureblue
           "
         >
           <div>
@@ -107,6 +109,7 @@ export default {
 .img-small {
   height: 55px;
   width: 55px;
+  object-fit: cover;
 }
 
 .col-9 {
@@ -120,5 +123,9 @@ span.active div .col-9 {
 .img-ex-small {
   height: 40px;
   width: 40px;
+  object-fit: cover;
+}
+.bg-azureblue {
+  background-color: azure;
 }
 </style>

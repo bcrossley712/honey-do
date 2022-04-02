@@ -171,5 +171,6 @@ export default {
 .img-small {
   height: 47px;
   width: 47px;
+  object-fit: cover;
 }
 </style>
