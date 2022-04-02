@@ -1,6 +1,7 @@
 import { dbContext } from "../db/DbContext";
 import { socketProvider } from "../SocketProvider";
 import { Forbidden } from "../utils/Errors";
+import { logger } from "../utils/Logger";
 
 class ChoresService {
   async getGroupChores(id) {

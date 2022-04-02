@@ -35,6 +35,7 @@ class SocketProvider {
       socket: socket.id,
       message: 'Successfully Connected'
     })
+    logger.log('Socket Connected')
   }
 
   /**
@@ -58,6 +59,7 @@ class SocketProvider {
    * @param {any} payload
    */
   messageRoom(room, eventName, payload) {
+    logger.log('New Chore Socket sent', room, eventName, payload)
     this.io.to(room).emit(eventName, payload)
   }
 
