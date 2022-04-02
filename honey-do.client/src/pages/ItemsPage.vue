@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid d-flex flex-column" style="min-height: 94vh">
     <LogoBanner />
-    <div class="row flex-grow-1 overflow">
+    <div class="row max-height">
       <div>
         <div class="col-12 d-flex justify-content-center text-center">
           <h2>Shopping List</h2>
@@ -55,14 +55,14 @@
           </div>
         </div>
       </div>
+      <img
+        v-if="item.length < 5"
+        src="../assets/img/undraw_diary_re_4jpc.svg"
+        class="img-fluid"
+        alt=""
+      />
     </div>
-    <img
-      v-if="item.length < 5"
-      src="../assets/img/undraw_diary_re_4jpc.svg"
-      class="img-fluid"
-      alt=""
-    />
-    <div class="row px-2">
+    <div class="row px-2 fixed-buttons w-100">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <h6 class="bg-secondary rounded">
