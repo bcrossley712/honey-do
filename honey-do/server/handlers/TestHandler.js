@@ -1,5 +1,5 @@
 import { SocketHandler } from '../utils/SocketHandler';
-import { logger } from '../utils/logger'
+import { logger } from '../utils/Logger'
 
 export class TestHandler extends SocketHandler {
   /**
