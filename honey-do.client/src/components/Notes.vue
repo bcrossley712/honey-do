@@ -126,6 +126,6 @@ span.active div .col-9 {
   object-fit: cover;
 }
 .bg-azureblue {
-  background-color: azure;
+  background-color: aliceblue;
 }
 </style>
